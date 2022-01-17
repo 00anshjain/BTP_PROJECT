@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>complete responsive hospital website design </title>
+    <!-- For chatbot button -->
+    <link rel="stylesheet" href="/assets/dcode.css">
+    <link rel="shortcut icon" href="/assets/favicon.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- including the navbar -->
+    <header class="header">
+
+        <a href="#" class="logo"> <i class="fas fa-heartbeat"></i> medcare. </a>
+
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="services.html">services</a>
+            <a href="about.html">about</a>
+            <a href="doctors.html">doctors</a>
+            <a href="contact.html">contact us</a>
+            <a href="book.html">book</a>
+            <a href="review.html">review</a>
+            <a href="blogs.html">blogs</a>
+            <button class="btn" style="margin-left: 5px;">Login</button>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </header>
+
+
+    <!-- for chatbot button -->
+    
+    <style>
+        .floating-btn{
+            width: 80px;
+            height: 80px;
+            background: #009879;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 40px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+            position: fixed;
+            right: 70px;
+            bottom: 70px;
+        }
+    </style>
+    
+    
+    
+    <a href="http://www.google.com" class="material-icons floating-btn">add</a>
+    
+    <!-- header section starts  -->
+
+    <div id="nav-placeholder">
+
+    </div>
+
+    <script>
+        $(function () {
+            $("#nav-placeholder").load("nav.html");
+        });
+    </script>
+    <!-- header section ends -->
+
+    <!-- home section starts  -->
+
+    <section class="home" id="home">
+
+        <div class="image">
+            <img src="{% static 'image/home-img.svg' %}" alt="">
+        </div>
+
+        <div class="content">
+            <h3>stay safe, stay healthy</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem sed autem vero? Magnam, est laboriosam!</p>
+            <a href="#" class="btn"> contact us <span class="fas fa-chevron-right"></span> </a>
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- icons section starts  -->
+
+    <section class="icons-container">
+
+        <div class="icons">
+            <i class="fas fa-user-md"></i>
+            <h3>140+</h3>
+            <p>doctors at work</p>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-users"></i>
+            <h3>1040+</h3>
+            <p>satisfied patients</p>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-procedures"></i>
+            <h3>500+</h3>
+            <p>bed facility</p>
+        </div>
+
+        <div class="icons">
+            <i class="fas fa-hospital"></i>
+            <h3>80+</h3>
+            <p>available hospitals</p>
+        </div>
+
+    </section>
+
+    <!-- icons section ends -->
+
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"> <i class="fas fa-chevron-right"></i> home </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> services </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> about </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> doctors </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> book </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> review </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> blogs </a>
+            </div>
+
+            <div class="box">
+                <h3>our services</h3>
+                <a href="#"> <i class="fas fa-chevron-right"></i> dental care </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> message therapy </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> cardioloty </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> diagnosis </a>
+                <a href="#"> <i class="fas fa-chevron-right"></i> ambulance service </a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
+                <a href="#"> <i class="fas fa-envelope"></i> anasbhai@gmail.com </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
+            </div>
+
+            <div class="box">
+                <h3>follow us</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
+                <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
+            </div>
+
+        </div>
+
+        <div class="credit"> created by <span>mr. web designer</span> | all rights reserved </div>
+
+    </section>
+
+    <!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+    hi
+
+</body>
+
+</html>
+
+
+<!-- commnets -->
