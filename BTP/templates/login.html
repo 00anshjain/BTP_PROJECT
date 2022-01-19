@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+
+<body>
+
+    <!-- booking section starts   -->
+
+    <section class="book" id="book">
+
+        <h1 class="heading"> <span>login </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="{% static 'image/login.png' %}" alt="">
+            </div>
+
+            <form action="">
+                <h3>user login</h3>
+                <input type="text" placeholder="username" class="box">
+                <input type="password" placeholder="password" class="box">
+                <input type="submit" value="Login" class="btn">
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- booking section ends -->
+</body>
+
+
+
+{% endblock content %}
