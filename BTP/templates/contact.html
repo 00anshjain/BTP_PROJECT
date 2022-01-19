@@ -1,23 +1,6 @@
-<!DOCTYPE html>
+{% extends 'main.html' %}
 {% load static %}
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>complete responsive hospital website design </title>
-
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-</head>
+{% block content %}
 
 <body>
 
@@ -39,7 +22,7 @@
     <section class="home" id="home">
 
         <div class="image">
-            <img src="image/home-img.svg" alt="">
+            <img src="{% static 'image/home-img.svg' %}" alt="">
         </div>
 
         <div class="content">
@@ -85,58 +68,6 @@
     <!-- icons section ends -->
 
 
-    <!-- footer section starts  -->
-
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#"> <i class="fas fa-chevron-right"></i> home </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> services </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> about </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> doctors </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> book </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> review </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> blogs </a>
-            </div>
-
-            <div class="box">
-                <h3>our services</h3>
-                <a href="#"> <i class="fas fa-chevron-right"></i> dental care </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> message therapy </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> cardioloty </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> diagnosis </a>
-                <a href="#"> <i class="fas fa-chevron-right"></i> ambulance service </a>
-            </div>
-
-            <div class="box">
-                <h3>contact info</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
-                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
-                <a href="#"> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </a>
-                <a href="#"> <i class="fas fa-envelope"></i> anasbhai@gmail.com </a>
-                <a href="#"> <i class="fas fa-map-marker-alt"></i> mumbai, india - 400104 </a>
-            </div>
-
-            <div class="box">
-                <h3>follow us</h3>
-                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
-                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
-                <a href="#"> <i class="fab fa-twitter"></i> twitter </a>
-                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
-                <a href="#"> <i class="fab fa-linkedin"></i> linkedin </a>
-                <a href="#"> <i class="fab fa-pinterest"></i> pinterest </a>
-            </div>
-
-        </div>
-
-        <div class="credit"> created by <span>mr. web designer</span> | all rights reserved </div>
-
-    </section>
-
-    <!-- footer section ends -->
 
 
 
@@ -146,7 +77,4 @@
 
 </body>
 
-</html>
-
-
-<!-- commnets -->
+{% endblock content %}

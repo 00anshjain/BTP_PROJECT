@@ -18,17 +18,17 @@
 <body>
     <header class="header">
 
-        <a href="#" class="logo"> <i class="fas fa-heartbeat"></i> medcare. </a>
+        <a href="{% url 'index' %}" class="logo"> <i class="fas fa-heartbeat"></i> medcare. </a>
 
         <nav class="navbar">
-            <a href="index.html">home</a>
-            <a href="services.html">services</a>
-            <a href="about.html">about</a>
-            <a href="doctors.html">doctors</a>
-            <a href="contact.html">contact us</a>
-            <a href="book.html">book</a>
-            <a href="review.html">review</a>
-            <a href="blogs.html">blogs</a>
+            <a href="{% url 'index' %}">home</a>
+            <a href="{% url 'services' %}">services</a>
+            <a href="{% url 'about' %}">about</a>
+            <a href="{% url 'doctors' %}">doctors</a>
+            <a href="{% url 'contact' %}">contact us</a>
+            <a href="{% url 'bookAppointment' %}">book</a>
+            <a href="{% url 'review' %}">review</a>
+            <a href="{% url 'blogs' %}">blogs</a>
             <button class="btn" style="margin-left: 5px;">Login</button>
         </nav>
 
