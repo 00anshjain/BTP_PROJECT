@@ -1,36 +1,43 @@
 {% extends 'main.html' %}
-{% load static %}
+
 {% block content %}
 
-
 <body>
+  <div class="auth">
+    <div class="card">
+      <div class="auth__header text-center">
+        <a href="/">
+          <img src="images/icon.svg" alt="icon" />
+        </a>
+        <h3>Account Login</h3>
+        <p>Hello Developer, Welcome Back!</p>
+      </div>
 
-    <!-- booking section starts   -->
-
-    <section class="book" id="book">
-
-        <h1 class="heading"> <span>login </h1>
-
-        <div class="row">
-
-            <div class="image">
-                <img src="{% static 'image/login.png' %}" alt="">
-            </div>
-
-            <form action="">
-                <h3>user login</h3>
-                <input type="text" placeholder="username" class="box">
-                <input type="password" placeholder="password" class="box">
-                <input type="submit" value="Login" class="btn">
-            </form>
-
+      <form action="#" class="form auth__form">
+        <!-- Input:Email -->
+        <div class="form__field">
+          <label for="formInput#text">Username: </label>
+          <input class="input input--text" id="formInput#text" type="text" name="username"
+            placeholder="Enter your username..." />
         </div>
 
-    </section>
-
-    <!-- booking section ends -->
+        <!-- Input:Password -->
+        <div class="form__field">
+          <label for="formInput#password">Password: </label>
+          <input class="input input--password" id="formInput#passowrd" type="password" name="password"
+            placeholder="••••••••" />
+        </div>
+        <div class="auth__actions">
+          <input class="btn btn--sub btn--lg" type="submit" value="Log In" />
+          <a href="forgetpassword.html">Forget Password?</a>
+        </div>
+      </form>
+      <div class="auth__alternative">
+        <p>Don’t have an Account?</p>
+        <a href="signup.html">Sign Up</a>
+      </div>
+    </div>
+  </div>
 </body>
-
-
 
 {% endblock content %}
