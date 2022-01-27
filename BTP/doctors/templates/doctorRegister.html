@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1>User Registration page</h1>
+
+{% if msg %}
+{{ msg }}
+{% endif %}
+
+
+<form method="POST" action="">
+  {% csrf_token %}
+  <!-- {{forms.as_p}} -->
+  
+  {% for field in form %}
+  <div class=" form__field">
+    <!-- if(field.label == 'availabletime')
+    <form method > -->
+  <label for="formInput#text">{{field.label}}</label>
+  {{field}}
+  </div>
+  {% endfor %}
+
+
+
+  <input type="submit">
+</form>
+
+{% endblock content %}
