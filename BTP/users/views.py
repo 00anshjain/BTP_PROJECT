@@ -10,10 +10,10 @@ def index(request):
     return render(request, 'index.html')
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'login_register.html')
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'login_register.html')
     
 def bookAppointment(request):
     return render(request, 'bookAppointment.html')
@@ -37,6 +37,6 @@ def services(request):
     return render(request, 'services.html')
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'login_register.html')
 
     
