@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Profile
+from .models import Availability, Profile, Qualification
 
 
 class DoctorProfileForm(ModelForm):
@@ -11,6 +11,24 @@ class DoctorProfileForm(ModelForm):
         fields = '__all__'
         exclude = ('user', 'available_time', 'qualifications')
 
+class DoctorAvailablityForm(ModelForm):
+    class Meta:
+        model = Availability
+        fields = '__all__'
+
+class DoctorQualificationForm(ModelForm):
+    class Meta:
+        model = Qualification
+        fields = '__all__'
+
+    # delivery_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
+
+
+class DoctorProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        exclude = ('user', 'available_time', 'qualifications')
 
 # class DoctorProfileForm(UserCreationForm):
 #     class Meta:

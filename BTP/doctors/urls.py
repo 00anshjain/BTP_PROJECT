@@ -7,7 +7,9 @@ urlpatterns = [
     # path('services/', views.services, name='services'),
     # path('about/', views.about, name='about'),
     # path('doctors/', views.doctors, name='doctors'),
-    path('doctorRegister/', views.doctorRegister, name='doctorRegister'),
+    path('doctorRegister/<str:pk>/', views.doctorRegister, name='doctorRegister'),
+    path('doctorRegister2/<str:pk>/', views.doctorRegister2, name='doctorRegister2'),
+    path('doctorRegister3/<str:pk>/', views.doctorRegister3, name='doctorRegister3'),
 
     path('doctorLogin/', views.doctorLogin, name='doctorLogin'),
     

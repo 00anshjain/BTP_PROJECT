@@ -9,12 +9,20 @@ from phone_field import PhoneField
 
 # from phonenumber_field.modelfields import PhoneNumberField
 
+
+
 class Profile(models.Model):
+    GenderChoices = (
+    ("M", "Male"),
+    ("F", "Female"),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE, null = True, blank = True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
     # ANytime user is deleted the profile is deleted
     name = models.CharField(max_length=200, blank = True, null = True)
     email = models.EmailField(max_length=500, blank=True, null=True)
+    gender = models.CharField(max_length=1, choices = GenderChoices, blank = False, null = False)
+    age = models.IntegerField(null = False)
     available_time = models.OneToOneField('Availability', on_delete=models.CASCADE, null = True, blank = True)
     qualifications = models.ManyToManyField('Qualification', blank = True)
     username = models.CharField(max_length=200, blank = True, null = True)
@@ -51,19 +59,20 @@ class Qualification(models.Model):
 
 
 class Availability(models.Model):
-    monday_from = models.DateTimeField(null = True, blank = True)
-    monday_to = models.DateTimeField(null = True, blank = True)
-    tuesday_from = models.DateTimeField(null = True, blank = True)
-    tuesday_to = models.DateTimeField(null = True, blank = True)
-    wednesday_from = models.DateTimeField(null = True, blank = True)
-    wednesday_to = models.DateTimeField(null = True, blank = True)
-    thursday_from = models.DateTimeField(null = True, blank = True)
-    thursday_to = models.DateTimeField(null = True, blank = True)
-    friday_from = models.DateTimeField(null = True, blank = True)
-    friday_to = models.DateTimeField(null = True, blank = True)
-    saturday_from = models.DateTimeField(null = True, blank = True)
-    saturday_to = models.DateTimeField(null = True, blank = True)
-    sunday_from = models.DateTimeField(null = True, blank = True)
-    sunday_to = models.DateTimeField(null = True, blank = True)
+    monday_from = models.TimeField(null = True, blank = True)
+    monday_to = models.TimeField(null = True, blank = True)
+    tuesday_from = models.TimeField(null = True, blank = True)
+    tuesday_to = models.TimeField(null = True, blank = True)
+    wednesday_from = models.TimeField(null = True, blank = True)
+    wednesday_to = models.TimeField(null = True, blank = True)
+    thursday_from = models.TimeField(null = True, blank = True)
+    thursday_to = models.TimeField(null = True, blank = True)
+    friday_from = models.TimeField(null = True, blank = True)
+    friday_to = models.TimeField(null = True, blank = True)
+    saturday_from = models.TimeField(null = True, blank = True)
+    saturday_to = models.TimeField(null = True, blank = True)
+    sunday_from = models.TimeField(null = True, blank = True)
+    sunday_to = models.TimeField(null = True, blank = True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key = True, editable = False)
     
     

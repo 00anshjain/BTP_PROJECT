@@ -1,11 +1,9 @@
 {% load static %}
 
-
-<!-- Header Section -->
 <header class="header">
     <div class="container container--narrow">
         <a href="" class="header__logo">
-            <img src="{% static 'images/logo.svg' %}" alt="DevSearch Logo" />
+            <img src="{% static 'images/logo.svg' %}" alt="Medical Logo" />
         </a>
         <nav class="header__nav">
             <input type="checkbox" id="responsive-menu" />
@@ -14,20 +12,12 @@
                 <div class="toggle-menu__lines"></div>
             </label>
             <ul class="header__menu">
-                <li class="header__menuItem"><a href="{% url 'services' %}">Services</a></li>
-                <li class="header__menuItem"><a href="{% url 'doctors' %}">Doctors</a></li>
-                <li class="header__menuItem"><a href="{% url 'contact' %}">Contact</a></li>
-                <li class="header__menuItem"><a href="{% url 'bookAppointment' %}">Appointment</a></li>
-                <li class="header__menuItem"><a href="{% url 'blogs' %}">Blogs</a></li>
-
-
-
-                {% if request.user.is_authenticated %}
-                <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>
-                {% else %}
-                <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Login/Sign Up</a></li>
-                {% endif %}
-
+                <li class="header__menuItem"><a href="">Doctors</a></li>
+                <li class="header__menuItem"><a href="">Blogs</a></li>
+                <li class="header__menuItem"><a href="">Inbox</a></li>
+                <li class="header__menuItem"><a href="{% url 'register' %}">Register
+                        Doctor</a></li>
+                <li class="header__menuItem"><a href="" class="btn btn--sub">Login/Sign Up</a></li>
             </ul>
         </nav>
     </div>
