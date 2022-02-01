@@ -70,9 +70,16 @@ def doctorRegister3(request, pk):
     return render(request, 'doctorRegister3.html', context)
 
 
-def doctorProfile(request):
-    return render(request, 'doctorProfile.html')
+def doctorProfile(request, pk):
+    profile = Profile.objects.get(Did=pk)
+    return render(request, 'doctorProfile.html', {'profile': profile})
 
 
 def doctorLogin(request):
     return render(request, 'doctorLogin.html')
+
+
+def allDoctors(request):
+    profiles = Profile.objects.all()
+    context = {'profiles': profiles}
+    return render(request, 'allDoctors.html', context)
