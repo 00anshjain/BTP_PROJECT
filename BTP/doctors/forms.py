@@ -9,17 +9,21 @@ class DoctorProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
-        exclude = ('user', 'available_time', 'qualifications')
+        exclude = ('user',)
+        # exclude = ('user', 'available_time', 'qualifications')
+
 
 class DoctorAvailablityForm(ModelForm):
     class Meta:
         model = Availability
         fields = '__all__'
+        exclude = ('profile',)
 
 class DoctorQualificationForm(ModelForm):
     class Meta:
         model = Qualification
         fields = '__all__'
+        exclude = ('profile',)
 
     # delivery_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
 
