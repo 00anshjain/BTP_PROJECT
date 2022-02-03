@@ -27,7 +27,7 @@ class Profile(models.Model):
         max_length=1, choices=GenderChoices, blank=False, null=False)
     age = models.IntegerField(null=False)
     # available_time = models.OneToOneField(
-        # 'Availability', on_delete=models.CASCADE, null=True, blank=True)
+    # 'Availability', on_delete=models.CASCADE, null=True, blank=True)
     # qualifications = models.ManyToManyField('Qualification', blank=True)
     username = models.CharField(max_length=200, blank=True, null=True)
     location = models.CharField(max_length=500, blank=True, null=True)
@@ -84,4 +84,6 @@ class Availability(models.Model):
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    
+
+    def __str__(self):
+        return str(self.profile.name)

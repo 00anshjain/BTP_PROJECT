@@ -13,8 +13,9 @@ urlpatterns = [
          views.doctorRegister2, name='doctorRegister2'),
     path('doctorRegister3/<str:pk>/',
          views.doctorRegister3, name='doctorRegister3'),
+    path('updateDoctorProfile/<str:pk>/',
+         views.updateDoctorProfile, name='updateDoctorProfile'),
 
-    path('doctorLogin/', views.doctorLogin, name='doctorLogin'),
 
     # path('contact/', views.contact, name='contact'),
     # path('bookAppointment/', views.bookAppointment, name='bookAppointment'),

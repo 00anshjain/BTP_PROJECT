@@ -59,7 +59,7 @@
             <p>Hello Developer, Welcome Back!</p>
         </div>
 
-        <form method='POST' action="{% url 'login' %}" class="form auth__form">
+        <form method='POST' action="{% url 'doctorLogin' %}" class="form auth__form">
             {% csrf_token %}
             <!-- Input:Username -->
             <div class="form__field">
@@ -81,7 +81,7 @@
         </form>
         <div class="auth__alternative">
             <p>Don’t have an Account?</p>
-            <a href="{% url 'doctorRegister' %}">Sign Up</a>
+            <a href="{% url 'register' %}">Sign Up</a>
         </div>
     </div>
 </div>

@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import *
 from .forms import *
+
+from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 
 
@@ -51,14 +53,14 @@ def doctorRegister2(request, pk):
             sunday_from = request.POST['sunday_from']
             sunday_to = request.POST['sunday_to']
             Availability.objects.create(
-            monday_from = monday_from, monday_to = monday_to,
-            tuesday_from = tuesday_from, tuesday_to = tuesday_to, 
-            wednesday_from =wednesday_from, wednesday_to = wednesday_to,
-            thursday_from = thursday_from, thursday_to = thursday_to,
-            friday_from = friday_from, friday_to = friday_to,
-            saturday_from = saturday_from, saturday_to = saturday_to,
-            sunday_from = sunday_from, sunday_to = sunday_to,
-            profile = user,
+                monday_from=monday_from, monday_to=monday_to,
+                tuesday_from=tuesday_from, tuesday_to=tuesday_to,
+                wednesday_from=wednesday_from, wednesday_to=wednesday_to,
+                thursday_from=thursday_from, thursday_to=thursday_to,
+                friday_from=friday_from, friday_to=friday_to,
+                saturday_from=saturday_from, saturday_to=saturday_to,
+                sunday_from=sunday_from, sunday_to=sunday_to,
+                profile=user,
             )
             # avail = form.save()
             # user.available_time = avail
@@ -90,7 +92,7 @@ def doctorRegister3(request, pk):
                 degree_name=degree_name,
                 degree_date=degree_date,
                 university=university,
-                profile = user,
+                profile=user,
             )
 
             # info = form.save()
@@ -109,8 +111,8 @@ def doctorProfile(request, pk):
     return render(request, 'doctorProfile.html', {'profile': profile})
 
 
-def doctorLogin(request):
-    return render(request, 'doctorLogin.html')
+def updateDoctorProfile(request, pk):
+    return redirect('doctorRegister', pk)
 
 
 def allDoctors(request):
