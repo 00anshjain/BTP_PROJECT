@@ -13,7 +13,7 @@ from doctors.models import Profile
 
 # Create your views here.
 def main(request):
-    return render(request, 'main.html')
+    return redirect('allDoctors')
 
 
 def index(request):
@@ -22,6 +22,7 @@ def index(request):
 
 def register(request):
     msg = None
+    page = "register"
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
 
@@ -43,7 +44,8 @@ def register(request):
             msg = 'form is not valid'
     else:
         form = CustomUserCreationForm()
-    return render(request, 'login_register.html', {'form': form, 'msg': msg})
+    context = {'form': form, 'page': page}
+    return render(request, 'doctorLogin.html', context)
 
 
 def bookAppointment(request):
