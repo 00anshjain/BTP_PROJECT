@@ -7,6 +7,7 @@ from django.db.models import Q
 
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
+from .utils import searchDoctors
 
 
 def doctorRegister(request, pk):
@@ -117,11 +118,6 @@ def updateDoctorProfile(request, pk):
 
 
 def allDoctors(request):
-    search_query = ''
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-
-    profiles = Profile.objects.filter(
-        Q(name__icontains=search_query) | Q(location__icontains=search_query))
+    profiles, search_query = searchDoctors(request)
     context = {'profiles': profiles, 'search_query': search_query}
     return render(request, 'allDoctors.html', context)
