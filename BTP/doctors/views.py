@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .models import *
 from .forms import *
+from django.db.models import Q
 
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
@@ -116,6 +117,11 @@ def updateDoctorProfile(request, pk):
 
 
 def allDoctors(request):
-    profiles = Profile.objects.all()
-    context = {'profiles': profiles}
+    search_query = ''
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+
+    profiles = Profile.objects.filter(
+        Q(name__icontains=search_query) | Q(location__icontains=search_query))
+    context = {'profiles': profiles, 'search_query': search_query}
     return render(request, 'allDoctors.html', context)
