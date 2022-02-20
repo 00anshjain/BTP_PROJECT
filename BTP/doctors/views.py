@@ -110,7 +110,8 @@ def doctorRegister3(request, pk):
 
 def doctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
-    return render(request, 'doctorProfile.html', {'profile': profile})
+    timings = Availability.objects.select_related().filter(id=pk)
+    return render(request, 'doctorProfile.html', {'profile': profile, 'timings': timings})
 
 
 def updateDoctorProfile(request, pk):
