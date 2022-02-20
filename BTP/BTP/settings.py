@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'users.apps.UsersConfig',
     'doctors.apps.DoctorsConfig',
+    'clients.apps.ClientsConfig',
 ]
 
 MIDDLEWARE = [

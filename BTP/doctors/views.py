@@ -114,7 +114,26 @@ def doctorProfile(request, pk):
 
 
 def updateDoctorProfile(request, pk):
-    return redirect('doctorRegister', pk)
+    profile = Profile.objects.get(Did=pk)
+    form = DoctorProfileForm(instance = profile)
+    if request.method == 'POST':
+        form =DoctorProfileForm(request.POST, request.FILES, instance = profile)
+        form.save()
+        return redirect('allDoctors')
+    context = {'form': form, 'pk' : pk}
+    return render(request, 'updateDoctorProfile.html', context)
+
+def updateDoctorAvailablity(request, pk):
+    profile = Profile.objects.get(Did=pk)
+    availablity = Availability.objects.get(profile=profile)
+    form = DoctorAvailablityForm(instance = availablity)
+    if request.method == 'POST':
+        form =DoctorAvailablityForm(request.POST, request.FILES, instance = availablity)
+        form.save()
+        return redirect('allDoctors')
+    context = {'form': form}
+    return render(request, 'updateDoctorAvailablity.html', context)
+
 
 
 def allDoctors(request):

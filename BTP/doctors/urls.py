@@ -15,6 +15,8 @@ urlpatterns = [
          views.doctorRegister3, name='doctorRegister3'),
     path('updateDoctorProfile/<str:pk>/',
          views.updateDoctorProfile, name='updateDoctorProfile'),
+     path('updateDoctorAvailablity/<str:pk>/',
+         views.updateDoctorAvailablity, name='updateDoctorAvailablity'),
 
 
     # path('contact/', views.contact, name='contact'),

@@ -87,3 +87,12 @@ class Availability(models.Model):
 
     def __str__(self):
         return str(self.profile.name)
+
+
+def DoctorProfileUpdatedAddedToUser(sender, instance, created, **kwargs):
+    profile = instance
+    user = profile.user
+    user.email = profile.email
+    user.save()
+post_save.connect(DoctorProfileUpdatedAddedToUser, sender=Profile,
+                  dispatch_uid="create_DocUser_instance")
