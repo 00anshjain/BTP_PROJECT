@@ -71,4 +71,26 @@ class CustomUserCreationForm(UserCreationForm):
 
         for name, field in self.fields.items():
             field.widget.attrs.update({'class':'input'})
+
+
+
+
+
+
+
+# class CustomClientUserCreationForm(UserCreationForm):
+#     DOB = forms.DateField()
+#     gender = forms.ChoiceField(
+#         choices=GenderChoices,
+#     )
+
+#     class Meta:
+#         model = User
+#         fields = ['first_name', 'last_name', 'email', 'DOB', 'gender', 'username', 'password1', 'password2']
+        
+#     def __init__(self, *args, **kwargs):
+#         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+
+#         for name, field in self.fields.items():
+#             field.widget.attrs.update({'class':'input'})
     

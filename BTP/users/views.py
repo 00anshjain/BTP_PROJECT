@@ -5,6 +5,7 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from doctors.models import Profile
+from clients.models import ClientProfile
 
 
 # from django.conf import settings
@@ -46,6 +47,37 @@ def register(request):
         form = CustomUserCreationForm()
     context = {'form': form, 'page': page}
     return render(request, 'doctorLogin.html', context)
+
+
+# def registerUserForClient(request):
+#     msg = None
+#     page = "register"
+#     if request.method == 'POST':
+#         form = CustomClientUserCreationForm(request.POST)
+
+#         if form.is_valid():
+#             name = request.POST['first_name'] + ' ' + request.POST['last_name']
+#             email = request.POST['email']
+#             dob = request.POST['DOB']
+#             gender = request.POST['gender']
+#             username = request.POST['username']
+#             user = form.save()
+
+#             ClientProfile.objects.create(name=name, email=email,
+#                                    dob=dob, gender=gender, username=username, user=user)
+#             # pk = ClientProfile.objects.get(username=username).Cid
+#             # print(pk)
+#             # msg = 'user created'
+#             return redirect('clientLogin')
+#         else:
+#             msg = 'form is not valid'
+#     else:
+#         form = CustomClientUserCreationForm()
+#     context = {'form': form, 'page': page}
+#     return render(request, 'doctorLogin.html', context)
+
+
+
 
 
 def bookAppointment(request):

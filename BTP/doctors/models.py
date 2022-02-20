@@ -18,7 +18,7 @@ class Profile(models.Model):
         ("F", "Female"),
     )
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, null=True, blank=True)
+        User, on_delete=models.CASCADE, null = True, blank = True)
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
     # ANytime user is deleted the profile is deleted
     name = models.CharField(max_length=200, blank=True, null=True)
