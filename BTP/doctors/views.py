@@ -27,7 +27,7 @@ def doctorRegister(request, pk):
     # else:
     #     form = DoctorProfileForm()
     #     msg = 'Not found'
-    return render(request, 'doctorRegister.html', {'form': form, 'msg': msg})
+    return render(request, 'doctors/doctorRegister.html', {'form': form, 'msg': msg})
 
 
 def doctorRegister2(request, pk):
@@ -76,7 +76,7 @@ def doctorRegister2(request, pk):
         # form.save()
         return redirect('doctorRegister3', pk)
     context = {'form': form}
-    return render(request, 'doctorRegister2.html', context)
+    return render(request, 'doctors/doctorRegister2.html', context)
 
 
 def doctorRegister3(request, pk):
@@ -105,38 +105,39 @@ def doctorRegister3(request, pk):
 
         return redirect('allDoctors')
     context = {'form': form}
-    return render(request, 'doctorRegister3.html', context)
+    return render(request, 'doctors/doctorRegister3.html', context)
 
 
 def doctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
-    return render(request, 'doctorProfile.html', {'profile': profile})
+    return render(request, 'doctors/doctorProfile.html', {'profile': profile})
 
 
 def updateDoctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
-    form = DoctorProfileForm(instance = profile)
+    form = DoctorProfileForm(instance=profile)
     if request.method == 'POST':
-        form =DoctorProfileForm(request.POST, request.FILES, instance = profile)
+        form = DoctorProfileForm(request.POST, request.FILES, instance=profile)
         form.save()
         return redirect('allDoctors')
-    context = {'form': form, 'pk' : pk}
-    return render(request, 'updateDoctorProfile.html', context)
+    context = {'form': form, 'pk': pk}
+    return render(request, 'doctors/updateDoctorProfile.html', context)
+
 
 def updateDoctorAvailablity(request, pk):
     profile = Profile.objects.get(Did=pk)
     availablity = Availability.objects.get(profile=profile)
-    form = DoctorAvailablityForm(instance = availablity)
+    form = DoctorAvailablityForm(instance=availablity)
     if request.method == 'POST':
-        form =DoctorAvailablityForm(request.POST, request.FILES, instance = availablity)
+        form = DoctorAvailablityForm(
+            request.POST, request.FILES, instance=availablity)
         form.save()
         return redirect('allDoctors')
     context = {'form': form}
-    return render(request, 'updateDoctorAvailablity.html', context)
-
+    return render(request, 'doctors/updateDoctorAvailablity.html', context)
 
 
 def allDoctors(request):
     profiles, search_query = searchDoctors(request)
     context = {'profiles': profiles, 'search_query': search_query}
-    return render(request, 'allDoctors.html', context)
+    return render(request, 'doctors/allDoctors.html', context)

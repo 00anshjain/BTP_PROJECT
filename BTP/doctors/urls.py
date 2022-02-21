@@ -15,7 +15,7 @@ urlpatterns = [
          views.doctorRegister3, name='doctorRegister3'),
     path('updateDoctorProfile/<str:pk>/',
          views.updateDoctorProfile, name='updateDoctorProfile'),
-     path('updateDoctorAvailablity/<str:pk>/',
+    path('updateDoctorAvailablity/<str:pk>/',
          views.updateDoctorAvailablity, name='updateDoctorAvailablity'),
 
 

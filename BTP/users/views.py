@@ -46,7 +46,7 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     context = {'form': form, 'page': page}
-    return render(request, 'doctorLogin.html', context)
+    return render(request, 'doctors/doctorRegistrationPage.html', context)
 
 
 # def registerUserForClient(request):
@@ -75,9 +75,6 @@ def register(request):
 #         form = CustomClientUserCreationForm()
 #     context = {'form': form, 'page': page}
 #     return render(request, 'doctorLogin.html', context)
-
-
-
 
 
 def bookAppointment(request):
@@ -129,7 +126,7 @@ def doctorLogin(request):
             return redirect("allDoctors")
         else:
             messages.error(request, "Username OR Password is incorrect")
-    return render(request, 'doctorLogin.html')
+    return render(request, 'doctors/doctorLogin.html')
 
 
 def logoutUser(request):
