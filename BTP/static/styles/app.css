@@ -55,6 +55,7 @@ img {
 .header__menuItem > a {
   color: var(--color-light);
   font-weight: 300;
+  font-size: large;
 }
 
 .toggle-menu > span {
