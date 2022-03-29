@@ -110,7 +110,8 @@ def doctorRegister3(request, pk):
 
 def doctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
-    return render(request, 'doctors/doctorProfile.html', {'profile': profile})
+    blogs = profile.blog_set.all()
+    return render(request, 'doctors/doctorProfile.html', {'profile': profile, 'blogs': blogs})
 
 
 def updateDoctorProfile(request, pk):
