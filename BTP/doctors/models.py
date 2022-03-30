@@ -9,6 +9,11 @@ from django.dispatch import receiver
 from phone_field import PhoneField
 import datetime
 
+import json
+import os
+from django.conf import settings
+
+
 # from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -54,9 +59,16 @@ class Profile(models.Model):
 
 
 class Qualification(models.Model):
-    degree_name = models.CharField(max_length=200)
-    degree_date = models.DateField()
-    university = models.CharField(max_length=200)
+    # input_file = open(os.path.join(settings.DATA_ROOT, 'degree.json'))
+    # degreeList = json.load(input_file)
+
+    # input_file = open(os.path.join(settings.DATA_ROOT, 'collegeList.json'))
+    # collegeList = json.load(input_file)
+
+    degree_name = models.CharField(max_length=100)
+    # degree_date = models.DateField()
+    degree_date = models.IntegerField()
+    university = models.CharField(max_length=400)
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

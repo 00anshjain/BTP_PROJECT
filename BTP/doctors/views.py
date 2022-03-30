@@ -11,7 +11,7 @@ from .utils import searchDoctors
 
 import json
 import os
-from django.contrib import settings
+from django.conf import settings
 # from django.contrib import settings, DATA_ROOT
 
 
@@ -88,35 +88,41 @@ def doctorRegister3(request, pk):
     user = Profile.objects.get(Did=pk)
     # form = DoctorQualificationForm(instance = user)
     # input_file = open('degree.json')
-    # input_file = open(os.path.join(DATA_ROOT, 'degree.json'))
+    # input_file = open(os.path.join(settings.DATA_ROOT, 'degree.json'))
     # json_array = json.load(input_file)
 
+    # input_file = open(os.path.join(settings.DATA_ROOT, 'collegeList.json'))
+    # collegeList = json.load(input_file)
+
     # for item in json_array:
-    #     print(item)
-    
-    form = DoctorQualificationForm()
+    # print(collegeList)
+    # Qualification.object.create(profile = user)
+    # form = DoctorQualificationForm()
     if request.method == 'POST':
-        form = DoctorQualificationForm(request.POST)
-        if(form.is_valid()):
-            degree_name = request.POST['degree_name']
-            degree_date = request.POST['degree_date']
-            university = request.POST['university']
+        # form = DoctorQualificationForm(request.POST)
+        # if(form.is_valid()):
+        degree_name = request.POST['selectDegree']
+        degree_date = request.POST['degree_date']
+        university = request.POST['selectUniversity']
 
-            Qualification.objects.create(
-                degree_name=degree_name,
-                degree_date=degree_date,
-                university=university,
-                profile=user,
-            )
+        Qualification.objects.create(
+            degree_name=degree_name,
+            degree_date=degree_date,
+            university=university,
+            profile=user,
+        )
 
-            # info = form.save()
-            # user.qualifications = info
-            # user.save()
-            # user.available_time
-            # form.save()
-
+        # info = form.save()
+        # user.qualifications = info
+        # user.save()
+        # user.available_time
+        # form.save()
         return redirect('allDoctors')
-    context = {'form': form}
+    input_file = open(os.path.join(settings.DATA_ROOT, 'degree.json'))
+    degreeList = json.load(input_file)
+    input_file = open(os.path.join(settings.DATA_ROOT, 'collegeList.json'))
+    collegeList = json.load(input_file)
+    context = {'degreeList': degreeList, 'collegeList':collegeList}
     return render(request, 'doctors/doctorRegister3.html', context)
 
 
@@ -128,7 +134,7 @@ def doctorProfile(request, pk):
 
 def updateDoctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
-    form = DoctorProfileForm(instance=profile)
+    # form = DoctorProfileForm(instance=profile)
     if request.method == 'POST':
         form = DoctorProfileForm(request.POST, request.FILES, instance=profile)
         form.save()
