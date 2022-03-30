@@ -66,27 +66,27 @@ class Qualification(models.Model):
         return self.degree_name
 
 
-class Availability(models.Model):
-    monday_from = models.TimeField(default=datetime.time(16, 00))
-    monday_to = models.TimeField(default=datetime.time(16, 00))
-    tuesday_from = models.TimeField(default=datetime.time(16, 00))
-    tuesday_to = models.TimeField(default=datetime.time(16, 00))
-    wednesday_from = models.TimeField(default=datetime.time(16, 00))
-    wednesday_to = models.TimeField(default=datetime.time(16, 00))
-    thursday_from = models.TimeField(default=datetime.time(16, 00))
-    thursday_to = models.TimeField(default=datetime.time(16, 00))
-    friday_from = models.TimeField(default=datetime.time(16, 00))
-    friday_to = models.TimeField(default=datetime.time(16, 00))
-    saturday_from = models.TimeField(default=datetime.time(16, 00))
-    saturday_to = models.TimeField(default=datetime.time(16, 00))
-    sunday_from = models.TimeField(default=datetime.time(16, 00))
-    sunday_to = models.TimeField(default=datetime.time(16, 00))
-    id = models.UUIDField(default=uuid.uuid4, unique=True,
-                          primary_key=True, editable=False)
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+# class Availability(models.Model):
+#     monday_from = models.TimeField(default=datetime.time(16, 00))
+#     monday_to = models.TimeField(default=datetime.time(16, 00))
+#     tuesday_from = models.TimeField(default=datetime.time(16, 00))
+#     tuesday_to = models.TimeField(default=datetime.time(16, 00))
+#     wednesday_from = models.TimeField(default=datetime.time(16, 00))
+#     wednesday_to = models.TimeField(default=datetime.time(16, 00))
+#     thursday_from = models.TimeField(default=datetime.time(16, 00))
+#     thursday_to = models.TimeField(default=datetime.time(16, 00))
+#     friday_from = models.TimeField(default=datetime.time(16, 00))
+#     friday_to = models.TimeField(default=datetime.time(16, 00))
+#     saturday_from = models.TimeField(default=datetime.time(16, 00))
+#     saturday_to = models.TimeField(default=datetime.time(16, 00))
+#     sunday_from = models.TimeField(default=datetime.time(16, 00))
+#     sunday_to = models.TimeField(default=datetime.time(16, 00))
+#     id = models.UUIDField(default=uuid.uuid4, unique=True,
+#                           primary_key=True, editable=False)
+#     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.profile.name)
+#     def __str__(self):
+#         return str(self.profile.name)
 
 
 def DoctorProfileUpdatedAddedToUser(sender, instance, created, **kwargs):

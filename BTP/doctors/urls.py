@@ -9,14 +9,14 @@ urlpatterns = [
     # path('about/', views.about, name='about'),
     # path('doctors/', views.doctors, name='doctors'),
     path('doctorRegister/<str:pk>/', views.doctorRegister, name='doctorRegister'),
-    path('doctorRegister2/<str:pk>/',
-         views.doctorRegister2, name='doctorRegister2'),
+#     path('doctorRegister2/<str:pk>/',
+#          views.doctorRegister2, name='doctorRegister2'),
     path('doctorRegister3/<str:pk>/',
          views.doctorRegister3, name='doctorRegister3'),
     path('updateDoctorProfile/<str:pk>/',
          views.updateDoctorProfile, name='updateDoctorProfile'),
-    path('updateDoctorAvailablity/<str:pk>/',
-         views.updateDoctorAvailablity, name='updateDoctorAvailablity'),
+#     path('updateDoctorAvailablity/<str:pk>/',
+#          views.updateDoctorAvailablity, name='updateDoctorAvailablity'),
 
 
     # path('contact/', views.contact, name='contact'),
