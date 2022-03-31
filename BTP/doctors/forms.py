@@ -5,6 +5,11 @@ from django import forms
 # from .models import Availability, Profile, Qualification
 from .models import Profile, Qualification
 
+import json
+import os
+from django.conf import settings
+
+
 class DoctorProfileForm(ModelForm):
     class Meta:
         model = Profile
@@ -26,10 +31,14 @@ class DoctorProfileForm(ModelForm):
 #         exclude = ('profile',)
 
 class DoctorQualificationForm(ModelForm):
+    
     class Meta:
         model = Qualification
         fields = '__all__'
         exclude = ('profile',)
+        # widgets = {
+        #     'degree_name': forms.Select(attrs={'selectDegree':'selectDegree'})
+        # }
 
     def __init__(self, *args, **kwargs):
         super(DoctorQualificationForm, self).__init__(*args, **kwargs)
