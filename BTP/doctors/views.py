@@ -9,9 +9,9 @@ from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 from .utils import searchDoctors
 
-import json
-import os
-from django.contrib import settings
+# import json
+# import os
+# from django.contrib import settings
 # from django.contrib import settings, DATA_ROOT
 
 
@@ -109,12 +109,15 @@ def doctorRegister3(request, pk):
                 profile=user,
             )
 
-            # info = form.save()
-            # user.qualifications = info
-            # user.save()
-            # user.available_time
-            # form.save()
-
+        # info = form.save()
+        # user.qualifications = info
+        # user.save()
+        # user.available_time
+        # form.save()
+        # print("HI")
+        # print(degree_name)
+        # print(degree_date)
+            
         return redirect('allDoctors')
     context = {'form': form}
     return render(request, 'doctors/doctorRegister3.html', context)

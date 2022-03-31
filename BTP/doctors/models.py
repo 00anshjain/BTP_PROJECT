@@ -11,6 +11,9 @@ import datetime
 
 # from phonenumber_field.modelfields import PhoneNumberField
 
+import json
+import os
+from django.conf import settings
 
 class Profile(models.Model):
     GenderChoices = (
@@ -54,9 +57,28 @@ class Profile(models.Model):
 
 
 class Qualification(models.Model):
-    degree_name = models.CharField(max_length=200)
-    degree_date = models.DateField()
-    university = models.CharField(max_length=200)
+    # input_file = open(os.path.join(settings.DATA_ROOT, 'degree.json'))
+    # degreeList = json.load(input_file)
+
+    input_file = open(os.path.join(settings.DATA_ROOT, 'collegeList.json'))
+    clgList = json.load(input_file)
+    collegeList = []
+    for item in clgList:
+        temp = (item,item)
+        collegeList.append(temp)
+    collegeList = tuple(collegeList) 
+
+    input_file = open(os.path.join(settings.DATA_ROOT, 'degree.json'))
+    degList = json.load(input_file)
+    degreeList = []
+    for item in degList:
+        temp = (item,item)
+        degreeList.append(temp)
+    degreeList = tuple(degreeList)
+     
+    degree_name = models.CharField(max_length=100, choices=degreeList, default="")
+    degree_date = models.IntegerField()
+    university = models.CharField(max_length=300, choices=collegeList, default="")
     id = models.UUIDField(default=uuid.uuid4, unique=True,
                           primary_key=True, editable=False)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
