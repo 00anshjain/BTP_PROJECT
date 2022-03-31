@@ -12,13 +12,16 @@
                     <div class="card__body dev">
                         <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
                         <h2 class="dev__name">{{profile.name}}</h2>
+                        <p class="dev__title">{{qualification.degree_name}}-{{profile.speciality}}</p>
+                        <p class="dev__title">{{qualification.university}}</p>
+                        <p class="dev__title">Passed out: {{qualification.degree_date}}</p>
                         <p class="dev__title">{{profile.email}}</p>
                         {% if profile.short_intro %}
                         <p class="dev__title">{{profile.short_intro}}</p>
                         {% endif %}
-                        <p class="dev__location">Since: {{profile.joining_date}}</p>
-                        <p class="dev__location">Based in {{profile.location}}</p>
-                        <ul class="dev__social">
+                        <p class="dev__location">Joined DocIt: {{profile.joining_date}}</p>
+                        <p class="dev__location">From {{profile.location}}</p>
+                        <!-- <ul class="dev__social">
                             <li>
                                 <a title="Github" href="#" target="_blank"><i class="im im-github"></i></a>
                             </li>
@@ -35,8 +38,11 @@
                             <li>
                                 <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
                             </li>
-                        </ul>
-                        <a href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add Blog</a>
+                        </ul> -->
+                        {% if request.user.profile.id == profile.id %}
+                        <a style="margin-top: 20px;" href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add
+                            Blog</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -44,19 +50,11 @@
                 <div class="devInfo">
                     <h3 class="devInfo__title">About Me</h3>
                     <p class="devInfo__about">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex illum ipsum iusto consequatur.
-                        Totam,
-                        dolorum fugiat, debitis facere illo nostrum nesciunt maxime, deserunt enim voluptatibus modi
-                        natus velit
-                        voluptatum. Dicta eritatis exercitationem ut quos a placeat obcaecati? Architecto illum!
-                        <br />
-                        Amet consectetur adipisicing elit. Veritatis exercitationem ut quos a placeat obcaecati?
-                        Architecto
-                        illum, atque delectus nemo dolorem inventore ab facilis? Dolor placeat vel delectus ipsam ullam.
+                        {{profile.bio}}
                     </p>
                 </div>
                 <div class="devInfo">
-                    <h3 class="devInfo__title">Skills</h3>
+                    <h3 class="devInfo__title">Blogs</h3>
                     <div class="devInfo__skills">
                         <div class="devSkill">
                             <h4 class="devSkill__title">JavaScript</h4>

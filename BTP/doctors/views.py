@@ -93,7 +93,7 @@ def doctorRegister3(request, pk):
 
     # for item in json_array:
     #     print(item)
-    
+
     form = DoctorQualificationForm()
     if request.method == 'POST':
         form = DoctorQualificationForm(request.POST)
@@ -117,7 +117,7 @@ def doctorRegister3(request, pk):
         # print("HI")
         # print(degree_name)
         # print(degree_date)
-            
+
         return redirect('allDoctors')
     context = {'form': form}
     return render(request, 'doctors/doctorRegister3.html', context)
@@ -126,7 +126,8 @@ def doctorRegister3(request, pk):
 def doctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
     blogs = profile.blog_set.all()
-    return render(request, 'doctors/doctorProfile.html', {'profile': profile, 'blogs': blogs})
+    qualification = Qualification.objects.get(profile=pk)
+    return render(request, 'doctors/doctorProfile.html', {'profile': profile, 'blogs': blogs, 'qualification': qualification})
 
 
 def updateDoctorProfile(request, pk):
