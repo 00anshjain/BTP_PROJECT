@@ -122,14 +122,15 @@ def doctorRegister3(request, pk):
     degreeList = json.load(input_file)
     input_file = open(os.path.join(settings.DATA_ROOT, 'collegeList.json'))
     collegeList = json.load(input_file)
-    context = {'degreeList': degreeList, 'collegeList':collegeList}
+    context = {'degreeList': degreeList, 'collegeList': collegeList}
     return render(request, 'doctors/doctorRegister3.html', context)
 
 
 def doctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
     blogs = profile.blog_set.all()
-    return render(request, 'doctors/doctorProfile.html', {'profile': profile, 'blogs': blogs})
+    qualification = Qualification.objects.get(profile=pk)
+    return render(request, 'doctors/doctorProfile.html', {'profile': profile, 'blogs': blogs, 'qualification': qualification})
 
 
 def updateDoctorProfile(request, pk):

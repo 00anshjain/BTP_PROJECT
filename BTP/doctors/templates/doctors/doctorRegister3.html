@@ -3,15 +3,19 @@
 {% load static %}
 
 {% block content %}
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.css" integrity="sha512-p209YNS54RKxuGVBVhL+pZPTioVDcYPZPYYlKWS9qVvQwrlzxBxkR8/48SCP58ieEuBosYiPUS970ixAfI/w/A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
-<!-- <script>
-  $(document).ready(function()
-  {
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+  integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+  integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script>
+  $(document).ready(function () {
+    $('selectDegree').select2();
     $('selectUniversity').select2();
   });
-</script> -->
+</script>
 <h1 style="text-align: center;">Doctor Registration page</h1>
 <!-- Main Section -->
 <main class="formPage my-xl">
@@ -24,25 +28,26 @@
         {% csrf_token %}
         <div class=" form__field">
           <label for="degree_name">Degree Name</label>
-          <select id="selectDegree">
-              <option selected disabled="true">--Select Degree -- </option>
-              {% for item in degreeList %}
-                <option>{{item}}</option>
-              {% endfor %}
+          <select name="selectDegree" id="selectDegree">
+            <option selected disabled="true">--Select Degree -- </option>
+            {% for item in degreeList %}
+            <option value={{item}}>{{item}}</option>
+            {% endfor %}
           </select>
           <!-- {{label.value}} -->
         </div>
         <div class=" form__field">
           <label for="degree_date">Degree Year</label>
-          <input type="number" min="1900" max="2022" step="1" name="degree_date" value="{{degree_date}}" placeholder="  yyyy"/>
+          <input type="number" min="1900" max="2022" step="1" name="degree_date" value="{{degree_date}}"
+            placeholder="  yyyy" />
           <!-- <input id="degree_date" type="datetime-local" name="degree_date" value="{{ degree_date }}"> -->
         </div>
         <div class=" form__field">
           <label for="university">University</label>
-          <select id="selectUniversity">
+          <select name="selectUniversity" id="selectUniversity">
             <option selected disabled="true">--Select University -- </option>
             {% for item in collegeList %}
-              <option>{{item}}</option>
+            <option>{{item}}</option>
             {% endfor %}
           </select>
           <!-- <input id="university" type="text" name="university" value="{{ university }}"> -->
