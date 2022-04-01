@@ -12,3 +12,9 @@ class ClientProfileForm(ModelForm):
         fields = '__all__'
         exclude = ('user','name','username',)
         # exclude = ('user', 'available_time', 'qualifications')
+    
+    def __init__(self, *args, **kwargs):
+        super(ClientProfileForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs.update({'class':'input'})

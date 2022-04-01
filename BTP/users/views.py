@@ -49,32 +49,32 @@ def register(request):
     return render(request, 'doctors/doctorRegistrationPage.html', context)
 
 
-# def registerUserForClient(request):
-#     msg = None
-#     page = "register"
-#     if request.method == 'POST':
-#         form = CustomClientUserCreationForm(request.POST)
+def registerClient(request):
+    msg = None
+    page = "register"
+    if request.method == 'POST':
+        form = CustomClientUserCreationForm(request.POST)
 
-#         if form.is_valid():
-#             name = request.POST['first_name'] + ' ' + request.POST['last_name']
-#             email = request.POST['email']
-#             dob = request.POST['DOB']
-#             gender = request.POST['gender']
-#             username = request.POST['username']
-#             user = form.save()
+        if form.is_valid():
+            name = request.POST['first_name'] + ' ' + request.POST['last_name']
+            email = request.POST['email']
+            dob = request.POST['DOB']
+            gender = request.POST['gender']
+            username = request.POST['username']
+            user = form.save()
 
-#             ClientProfile.objects.create(name=name, email=email,
-#                                    dob=dob, gender=gender, username=username, user=user)
-#             # pk = ClientProfile.objects.get(username=username).Cid
-#             # print(pk)
-#             # msg = 'user created'
-#             return redirect('clientLogin')
-#         else:
-#             msg = 'form is not valid'
-#     else:
-#         form = CustomClientUserCreationForm()
-#     context = {'form': form, 'page': page}
-#     return render(request, 'doctorLogin.html', context)
+            ClientProfile.objects.create(name=name, email=email,
+                                   dob=dob, gender=gender, username=username, user=user)
+            pk = ClientProfile.objects.get(username=username).Cid
+            print(pk)
+            msg = 'user created'
+            return redirect('clientRegister', pk)
+        else:
+            msg = 'form is not valid'
+    else:
+        form = CustomClientUserCreationForm()
+    context = {'form': form, 'page': page}
+    return render(request, 'clients/clientRegistrationPage.html', context)
 
 
 def bookAppointment(request):
