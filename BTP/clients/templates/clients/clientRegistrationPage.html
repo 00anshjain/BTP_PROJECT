@@ -21,13 +21,16 @@
             <div class="form__field">
 
                 {% for field in form %}
-                <label for="formInput#text">{{field.label}} </label>
-                {{field}}
-                {% for error in field.errors %}
-                <p style="color: red;">{{error}}</p>
-                {% endfor %}
-
-                {% endfor %}
+        <!-- Input:Text -->
+        <div class=" form__field">
+          <label for="formInput#text">{{field.label}}</label>   
+          {{field}}
+          {% if field.label == "Gender" %}
+          <label for="formInput#text">DOB:</label>
+          <input type="date" id="dob" name="dob">
+          {% endif %}
+        </div>
+        {% endfor %}
             </div>
 
 

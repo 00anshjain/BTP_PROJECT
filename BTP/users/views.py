@@ -58,7 +58,7 @@ def registerClient(request):
         if form.is_valid():
             name = request.POST['first_name'] + ' ' + request.POST['last_name']
             email = request.POST['email']
-            dob = request.POST['DOB']
+            dob = request.POST['dob']
             gender = request.POST['gender']
             username = request.POST['username']
             user = form.save()

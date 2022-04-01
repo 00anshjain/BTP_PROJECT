@@ -79,14 +79,14 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomClientUserCreationForm(UserCreationForm):
-    DOB = forms.DateField()
+    # DOB = forms.DateField()
     gender = forms.ChoiceField(
         choices=GenderChoices,
     )
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'DOB', 'gender', 'username', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'gender', 'username', 'password1', 'password2']
         
     def __init__(self, *args, **kwargs):
         super(CustomClientUserCreationForm, self).__init__(*args, **kwargs)

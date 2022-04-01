@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-<h1 style="text-align: center;">Doctor Registration page</h1>
+<h1 style="text-align: center;">Client Registration page</h1>
 <!-- Main Section -->
 <main class="formPage my-xl">
   <div class="content-box">
@@ -17,8 +17,8 @@
         {% for field in form %}
         <!-- Input:Text -->
         <div class=" form__field">
-          <label for="formInput#text">{{field.label}}</label>
-          {{field}}
+          <label for="formInput#text">{{field.label}}</label>   
+            {{field}}
         </div>
         {% endfor %}
 

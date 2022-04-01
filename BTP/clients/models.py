@@ -46,3 +46,12 @@ class ClientProfile(models.Model):
 
     def __str__(self):
         return str(self.username)
+
+
+def ClientProfileUpdatedAddedToUser(sender, instance, created, **kwargs):
+    profile = instance
+    user = profile.user
+    user.email = profile.email
+    user.save()
+post_save.connect(ClientProfileUpdatedAddedToUser, sender=ClientProfile,
+                  dispatch_uid="create_ClientUser_instance")

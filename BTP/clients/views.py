@@ -11,7 +11,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 def clientRegister(request, pk):
     msg = None
-    usr = ClientProfile.objects.get(Did=pk)
+    usr = ClientProfile.objects.get(Cid=pk)
     form = ClientProfileForm(instance=usr)
     if request.method == 'POST':
         form = ClientProfileForm(request.POST, request.FILES, instance=usr)

@@ -10,7 +10,7 @@ class ClientProfileForm(ModelForm):
         model = ClientProfile
         # fields = ['name',]
         fields = '__all__'
-        exclude = ('user','name','username',)
+        exclude = ('user','name','username','dob')
         # exclude = ('user', 'available_time', 'qualifications')
     
     def __init__(self, *args, **kwargs):
