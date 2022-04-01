@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
 # from .utils import searchDoctors
 
+
 def clientRegister(request, pk):
     msg = None
     usr = ClientProfile.objects.get(Cid=pk)
@@ -29,3 +30,11 @@ def clientRegister(request, pk):
         #     msg = 'Not found'
     return render(request, 'clients/clientRegister.html', {'form': form, 'msg': msg})
 
+
+def clientAccount(request):
+    profile = request.user.profile
+    # skills = profile.skill_set.all()
+    # projects = profile.project_set.all()
+    # context = {"profile": profile, "skills": skills, "projects": projects}
+    context = {"profile": profile}
+    return render(request, 'clients/clientAccount.html', context)
