@@ -1,3 +1,4 @@
+from http import client
 from django.shortcuts import render, redirect
 # from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
@@ -64,7 +65,7 @@ def registerClient(request):
             user = form.save()
 
             ClientProfile.objects.create(name=name, email=email,
-                                   dob=dob, gender=gender, username=username, user=user)
+                                         dob=dob, gender=gender, username=username, user=user)
             pk = ClientProfile.objects.get(username=username).Cid
             print(pk)
             msg = 'user created'
@@ -118,8 +119,14 @@ def doctorLogin(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)
-            return redirect("allDoctors")
+
+            if ClientProfile.objects.filter(username=username).count() != 0:
+                login(request, user)
+                return redirect("index")
+            else:
+                login(request, user)
+                return redirect("allDoctors")
+
         else:
             messages.error(request, "Username OR Password is incorrect")
     return render(request, 'doctors/doctorLogin.html')

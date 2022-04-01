@@ -1,9 +1,11 @@
+import imp
 from django.shortcuts import render, redirect
 # from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login
 from .models import *
 from .forms import *
 from django.db.models import Q
+from django.contrib.auth.models import User
 
 from django.contrib import messages
 from django.utils.datastructures import MultiValueDictKeyError
@@ -161,3 +163,13 @@ def allDoctors(request):
     profiles, search_query = searchDoctors(request)
     context = {'profiles': profiles, 'search_query': search_query}
     return render(request, 'doctors/allDoctors.html', context)
+
+
+# @login_required(login_url='login')
+def userAccount(request):
+    profile = request.user.profile
+    # skills = profile.skill_set.all()
+    # projects = profile.project_set.all()
+    # context = {"profile": profile, "skills": skills, "projects": projects}
+    context = {"profile": profile}
+    return render(request, 'doctors/account.html', context)
