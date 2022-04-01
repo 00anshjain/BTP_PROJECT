@@ -23,8 +23,6 @@
                 {% for field in form %}
                 <label for="formInput#text">{{field.label}} </label>
                 {{field}}
-
-
                 {% for error in field.errors %}
                 <p style="color: red;">{{error}}</p>
                 {% endfor %}
@@ -39,7 +37,7 @@
         </form>
         <div class="auth__alternative">
             <p>Already have an Account?</p>
-            <a href="{% url 'Login' %}">Log In</a>
+            <a href="{% url 'allDoctors' %}">Log In</a>
         </div>
     </div>
 </div>
