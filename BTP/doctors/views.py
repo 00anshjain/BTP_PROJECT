@@ -167,9 +167,21 @@ def allDoctors(request):
 
 # @login_required(login_url='login')
 def userAccount(request):
-    profile = request.user.profile
+    # profile = request.user.profile
     # skills = profile.skill_set.all()
     # projects = profile.project_set.all()
     # context = {"profile": profile, "skills": skills, "projects": projects}
-    context = {"profile": profile}
-    return render(request, 'doctors/account.html', context)
+    username = request.user.username
+    print(username)
+    try:
+        profile = Profile.objects.get(username=username)
+        # print(profile)
+    except:
+        profile = None
+    print(profile)
+    # if ClientProfile.objects.filter(username=username).count() != 0:
+    if profile is not None:
+
+        context = {"profile": profile}
+        return render(request, 'doctors/account.html', context)
+    return redirect('allDoctors')

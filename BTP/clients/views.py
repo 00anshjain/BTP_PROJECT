@@ -15,7 +15,7 @@ def clientRegister(request, pk):
     usr = ClientProfile.objects.get(Cid=pk)
     form = ClientProfileForm(instance=usr)
     if request.method == 'POST':
-        form = ClientProfileForm(request.POST, request.FILES, instance=usr)
+        form = ClientProfileForm(request.POST, request.FILES,   instance=usr)
         if(form.is_valid()):
             # pk = request.POST.get('Did')
             form.save()
@@ -32,9 +32,28 @@ def clientRegister(request, pk):
 
 
 def clientAccount(request):
-    profile = request.user.profile
-    # skills = profile.skill_set.all()
-    # projects = profile.project_set.all()
-    # context = {"profile": profile, "skills": skills, "projects": projects}
-    context = {"profile": profile}
-    return render(request, 'clients/clientAccount.html', context)
+    username = request.user.username
+    print(username)
+    try:
+        profile = ClientProfile.objects.get(username=username)
+    except:
+        profile = None
+    # if ClientProfile.objects.filter(username=username).count() != 0:
+    if profile is not None:
+        # pk = request.user.id
+        # # print(pk)
+        # try:
+        #     profile = ClientProfile.objects.get(username=username)
+        # except:
+        #     print('Multi Value Dict Error')
+
+        # print(profile)
+        # print(profile.name)
+        # profile = request.user.profile
+        # skills = profile.skill_set.all()
+        # projects = profile.project_set.all()
+        # context = {"profile": profile, "skills": skills, "projects": projects}
+        context = {"profile": profile}
+        return render(request, 'clients/clientAccount.html', context)
+        # return render(request, 'clients/clientAccount.html')
+    return redirect('account')
