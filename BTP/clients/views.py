@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 # from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login
@@ -31,6 +32,7 @@ def clientRegister(request, pk):
     return render(request, 'clients/clientRegister.html', {'form': form, 'msg': msg})
 
 
+@login_required(login_url='doctorLogin')
 def clientAccount(request):
     username = request.user.username
     print(username)
@@ -57,3 +59,16 @@ def clientAccount(request):
         return render(request, 'clients/clientAccount.html', context)
         # return render(request, 'clients/clientAccount.html')
     return redirect('account')
+
+
+def updateClientProfile(request, pk):
+    profile = ClientProfile.objects.get(Cid=pk)
+    form = ClientProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ClientProfileForm(request.POST, request.FILES, instance=profile)
+        print(profile)
+        form.save()
+        return redirect('clientAccount')
+    context = {'form': form, 'pk': pk}
+    return render(request, 'clients/updateClientProfile.html', context)

@@ -2,6 +2,8 @@ import imp
 from django.shortcuts import render, redirect
 # from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login
+
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
 from django.db.models import Q
@@ -137,9 +139,11 @@ def doctorProfile(request, pk):
 
 def updateDoctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
-    # form = DoctorProfileForm(instance=profile)
+    form = DoctorProfileForm(instance=profile)
+
     if request.method == 'POST':
         form = DoctorProfileForm(request.POST, request.FILES, instance=profile)
+
         form.save()
         return redirect('allDoctors')
     context = {'form': form, 'pk': pk}
@@ -165,7 +169,7 @@ def allDoctors(request):
     return render(request, 'doctors/allDoctors.html', context)
 
 
-# @login_required(login_url='login')
+@login_required(login_url='doctorLogin')
 def userAccount(request):
     # profile = request.user.profile
     # skills = profile.skill_set.all()
