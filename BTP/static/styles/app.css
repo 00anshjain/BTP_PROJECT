@@ -878,3 +878,7 @@ img {
   align-items: flex-end;
   justify-content: flex-end;
 }
+
+textarea::-webkit-scrollbar {
+  width: 0px
+}

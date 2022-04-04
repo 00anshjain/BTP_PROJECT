@@ -46,7 +46,8 @@ def viewConversation(request, pk):
     # if isClient:
     msg1 = MessageData.objects.filter(senderProfile = sender, recieverProfile = reciever).order_by('created')
     msg2 = MessageData.objects.filter(senderProfile = reciever, recieverProfile = sender).order_by('created')
-    
+    # for item in msg1:
+    #     ite
     # msg1 = MessageData.objects.filter(senderProfile = sender, recieverProfile = reciever)
     # msg2 = MessageData.objects.filter(senderProfile = reciever, recieverProfile = sender)
     
