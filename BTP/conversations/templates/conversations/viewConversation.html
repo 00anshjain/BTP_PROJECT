@@ -5,48 +5,67 @@
 <main class="inbox my-xl">
   <div class="content-box">
     <h3 class="inbox__title">{{senderProfile.username}}</h3>
-    <ul class="messages">
-      <!-- {{senderName}}  -------   {{recieverName}}     -->
-      <!-- <div style="display: flex;align-items:center;justify-content: space-between">
-        <p style="color: #5aa5b9">
-            <b>
-            {{senderName}}
-          </b>
-          </p>
-        <p style="color: #5aa5b9">
-            <b>
-            {{recieverName}}
-          </b>
-          </p>
-      </div> -->
-  {% for message in messageRequests %}
-        <div style="display: flex" class="sendAndRecieve">
-          <div class="messages" style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem">
-            <div style="display: flex;align-items:center;justify-content: space-between">
-              <p style="color: #5aa5b9;">
-                  <b>
-                  {{senderName}}
-                </b>
-                </p>
-              <!-- <p style="color: #5aa5b9">
-                  <b>
-                  {{recieverName}}
-                </b>
-                </p> -->
-            </div>
-            <div style="display: flex;flex-direction: column;">
-                  
-                  <span class="message__subject">{{message.messageBody }}  </span>
-
-              </div>
-              <span class="message__subject" style="justify-content: end;flex-basis: auto;font-size: 10px">{{message.created}}</span>
+    <!-- <div class="contentBox"> -->
+      <ul class="messages">
+        <!-- {{senderName}}  -------   {{recieverName}}     -->
+        <!-- <div style="display: flex;align-items:center;justify-content: space-between">
+          <p style="color: #5aa5b9">
+              <b>
+              {{senderName}}
+            </b>
+            </p>
+          <p style="color: #5aa5b9">
+              <b>
+              {{recieverName}}
+            </b>
+            </p>
+        </div> -->
+          <!-- <div class="left">
+            Hello
           </div>
-        </div>
-    <!-- </a> -->
-      <!-- </li> -->
-
-      {% endfor %}
-    </ul>
+          <div class="left right" >
+            Para
+          </div> -->
+          
+        {% for message in messageRequests %}
+          {% if message.senderProfile == recieverProfile %}
+            <div class="left" >
+          {% else %}
+              <div class="left right">
+          {% endif %}
+          <div style="display: flex;" class="sendAndRecieve">
+            <div class="messages" style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem;max-width: 60%">
+              <div style="display: flex;align-items:center;justify-content: space-between">
+                <p style="color: #5aa5b9;">
+                    <b>
+                      {% if message.senderProfile == recieverProfile %}
+                        {{recieverName}}
+                      {% else %}
+                        {{senderName}}
+                      {% endif %}
+                  </b>
+                </p>
+                <!-- <p style="color: #5aa5b9">
+                    <b>
+                    {{recieverName}}
+                  </b>
+                  </p> -->
+              </div>
+              <div style="display: flex;flex-direction: column;">
+                    {% if message.messageImage != "" %}
+                    <img class="" src="{{ message.messageImage.url }}" />
+                    {% endif %}
+                    <span class="message__subject">{{message.messageBody }}  </span>
+                </div>
+                <span class="message__subject" style="justify-content: end;flex-basis: auto;font-size: 10px">{{message.created}}</span>
+            </div>
+          </div>
+          </div>
+      <!-- </a> -->
+        <!-- </li> -->
+        {% endfor %}
+      </ul>
+    <!-- </div> -->
   </div>
 </main>
 

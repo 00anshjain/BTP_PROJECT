@@ -729,7 +729,7 @@ img {
 ========================*/
 
 .inbox {
-  height: 90vh;
+  height: auto;
 }
 
 .inbox__title,
@@ -752,6 +752,7 @@ img {
   padding: 0.5rem 3rem;
   border: 2px solid var(--color-light);
   border-radius: 0.7rem;
+  /* margin-bottom: 25rem */
 }
 
 .message {
@@ -863,3 +864,18 @@ img {
   flex-direction: row-reverse;
   text-align: right;
 }
+
+.left {
+  display: flex;align-items: center;justify-content: flex-start
+}
+
+.right {
+  justify-content: flex-end
+}
+
+/* .contentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 100px
+} */

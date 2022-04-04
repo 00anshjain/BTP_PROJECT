@@ -53,6 +53,8 @@ def viewConversation(request, pk):
     # print(type(msg1))
     msg = msg1 | msg2
     msg.order_by('created')
+    # for item in msg:
+    #     print(item.messageImage)
     # for item in msg2:
     #     msg1.append(item)
         # msg = MessageData.objects.filter(doctorProfile = profile)
