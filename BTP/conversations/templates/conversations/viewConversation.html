@@ -6,19 +6,41 @@
   <div class="content-box">
     <h3 class="inbox__title">{{senderProfile.username}}</h3>
     <ul class="messages">
-      <p style="color: #5aa5b9">
-        <b>
-          {{senderName}}  -------   {{recieverName}}    
-    </b>
-  </p>
-      {% for message in messageRequests %}
-        <div style="display: flex; align-items: flex-end;justify-content: space-between;">
-            <div style="display: flex;flex-direction: column;">
-                <span class="message__subject">{{message.messageBody |slice:":65"  }}  </span>
+      <!-- {{senderName}}  -------   {{recieverName}}     -->
+      <!-- <div style="display: flex;align-items:center;justify-content: space-between">
+        <p style="color: #5aa5b9">
+            <b>
+            {{senderName}}
+          </b>
+          </p>
+        <p style="color: #5aa5b9">
+            <b>
+            {{recieverName}}
+          </b>
+          </p>
+      </div> -->
+  {% for message in messageRequests %}
+        <div style="display: flex" class="sendAndRecieve">
+          <div class="messages" style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem">
+            <div style="display: flex;align-items:center;justify-content: space-between">
+              <p style="color: #5aa5b9;">
+                  <b>
+                  {{senderName}}
+                </b>
+                </p>
+              <!-- <p style="color: #5aa5b9">
+                  <b>
+                  {{recieverName}}
+                </b>
+                </p> -->
             </div>
-            <span class="message__subject" style="justify-content: end;flex-basis: auto;">{{message.created}}</span>
+            <div style="display: flex;flex-direction: column;">
+                  <span class="message__subject">{{message.messageBody |slice:":65"  }}  </span>
+              </div>
+              <span class="message__subject" style="justify-content: end;flex-basis: auto;font-size: 10px">{{message.created}}</span>
+          </div>
         </div>
-    </a>
+    <!-- </a> -->
       <!-- </li> -->
 
       {% endfor %}
