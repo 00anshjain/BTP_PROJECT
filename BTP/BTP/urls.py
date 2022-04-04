@@ -13,7 +13,7 @@ urlpatterns = [
     path('doctors/', include('doctors.urls')),
     path('clients/', include('clients.urls')),
     path('blogs/', include('blogs.urls')),
-
+    path('messages/', include('conversations.urls')),
 ]
 
 
