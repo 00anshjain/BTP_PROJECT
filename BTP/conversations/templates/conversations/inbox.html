@@ -12,21 +12,13 @@
         {% else %}
       <li class="message">
         {% endif %}
-        {% if isClient == True %}
-          <a href="{% url 'viewConversation' message.doctorProfile.Did %}">
-        {% else %}
-          <a href="{% url 'viewConversation' message.clientProfile.Cid %}">
-          {% endif %}
-        
+        <a href="{% url 'viewConversation' message.senderProfile.username %}">
+          
         <div style="display: flex; align-items: flex-end;justify-content: space-between;">
             <div style="display: flex;flex-direction: column;">
                 <p style="color: #5aa5b9">
                     <b>
-                        {% if isClient == True %}
-                        {{message.doctorProfile.username}} :
-                    {% else %}
-                        {{message.clientProfile.username}} :
-                    {% endif %}
+                      {{message.senderProfile.username}}
                     </b>
                 </p>
                 <span class="message__subject">{{message.messageBody |slice:":65"  }}</span>

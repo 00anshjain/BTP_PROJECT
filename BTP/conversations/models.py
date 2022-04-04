@@ -12,8 +12,8 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 class MessageData(models.Model):
-    doctorProfile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="DoctorInConversation")
-    clientProfile = models.ForeignKey(ClientProfile, on_delete=models.CASCADE, related_name="ClientInConversation")
+    senderProfile = models.ForeignKey(User, on_delete=models.CASCADE, related_name="SenderInConversation")
+    recieverProfile = models.ForeignKey(User, on_delete=models.CASCADE, related_name="RecieverInConversation")
 
     messageID = models.UUIDField(default=uuid.uuid4, unique=True,
                            primary_key=True, editable=False)
@@ -25,7 +25,7 @@ class MessageData(models.Model):
     isRead = models.BooleanField(default=False, null = True)
     
     def __str__(self):
-        return self.doctorProfile.username + ', ' + self.clientProfile.username
+        return self.senderProfile.username + ', ' + self.recieverProfile.username
 
     class Meta:
         ordering = ['isRead', '-created']    

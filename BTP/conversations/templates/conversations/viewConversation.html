@@ -4,25 +4,16 @@
 <!-- Main Section -->
 <main class="inbox my-xl">
   <div class="content-box">
-    <h3 class="inbox__title">New Messages(<span>{{unreadCount}}</span>)</h3>
+    <h3 class="inbox__title">{{senderProfile.username}}</h3>
     <ul class="messages">
+      <p style="color: #5aa5b9">
+        <b>
+          {{senderName}}  -------   {{recieverName}}    
+    </b>
+  </p>
       {% for message in messageRequests %}
-      <!-- { if message.isRead == False %}
-      <li class="message message--unread">
-        { else %}
-      <li class="message">
-        { endif %} -->
         <div style="display: flex; align-items: flex-end;justify-content: space-between;">
             <div style="display: flex;flex-direction: column;">
-                <p style="color: #5aa5b9">
-                    <b>
-                        {% if isClient == True %}
-                        {{message.doctorProfile.username}} :
-                    {% else %}
-                        {{message.clientProfile.username}} :
-                    {% endif %}
-                </b>
-                </p>
                 <span class="message__subject">{{message.messageBody |slice:":65"  }}  </span>
             </div>
             <span class="message__subject" style="justify-content: end;flex-basis: auto;">{{message.created}}</span>
