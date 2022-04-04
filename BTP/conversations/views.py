@@ -44,6 +44,24 @@ def viewConversation(request, pk):
     #     isClient = False
 
     # if isClient:
+
+    if request.method == 'POST':
+        try :
+            textData = request.POST['textInput']
+        except :
+            textData = None
+        try :
+            imageFile = request.POST['uploadImage']
+        except :
+            imageFile = None
+        print(imageFile)
+        print('HI')
+        print(textData)
+        print('BYE')
+        MessageData.objects.create(senderProfile = reciever, recieverProfile = sender, messageBody = textData, messageImage = imageFile)
+        # return redirect({% url 'viewConversation' pk %})
+        return redirect('viewConversation', pk)
+
     msg1 = MessageData.objects.filter(senderProfile = sender, recieverProfile = reciever).order_by('created')
     msg2 = MessageData.objects.filter(senderProfile = reciever, recieverProfile = sender).order_by('created')
     for item in msg1:
@@ -91,6 +109,8 @@ def inbox(request):
     #         messageRequests |= msg
     #         senderSet.add(msg.senderProfile.username)
         # messageRequests
+        
+    
     messageRequests  = MessageData.objects.filter(recieverProfile = recieverProfile)
     unreadCount = messageRequests.filter(isRead=False).count()
     context = {'messageRequests': messageRequests,
