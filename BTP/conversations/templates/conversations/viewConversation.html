@@ -29,13 +29,13 @@
           
         {% for message in messageRequests %}
           {% if message.senderProfile == recieverProfile %}
-            <div class="left" >
+            <div class="right" >
           {% else %}
-              <div class="left right">
+              <div class="left">
           {% endif %}
-          <div style="display: flex;" class="sendAndRecieve">
-            <div class="messages" style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem;max-width: 60%">
-              <div style="display: flex;align-items:center;justify-content: space-between">
+          <div style="display: flex;max-width:60%" class="sendAndRecieve">
+            <div class="messages" style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem;max-width: 100%">
+              <div style="display: flex;align-items:center;justify-content: space-between;">
                 <p style="color: #5aa5b9;">
                     <b>
                       {% if message.senderProfile == recieverProfile %}

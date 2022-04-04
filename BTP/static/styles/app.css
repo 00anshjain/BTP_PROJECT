@@ -752,7 +752,6 @@ img {
   padding: 0.5rem 3rem;
   border: 2px solid var(--color-light);
   border-radius: 0.7rem;
-  /* margin-bottom: 25rem */
 }
 
 .message {
@@ -785,6 +784,10 @@ img {
 
 .message__subject {
   flex-basis: 50%;
+}
+
+.message__subject:nth-child(2n+1) {
+  text-align: right
 }
 
 .message__date {
@@ -863,6 +866,7 @@ img {
 .sendAndRecieve:nth-child(2n) {
   flex-direction: row-reverse;
   text-align: right;
+  /* justify-content: end */
 }
 
 .left {
@@ -870,12 +874,7 @@ img {
 }
 
 .right {
-  justify-content: flex-end
-}
-
-/* .contentBox {
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-bottom: 100px
-} */
+  align-items: flex-end;
+  justify-content: flex-end;
+}
