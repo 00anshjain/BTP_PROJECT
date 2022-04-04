@@ -50,22 +50,3 @@ class ClientProfile(models.Model):
     def __str__(self):
         return str(self.username)
 
-
-def ClientProfileUpdatedAddedToUser(sender, instance, created, **kwargs):
-    profile = instance
-    user = profile.user
-    user.email = profile.email
-    user.save()
-    subject = 'Welcome to DevSearch'
-    message = 'We are glad you are here!'
-
-    send_mail(
-        subject,
-        message,
-        settings.EMAIL_HOST_USER,
-        [profile.email],
-        fail_silently=False,
-    )
-
-post_save.connect(ClientProfileUpdatedAddedToUser, sender=ClientProfile,
-                  dispatch_uid="create_ClientUser_instance")

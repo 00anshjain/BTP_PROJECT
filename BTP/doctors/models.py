@@ -103,20 +103,4 @@ class Qualification(models.Model):
 #         return str(self.profile.name)
 
 
-def DoctorProfileUpdatedAddedToUser(sender, instance, created, **kwargs):
-    profile = instance
-    user = profile.user
-    user.email = profile.email
-    user.save()
-    subject = 'Welcome to DevSearch'
-    message = 'We are glad you are here!'
 
-    send_mail(
-        subject,
-        message,
-        settings.EMAIL_HOST_USER,
-        [profile.email],
-        fail_silently=False,
-    )
-post_save.connect(DoctorProfileUpdatedAddedToUser, sender=Profile,
-                  dispatch_uid="create_DocUser_instance")

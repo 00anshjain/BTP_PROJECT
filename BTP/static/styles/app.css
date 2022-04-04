@@ -854,3 +854,12 @@ img {
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
+
+
+
+
+
+.sendAndRecieve:nth-child(2n) {
+  flex-direction: row-reverse;
+  text-align: right;
+}
