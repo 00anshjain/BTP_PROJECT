@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'doctors.apps.DoctorsConfig',
     'clients.apps.ClientsConfig',
     'blogs.apps.BlogsConfig',
+    'conversations.apps.ConversationsConfig',
 ]
 
 MIDDLEWARE = [
