@@ -75,15 +75,30 @@
       <textarea type="text" name="textInput" placeholder="Type the message" style="flex: 0.97;padding: 1rem;outline: none;max-height: 10vh"> </textarea>
       <div style="display: flex;align-items: center;justify-content: space-around;gap: 1.5rem;">
         <!-- Upload -->
-        <button name="uploadImage" type="image" style="display: flex;align-items: flex-end;justify-content: stretch;padding: 1rem 2rem;outline: none;cursor: pointer;border: none;color: white;background-color: rgb(70, 152, 184);"><i style="font-size: 30px;" class="im im-photo-camera"></i></button>
-        <!-- <input type="file" style="display: flex;align-items: center;justify-content: flex-end;padding: 0.5rem 2rem;background-color: transparent;border: none;outline: none;cursor: pointer" name="upload" id=""> -->
-
+        <!-- <button name="uploadImage" onclick = "uploadImage()" type="image" style="display: flex;align-items: flex-end;justify-content: stretch;padding: 1rem 2rem;outline: none;cursor: pointer;border: none;color: white;background-color: rgb(70, 152, 184);"><i style="font-size: 30px;" class="im im-photo-camera"></i></button> -->
+        <!-- <div class="image-upload">
+          <label for="a">
+            <img src="../../../static/images/codesniper.png" width="50px" height="50px"/>
+          </label>
+          <input type="file" id="a" value="upload" style="display: flex;align-items: center;justify-content: flex-end;padding: 0.5rem 2rem;background-color: transparent;border: none;outline: none;cursor: pointer" name="uploadImage" id="uploadImage">
+        </div> -->
+        <label>
+          <img src="../../../static/images/gallery.png" width="50px" height="50px"
+          style="display: flex;align-items: center;justify-content: flex-end;" />
+          <input type="file" name="uploadImage" value="uploadImage" id="uploadImage" style="display:none">
+        </label>
         <!-- Send Button -->
         <button style="display: flex;align-items: center;justify-content: flex-end;padding: 1rem 2rem;color: white;border: none;outline: none;cursor: pointer;border: none;background-color: rgb(59, 146, 59)" type="submit"><i style="font-size: 30px;" class="im im-paperplane"></i></button>
       </div>
     </div>
     </form>
   </div>
+
+  <script>
+    function uploadImage() {
+      
+    }
+    </script>
 </main>
 
 {% endblock content %}

@@ -882,3 +882,9 @@ img {
 textarea::-webkit-scrollbar {
   width: 0px
 }
+
+.image-upload>input {
+  visibility:hidden;
+  width:0;
+  height:0
+}

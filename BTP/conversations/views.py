@@ -51,10 +51,10 @@ def viewConversation(request, pk):
         except :
             textData = None
         try :
-            imageFile = request.POST['uploadImage']
+            # imageFile = request.FILES['uploadImage'].read()
+            imageFile = request.FILES['uploadImage']
         except :
             imageFile = None
-        print(imageFile)
         print('HI')
         print(textData)
         print('BYE')
