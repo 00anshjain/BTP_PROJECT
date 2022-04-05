@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<form method='POST' action="" class="form auth__form">
+    <h3>Verify OTP</h3>
+    {% csrf_token %}
+
+    <input type="hidden" name="user" value="{{user.username}}">
+    <!-- Input:Username -->
+    <div class="form__field">
+        <label for="formInput#text">Otp: </label>
+        <input class="input input--text" id="formInput#text" type="text" name="otp"
+            placeholder="Enter your otp..." />
+    </div>
+
+
+    <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Verify" />
+        <a id="resendOTPmess" href="{% url 'reset_password' %}">Resend OTP</a>
+    </div>
+</form>
+
+{% endblock content %}

@@ -14,4 +14,6 @@ urlpatterns = [
     path('doctorLogin/', views.doctorLogin, name='doctorLogin'),
     path('clientLogin/', views.doctorLogin, name='clientLogin'),
     path("logout/", views.logoutUser, name="logout"),
+    path("verifyOTP/", views.registerClient, name="verifyOTP"),
+
 ]
