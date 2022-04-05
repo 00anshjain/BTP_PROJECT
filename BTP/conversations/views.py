@@ -51,10 +51,10 @@ def viewConversation(request, pk):
         except :
             textData = None
         try :
-            imageFile = request.POST['uploadImage']
+            # imageFile = request.FILES['uploadImage'].read()
+            imageFile = request.FILES['uploadImage']
         except :
             imageFile = None
-        print(imageFile)
         print('HI')
         print(textData)
         print('BYE')
@@ -117,4 +117,3 @@ def inbox(request):
                 'unreadCount': unreadCount,}
     return render(request, 'conversations/inbox.html', context)
     return redirect('account')  # for gadbad
-    
