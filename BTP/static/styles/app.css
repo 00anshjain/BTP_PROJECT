@@ -888,3 +888,13 @@ textarea::-webkit-scrollbar {
   width:0;
   height:0
 }
+
+
+.viewMessage{
+  height: -640px;
+  overflow-y: scroll;
+}
+
+.abc {
+  width: 200px;height: 200px
+}
