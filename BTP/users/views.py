@@ -7,6 +7,9 @@ from .forms import *
 from django.contrib import messages
 from doctors.models import Profile
 from clients.models import ClientProfile
+import random
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # from django.conf import settings
@@ -50,26 +53,95 @@ def register(request):
     return render(request, 'doctors/doctorRegistrationPage.html', context)
 
 
+def GenerateOTP(user):
+    user_otp = random.randint(100000, 999999)
+    UserOTP.objects.create(user=user, otp=user_otp)
+    mess = f"hello {user.username}, \n Your OTP is {user_otp}\nThanks!"
+
+    send_mail(
+        "Welcome to DocIt - Verify your Email", 
+        mess,
+        settings.EMAIL_HOST_USER,
+        [user.email],
+        fail_silently=False
+    )
+
 def registerClient(request):
     msg = None
     page = "register"
     if request.method == 'POST':
-        form = CustomClientUserCreationForm(request.POST)
+        get_otp = request.POST.get('otp')
 
+        if get_otp:
+            get_user = request.POST.get('user')
+            user = User.objects.get(username=get_user)
+            tcp = TempClientProfile.objects.get(username = user.username)
+            
+            # pk = tcp.TempCid
+
+            # usr = Profile.objects.get(username=get_user)
+
+            if int(get_otp) == UserOTP.objects.filter(user=user).last().otp:
+                user.is_active = True
+                user.save()
+
+                messages.success(
+                    request, f"User account was created for {user.email}")
+                # login(request, get_user)
+                # print(tcp.email)
+                ClientProfile.objects.create(username = tcp.username, name = tcp.name, email=tcp.email, dob=tcp.dob, gender=tcp.gender)
+                pk = ClientProfile.objects.get(username=tcp.username).Cid
+                tcp.delete()
+                return redirect('clientRegister', pk)
+            else:
+                messages.error(request, "Wrong OTP!")
+                # tcp.delete()
+                return render(request, "verifyOTP.html", {'user': user})
+                # return render(request, "users/verifyOTP.html", {'user': user, 'pk': pk})
+
+
+
+        form = CustomClientUserCreationForm(request.POST)
+        username = request.POST['username']
+        try:
+            tempProfile = TempClientProfile.objects.get(username = username)
+            userProfile = User.objects.get(username=username)
+            tempProfile.delete()
+            userProfile.delete()
+        except:
+            pass
         if form.is_valid():
+
             name = request.POST['first_name'] + ' ' + request.POST['last_name']
             email = request.POST['email']
             dob = request.POST['dob']
             gender = request.POST['gender']
             username = request.POST['username']
-            user = form.save()
-
-            ClientProfile.objects.create(name=name, email=email,
-                                         dob=dob, gender=gender, username=username, user=user)
-            pk = ClientProfile.objects.get(username=username).Cid
-            print(pk)
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+           
+            TempClientProfile.objects.create(name=name, email=email, dob=dob, gender=gender, username=username, user=user)
+            # pk = TempClientProfile.objects.get(username=username).Cid
+            # print(pk)
             msg = 'user created'
-            return redirect('clientRegister', pk)
+
+            GenerateOTP(user)
+            # user_otp = random.randint(100000, 999999)
+            # UserOTP.objects.create(user=user, otp=user_otp)
+            # mess = f"hello {user.username}, \n Your OTP is {user_otp}\nThanks!"
+
+            # send_mail(
+            #     "Welcome to DocIt - Verify your Email", 
+            #     mess,
+            #     settings.EMAIL_HOST_USER,
+            #     [email],
+            #     fail_silently=False
+            # )
+
+            return render(request, "verifyOTP.html", {'user': user})
+
+            # return redirect('clientRegister', pk)
         else:
             msg = 'form is not valid'
     else:

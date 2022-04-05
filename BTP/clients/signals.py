@@ -8,20 +8,23 @@ from .models import ClientProfile
 
 
 def ClientProfileUpdatedAddedToUser(sender, instance, created, **kwargs):
-    profile = instance
-    user = profile.user
-    user.email = profile.email
-    user.save()
-    subject = 'Welcome to DevSearch'
-    message = 'We are glad you are here!'
-
-    send_mail(
-        subject,
-        message,
-        settings.EMAIL_HOST_USER,
-        [profile.email],
-        fail_silently=False,
-    )
+    if created:
+        # print(profile)
+        # print(profile.email)
+        profile = instance
+        # user = profile.user
+        # user.email = profile.email
+        # user.save()
+        subject = 'Welcome to DevSearch'
+        message = 'We are glad you are here!'
+        
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,
+            [profile.email],
+            fail_silently=False,
+        )
 
 post_save.connect(ClientProfileUpdatedAddedToUser, sender=ClientProfile,
                   dispatch_uid="create_ClientUser_instance")

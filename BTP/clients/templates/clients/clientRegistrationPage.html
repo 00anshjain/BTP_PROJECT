@@ -21,16 +21,19 @@
             <div class="form__field">
 
                 {% for field in form %}
-        <!-- Input:Text -->
-        <div class=" form__field">
-          <label for="formInput#text">{{field.label}}</label>   
-          {{field}}
-          {% if field.label == "Gender" %}
-          <label for="formInput#text">DOB:</label>
-          <input type="date" id="dob" name="dob">
-          {% endif %}
-        </div>
-        {% endfor %}
+                <!-- Input:Text -->
+                <div class=" form__field">
+                    <label for="formInput#text">{{field.label}}</label>
+                    {{field}}
+                    {% if field.label == "Gender" %}
+                    <label for="formInput#text">DOB:</label>
+                    <input type="date" id="dob" name="dob">
+                    {% endif %}
+                    <!-- {% if field.label == "Email address" %}
+                    <input class=" btn--sub " type="submit" value="Genrate OTP" />
+                    {% endif %} -->
+                </div>
+                {% endfor %}
             </div>
 
 

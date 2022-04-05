@@ -117,4 +117,3 @@ def inbox(request):
                 'unreadCount': unreadCount,}
     return render(request, 'conversations/inbox.html', context)
     return redirect('account')  # for gadbad
-    
