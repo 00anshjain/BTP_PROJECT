@@ -9,12 +9,12 @@ from .models import Profile
 
 def DoctorProfileUpdatedAddedToUser(sender, instance, created, **kwargs):
     profile = instance
-    user = profile.user
-    user.email = profile.email
-    user.save()
+    # user = profile.user
+    # user.email = profile.email
+    # user.save()
 
     if created :
-        subject = 'Welcome to DevSearch'
+        subject = 'Welcome to DocitMed'
         message = 'We are glad you are here!'
 
         send_mail(

@@ -25,34 +25,6 @@ def index(request):
     return render(request, 'index.html')
 
 
-def register(request):
-    msg = None
-    page = "register"
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-
-        if form.is_valid():
-            name = request.POST['first_name'] + ' ' + request.POST['last_name']
-            email = request.POST['email']
-            age = request.POST['age']
-            gender = request.POST['gender']
-            username = request.POST['username']
-            user = form.save()
-
-            Profile.objects.create(name=name, email=email,
-                                   age=age, gender=gender, username=username, user=user)
-            pk = Profile.objects.get(username=username).Did
-            print(pk)
-            msg = 'user created'
-            return redirect('doctorRegister', pk)
-        else:
-            msg = 'form is not valid'
-    else:
-        form = CustomUserCreationForm()
-    context = {'form': form, 'page': page}
-    return render(request, 'doctors/doctorRegistrationPage.html', context)
-
-
 def GenerateOTP(user):
     user_otp = random.randint(100000, 999999)
     UserOTP.objects.create(user=user, otp=user_otp)
@@ -65,6 +37,82 @@ def GenerateOTP(user):
         [user.email],
         fail_silently=False
     )
+
+def register(request):
+    msg = None
+    page = "register"
+    if request.method == 'POST':
+        get_otp = request.POST.get('otp')
+
+        if get_otp:
+            get_user = request.POST.get('user')
+            user = User.objects.get(username=get_user)
+            tcp = TempDoctorProfile.objects.get(username = user.username)
+            
+            # pk = tcp.TempCid
+
+            # usr = Profile.objects.get(username=get_user)
+
+            if int(get_otp) == UserOTP.objects.filter(user=user).last().otp:
+                user.is_active = True
+                user.save()
+
+                messages.success(
+                    request, f"User account was created for {user.email}")
+                # login(request, get_user)
+                # print(tcp.email)
+                Profile.objects.create(username = tcp.username, name = tcp.name, email=tcp.email, age=tcp.age, gender=tcp.gender)
+                pk = Profile.objects.get(username=tcp.username).Did
+                tcp.delete()
+                return redirect('doctorRegister', pk)
+            else:
+                messages.error(request, "Wrong OTP!")
+                # tcp.delete()
+                return render(request, "verifyOTP.html", {'user': user})
+                # return render(request, "users/verifyOTP.html", {'user': user, 'pk': pk})
+
+
+
+
+        form = CustomUserCreationForm(request.POST)
+        username = request.POST['username']
+        try:
+            tempProfile = TempDoctorProfile.objects.get(username = username)
+            userProfile = User.objects.get(username=username)
+            tempProfile.delete()
+            userProfile.delete()
+        except:
+            pass
+        if form.is_valid():
+            name = request.POST['first_name'] + ' ' + request.POST['last_name']
+            email = request.POST['email']
+            age = request.POST['age']
+            gender = request.POST['gender']
+            username = request.POST['username']
+            user = form.save(commit=False)
+            user.is_active = False
+            user.save()
+
+            TempDoctorProfile.objects.create(name=name, email=email, age=age, gender=gender, username=username, user=user)
+            # pk = TempClientProfile.objects.get(username=username).Cid
+            # print(pk)
+            # Profile.objects.create(name=name, email=email,
+            #                        age=age, gender=gender, username=username, user=user)
+            # pk = Profile.objects.get(username=username).Did
+            # print(pk)
+            msg = 'user created'
+            GenerateOTP(user)
+            return render(request, "verifyOTP.html", {'user': user})
+
+            # return redirect('doctorRegister', pk)
+        else:
+            msg = 'form is not valid'
+    else:
+        form = CustomUserCreationForm()
+    context = {'form': form, 'page': page}
+    return render(request, 'doctors/doctorRegistrationPage.html', context)
+
+
 
 def registerClient(request):
     msg = None
