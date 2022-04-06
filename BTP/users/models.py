@@ -39,7 +39,6 @@ class TempClientProfile(models.Model):
     def __str__(self):
         return str(self.username)
 
-
 class TempDoctorProfile(models.Model):
     GenderChoices = (
         ("M", "Male"),
@@ -56,7 +55,7 @@ class TempDoctorProfile(models.Model):
     email = models.EmailField(max_length=500, blank=True, null=True)
     gender = models.CharField(
         max_length=1, choices=GenderChoices, blank=False, null=False)
-    age = models.IntegerField(null=False)
+    dob = models.DateField()
     username = models.CharField(max_length=200, blank=True, null=True)
     TempDid = models.UUIDField(default=uuid.uuid4, unique=True,
                            primary_key=True, editable=False)
