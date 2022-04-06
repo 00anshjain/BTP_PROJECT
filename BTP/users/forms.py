@@ -54,14 +54,13 @@ class CustomUserCreationForm(UserCreationForm):
     #     )
     # )
     age = forms.IntegerField()
-    otp = forms.IntegerField()
     gender = forms.ChoiceField(
         choices=GenderChoices,
     )
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email', 'otp', 'age', 'gender', 'username', 'password1', 'password2']
+        fields = ['first_name', 'last_name', 'email', 'age', 'gender', 'username', 'password1', 'password2']
         # password1 is password and password2 is renter password rfor comfirmation, Its given in django documentation
         # labels = {
         #     'first_name' : 'Name',

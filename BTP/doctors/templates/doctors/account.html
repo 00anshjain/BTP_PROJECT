@@ -13,7 +13,7 @@
                         <a class="tag tag--pill tag--main settings__btn"
                             href="{% url 'updateDoctorProfile' profile.Did %}"><i class="im im-edit"></i>
                             Edit</a>
-                        <img class="avatar avatar--xl dev__avatar" src="{{ profile.profile_image.url }}" />
+                        <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
                         <h2 class="dev__name">{{profile.name}}</h2>
                         <p class="dev__title">{{qualification.degree_name}}-{{profile.speciality}}</p>
                         <p class="dev__title">{{qualification.university}}</p>
@@ -42,7 +42,7 @@
                                 <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
                             </li>
                         </ul> -->
-                        {% if request.user.profile.id == profile.id %}
+                        {% if request.user.username == profile.username %}
                         <a style="margin-top: 20px;" href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add
                             Blog</a>
                         {% endif %}
@@ -60,9 +60,13 @@
                     <h3 class="devInfo__title">Blogs</h3>
                     <div class="devInfo__skills">
                         <div class="devSkill">
-                            <h4 class="devSkill__title">Cedars-Sinai Blog</h4>
+                            <h4 class="devSkill__title">JavaScript</h4>
                             <p class="devSkill__info">
-                                Plenty of medical institutions have blogs, but Cedars-Sinai’s stands out for covering genuinely interesting topics. Instead of numerous posts about their faculty and facilities, expect to read about health topics relevant to just about everyone.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae neque voluptatum ut?
+                                Quaerat, ea
+                                cumque! Dolorum provident esse molestias commodi odit sapiente quod quasi corrupti
+                                obcaecati? Nobis
+                                ex temporibus quaerat!
                             </p>
                         </div>
                         <div class="devSkill">

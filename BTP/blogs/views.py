@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import BlogForm
 from .models import Blog
+from doctors.models import Profile
 
 # Create your views here.
 
@@ -20,7 +21,8 @@ def blog(request, pk):
 
 @login_required(login_url="doctorLogin")
 def createBlog(request):
-    profile = request.user.profile
+    usr = request.user.username
+    profile = Profile.objects.get(username=usr)
     form = BlogForm()
 
     if request.method == "POST":
