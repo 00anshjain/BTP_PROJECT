@@ -26,50 +26,54 @@ def createMessage(request):
     #     except:
     #         profile = None
     # if request.method == 'POST':
-        
+
+
 def viewConversation(request, pk):
     # pk is senderUsername
     reciever = request.user
-    sender = User.objects.get(username = pk)
+    sender = User.objects.get(username=pk)
 
-    # try:
-    #     profileClient = ClientProfile.objects.get(username=username)
-    #     profileDoctor = Profile.objects.get(Did = pk)
-    #     isClient = True
-    #     # msg = MessageData.objects.filter(clientProfile = profile)
-        
-    # except:
-    #     profileDoctor = Profile.objects.get(username=username)
-    #     profileClient = ClientProfile.objects.get(Cid = pk)
-    #     isClient = False
+    try:
+        senderForImage = ClientProfile.objects.get(username=pk)
+        # profileDoctor = Profile.objects.get(Did = pk)
+        # isClient = True
+        # msg = MessageData.objects.filter(clientProfile = profile)
+
+    except:
+        senderForImage = Profile.objects.get(username=pk)
+        # profileClient = ClientProfile.objects.get(Cid = pk)
+        # isClient = False
 
     # if isClient:
 
     if request.method == 'POST':
-        try :
+        try:
             textData = request.POST['textInput']
-        except :
+        except:
             textData = None
-        try :
+        try:
             # imageFile = request.FILES['uploadImage'].read()
             imageFile = request.FILES['uploadImage']
-        except :
+        except:
             imageFile = None
-        print('HI')
-        print(textData)
-        print('BYE')
-        MessageData.objects.create(senderProfile = reciever, recieverProfile = sender, messageBody = textData, messageImage = imageFile)
+        # print('HI')
+        # print(textData)
+        # print('BYE')
+        MessageData.objects.create(
+            senderProfile=reciever, recieverProfile=sender, messageBody=textData, messageImage=imageFile)
         # return redirect({% url 'viewConversation' pk %})
         return redirect('viewConversation', pk)
 
-    msg1 = MessageData.objects.filter(senderProfile = sender, recieverProfile = reciever).order_by('created')
-    msg2 = MessageData.objects.filter(senderProfile = reciever, recieverProfile = sender).order_by('created')
+    msg1 = MessageData.objects.filter(
+        senderProfile=sender, recieverProfile=reciever).order_by('created')
+    msg2 = MessageData.objects.filter(
+        senderProfile=reciever, recieverProfile=sender).order_by('created')
     for item in msg1:
         item.isRead = True
         item.save()
     # msg1 = MessageData.objects.filter(senderProfile = sender, recieverProfile = reciever)
     # msg2 = MessageData.objects.filter(senderProfile = reciever, recieverProfile = sender)
-    
+
     # print(type(msg1))
     msg = msg1 | msg2
     msg.order_by('created')
@@ -77,22 +81,30 @@ def viewConversation(request, pk):
     #     print(item.messageImage)
     # for item in msg2:
     #     msg1.append(item)
-        # msg = MessageData.objects.filter(doctorProfile = profile)
+    # msg = MessageData.objects.filter(doctorProfile = profile)
     senderName = sender.first_name + ' ' + sender.last_name
     recieverName = reciever.first_name + ' ' + reciever.last_name
-    context = {'messageRequests': msg, "senderProfile" : sender, "recieverProfile" : reciever, 'senderName' : senderName, 'recieverName' : recieverName}
+
+    # for item in msg1:
+    #     print(item.senderProfile)
+    # print('HIIIIIIIIIIIII')
+    # for item in msg2:
+    #     print(item.senderProfile)
+
+    context = {'messageRequests': msg, "senderProfile": sender, "recieverProfile": reciever,
+               'senderName': senderName, 'recieverName': recieverName, 'senderForImage': senderForImage}
     return render(request, 'conversations/viewConversation.html', context)
 
 
 def inbox(request):
     username = request.user.username
-    recieverProfile = User.objects.get(username = username)
+    recieverProfile = User.objects.get(username=username)
 
     # try:
     #     senderProfile = ClientProfile.objects.get(username=username)
     #     isClient = True
     #     # msg = MessageData.objects.filter(clientProfile = profile)
-        
+
     # except:
     #     senderProfile = Profile.objects.get(username=username)
     #     isClient = False
@@ -108,12 +120,15 @@ def inbox(request):
     #     if msg.senderProfile.username not in senderSet:
     #         messageRequests |= msg
     #         senderSet.add(msg.senderProfile.username)
-        # messageRequests
-        
-    
-    messageRequests  = MessageData.objects.filter(recieverProfile = recieverProfile)
+    # messageRequests
+
+    messageRequests = MessageData.objects.filter(
+        recieverProfile=recieverProfile)
+    # messageRequests2 = MessageData.objects.filter(senderProfile = recieverProfile)
+    # for profile in messageRequests:
+    #     if
     unreadCount = messageRequests.filter(isRead=False).count()
     context = {'messageRequests': messageRequests,
-                'unreadCount': unreadCount,}
+               'unreadCount': unreadCount, }
     return render(request, 'conversations/inbox.html', context)
     return redirect('account')  # for gadbad

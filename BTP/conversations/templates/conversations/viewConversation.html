@@ -1,10 +1,13 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
+
 <!-- Main Section -->
 <main class="inbox my-xl">
   <div class="content-box">
-    <h3 class="inbox__title">{{senderProfile.username}}</h3>
+    <img class="class=avatar avatar--md" style="border-radius: 50%; background-color: black;" src="{{ senderForImage.profile_image.url }}" />
+    <span class="inbox__title">{{senderProfile.username}}</span>
     <!-- <div class="contentBox"> -->
       <ul class="messages">
         <!-- {{senderName}}  -------   {{recieverName}}     -->

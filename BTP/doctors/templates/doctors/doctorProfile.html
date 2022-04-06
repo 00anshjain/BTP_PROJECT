@@ -39,9 +39,11 @@
                                 <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
                             </li>
                         </ul> -->
-                        {% if request.user.profile.id == profile.id %}
+                        {% if request.user.username == profile.username %}
                         <a style="margin-top: 20px;" href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add
                             Blog</a>
+                        {%else%}
+                        <a style="margin-top: 20px;" href="{% url 'viewConversation' profile.username %}" class="btn btn--sub btn--lg">Send Message</a>
                         {% endif %}
                     </div>
                 </div>

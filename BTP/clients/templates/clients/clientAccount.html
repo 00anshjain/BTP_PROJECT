@@ -7,22 +7,75 @@
 <main class="profile my-md">
     <div class="container">
         <div class="layout">
-            <div class="column column--1of3">
-                <div class="card text-center">
+            <div class="column column--1of3" style="display: flex;gap: 30px">
+                <div class="card text-center" style="width: 25vw">
                     <div class="card__body dev">
                         <a class="tag tag--pill tag--main settings__btn"
                             href="{% url 'updateClientProfile' profile.Cid %}"><i class="im im-edit"></i>
                             Edit</a>
-                        <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
+                        <img class="avatar avatar--xl dev__avatar" src="{{ profile.profile_image.url }}" />
                         <h2 class="dev__name">{{profile.name}}</h2>
 
-                        <!-- 
-                        <p class="dev__title">{{profile.email}}</p>
+                        <!-- <div style="display: flex;flex-direction: column;align-items: center;justify-content: space-between">
+                                <div style="display: flex;align-items: center;justify-content: center">
+                                    <p class="dev__title">{{profile.email}}</p>
+                                    <p class="dev__location">DOB: {{profile.dob}}</p>
+                                </div>
+                                <div>
+                                    <p class="dev__location">From {{profile.location}}</p>
+                                    <p class="dev__location">Mobile: {{profile.contact_number}}</p>
+                                </div>
+                            </div> -->
 
-                        <p class="dev__location">DOB: {{profile.dob}}</p>
-                        <p class="dev__location">From {{profile.location}}</p>
-                        <p class="dev__location">Mobile: {{profile.contact_number}}</p> -->
-                        <!-- <ul class="dev__social">
+
+                        <!-- {% if request.user.profile.id == profile.id %}
+                        <a style="margin-top: 20px;" href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add
+                            Blog</a>
+                        {% endif %} -->
+                    </div>
+                </div>
+
+                <div class="card" style="width: 50vw">
+                    <div
+                        style="display: flex;flex-direction: column;align-items: stretch;justify-content: space-between;padding: 5rem">
+                        <div
+                            style="display: flex;align-items: center;justify-content: space-between;padding-bottom: 4rem;">
+                            <h5 style="font-weight: bold;color: #42424C">Full Name</h5>
+                            <p class="dev__title" style="font-weight: 600;">{{profile.email}}</p>
+                        </div>
+                        <div
+                            style="display: flex;align-items: center;justify-content: space-between;padding-bottom: 4rem;">
+                            <h5 style="font-weight: bold;color: #42424C">Date Of Birth</h5>
+                            <p class="dev__location" style="font-weight: 600;">{{profile.dob}}</p>
+                        </div>
+                        <div
+                            style="display: flex;align-items: center;justify-content: space-between;padding-bottom: 4rem;">
+                            <h5 style="font-weight: bold;color: #42424C">Location</h5>
+                            <p class="dev__location" style="font-weight: 600;">{{profile.location}}</p>
+                        </div>
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                            <h5 style="font-weight: bold;color: #42424C">Contact Number</h5>
+                            <p class="dev__location" style="font-weight: 600;">{{profile.contact_number}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column column--2of3">
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+<!-- <ul class="dev__social">
                             <li>
                                 <a title="Github" href="#" target="_blank"><i class="im im-github"></i></a>
                             </li>
@@ -40,156 +93,144 @@
                                 <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
                             </li>
                         </ul> -->
-                        <!-- {% if request.user.profile.id == profile.id %}
-                        <a style="margin-top: 20px;" href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add
-                            Blog</a>
-                        {% endif %} -->
-                    </div>
-                </div>
-            </div>
-            <div class="column column--2of3">
-                <!-- <div class="devInfo">
-                    <h3 class="devInfo__title">About Me</h3>
-                    <p class="devInfo__about">
-                        {{profile.bio}}
-                    </p>
-                </div> -->
-                <div class="devInfo">
-                    <h3 class="devInfo__title">{{profile.username}}</h3>
-                    <!-- <div class="devInfo__skills">
-                        <div class="devSkill">
-                            <h4 class="devSkill__title">JavaScript</h4>
-                            <p class="devSkill__info">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae neque voluptatum ut?
-                                Quaerat, ea
-                                cumque! Dolorum provident esse molestias commodi odit sapiente quod quasi corrupti
-                                obcaecati? Nobis
-                                ex temporibus quaerat!
-                            </p>
-                        </div>
-                        <div class="devSkill">
-                            <h4 class="devSkill__title">React</h4>
-                            <p class="devSkill__info">
-                                Smet consectetur adipisicing elit. Omnis, nihil? Accusamus aspernatur aut debitis vitae
-                                quaerat
-                                nihil fugiat, doloremque nesciunt alias pariatur maxime unde, nam saepe laborum at odit
-                                labore.
-                            </p>
-                        </div>
-                        <div class="devSkill">
-                            <h4 class="devSkill__title">Express(Nodejs)</h4>
-                            <p class="devSkill__info">
-                                Auae error deleniti aperiam enim nisi nesciunt, ratione eveniet eos fuga ad recusandae
-                                mollitia!
-                                Facere earum, distinctio nihil recusandae ipsum nesciunt. Possimus, ex. Officia maxime
-                                nihil
-                                inventore cum tenetur! Veritatis sapiente libero ducimus nesciunt itaque, placeat
-                                inventore sint
-                                blanditiis?
-                            </p>
-                        </div>
 
-                        <h3 class="devInfo__subtitle">Other Skills</h3>
-                        <div class="devInfo__otherSkills">
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>Figma</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>Vuejs</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>REST API</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>GraphQL</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>TypeScript</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>Webpack</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>NextJS</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>Postgres</small>
-                            </span>
-                            <span class="tag tag--pill tag--sub tag--lg">
-                                <small>MongoDB</small>
-                            </span>
-                        </div>
-                    </div> -->
-                </div>
 
-                <table class="settings__table">
 
-                    
-                    <tr>
-                        
-                        <td class="settings__tableInfo">
-                            
-                            <p class="dev__location"> 
-                                Email: {{profile.email}}
-                            </p>
-                        </td>
-                        
-                        
-                    </tr>
-                    <tr>
-                        <td class="settings__tableInfo">
-                            
-                            <p>
-                                <p class="dev__location">From: {{profile.location}}</p>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="settings__tableInfo">
-                            
-                            <p class="dev__location">Mobile: {{profile.contact_number}}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="settings__tableInfo">
-                            
-                            <p class="dev__location">DOB: {{profile.dob}}</p>
-                        </td>
-                    </tr>
-                    
-
-                </table>
-
-                <!-- <table class="settings__table">
-
-                    {% for blog in blogs %}
-                    <tr>
-                        <td class="settings__thumbnail">
-                            <a href="{% url 'blog' blog.id %}"><img src="{{blog.featured_image.url}}"
-                                    alt="Project Thumbnail" /></a>
-                        </td>
-                        <td class="settings__tableInfo">
-                            <a href="{% url 'blog' blog.id %}">{{blog.title}}</a>
-                            <p>
-                                {{blog.description|slice:"150"}}
-                            </p>
-                        </td>
-                        <td class="settings__tableActions">
-                            <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-blog' blog.id %}"><i
-                                    class="im im-edit"></i> Edit</a>
-                            <a class="tag tag--pill tag--main settings__btn"
-                                href="{% url 'delete-blog' blog.id %}?next=/account"><i
-                                    class="im im-x-mark-circle-o"></i>
-                                Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %} 
-
-                </table> -->
-            </div>
+<!-- <div class="devInfo">
+    <h3 class="devInfo__title">About Me</h3>
+    <p class="devInfo__about">
+        {{profile.bio}}
+    </p>
+</div> -->
+<!-- <div class="devInfo"> -->
+<!-- <h3 class="devInfo__title">{{profile.username}}</h3> -->
+<!-- <div class="devInfo__skills">
+        <div class="devSkill">
+            <h4 class="devSkill__title">JavaScript</h4>
+            <p class="devSkill__info">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae neque voluptatum ut?
+                Quaerat, ea
+                cumque! Dolorum provident esse molestias commodi odit sapiente quod quasi corrupti
+                obcaecati? Nobis
+                ex temporibus quaerat!
+            </p>
         </div>
-    </div>
-</main>
+        <div class="devSkill">
+            <h4 class="devSkill__title">React</h4>
+            <p class="devSkill__info">
+                Smet consectetur adipisicing elit. Omnis, nihil? Accusamus aspernatur aut debitis vitae
+                quaerat
+                nihil fugiat, doloremque nesciunt alias pariatur maxime unde, nam saepe laborum at odit
+                labore.
+            </p>
+        </div>
+        <div class="devSkill">
+            <h4 class="devSkill__title">Express(Nodejs)</h4>
+            <p class="devSkill__info">
+                Auae error deleniti aperiam enim nisi nesciunt, ratione eveniet eos fuga ad recusandae
+                mollitia!
+                Facere earum, distinctio nihil recusandae ipsum nesciunt. Possimus, ex. Officia maxime
+                nihil
+                inventore cum tenetur! Veritatis sapiente libero ducimus nesciunt itaque, placeat
+                inventore sint
+                blanditiis?
+            </p>
+        </div>
 
+        <h3 class="devInfo__subtitle">Other Skills</h3>
+        <div class="devInfo__otherSkills">
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>Figma</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>Vuejs</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>REST API</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>GraphQL</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>TypeScript</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>Webpack</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>NextJS</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>Postgres</small>
+            </span>
+            <span class="tag tag--pill tag--sub tag--lg">
+                <small>MongoDB</small>
+            </span>
+        </div>
+    </div> -->
+<!-- </div> -->
 
-{% endblock content %}
+<!-- <table class="settings__table">
+
+    
+    <tr>
+        
+        <td class="settings__tableInfo">
+            
+            <p class="dev__location"> 
+                Email: {{profile.email}}
+            </p>
+        </td>
+        
+        
+    </tr>
+    <tr>
+        <td class="settings__tableInfo">
+            
+            <p>
+                <p class="dev__location">From: {{profile.location}}</p>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="settings__tableInfo">
+            
+            <p class="dev__location">Mobile: {{profile.contact_number}}</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="settings__tableInfo">
+            
+            <p class="dev__location">DOB: {{profile.dob}}</p>
+        </td>
+    </tr>
+    
+
+</table> -->
+
+<!-- <table class="settings__table">
+
+    {% for blog in blogs %}
+    <tr>
+        <td class="settings__thumbnail">
+            <a href="{% url 'blog' blog.id %}"><img src="{{blog.featured_image.url}}"
+                    alt="Project Thumbnail" /></a>
+        </td>
+        <td class="settings__tableInfo">
+            <a href="{% url 'blog' blog.id %}">{{blog.title}}</a>
+            <p>
+                {{blog.description|slice:"150"}}
+            </p>
+        </td>
+        <td class="settings__tableActions">
+            <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-blog' blog.id %}"><i
+                    class="im im-edit"></i> Edit</a>
+            <a class="tag tag--pill tag--main settings__btn"
+                href="{% url 'delete-blog' blog.id %}?next=/account"><i
+                    class="im im-x-mark-circle-o"></i>
+                Delete</a>
+        </td>
+    </tr>
+    {% endfor %} 
+
+</table> -->

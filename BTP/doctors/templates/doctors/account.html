@@ -13,7 +13,7 @@
                         <a class="tag tag--pill tag--main settings__btn"
                             href="{% url 'updateDoctorProfile' profile.Did %}"><i class="im im-edit"></i>
                             Edit</a>
-                        <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
+                        <img class="avatar avatar--xl dev__avatar" src="{{ profile.profile_image.url }}" />
                         <h2 class="dev__name">{{profile.name}}</h2>
                         <p class="dev__title">{{qualification.degree_name}}-{{profile.speciality}}</p>
                         <p class="dev__title">{{qualification.university}}</p>
