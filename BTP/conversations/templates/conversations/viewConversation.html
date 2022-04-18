@@ -6,12 +6,21 @@
 <!-- Main Section -->
 <main class="inbox my-xl">
   <div class="content-box">
-    <img class="class=avatar avatar--md" style="border-radius: 50%; background-color: black;" src="{{ senderForImage.profile_image.url }}" />
+    <img class="class=avatar avatar--md" style="border-radius: 50%; background-color: black;"
+      src="{{ senderForImage.profile_image.url }}" />
     <span class="inbox__title">{{senderProfile.username}}</span>
+
+    {% if isClient != True %}
+    <span style="float: right;" class="auth__actions">
+      
+      <a id="resendOTPmess" href="{% url 'makeAppointment' senderProfile.username  %}">Schedule Appointment</a>
+  </span>
+    {% endif %}
+
     <!-- <div class="contentBox"> -->
-      <ul class="messages">
-        <!-- {{senderName}}  -------   {{recieverName}}     -->
-        <!-- <div style="display: flex;align-items:center;justify-content: space-between">
+    <ul class="messages">
+      <!-- {{senderName}}  -------   {{recieverName}}     -->
+      <!-- <div style="display: flex;align-items:center;justify-content: space-between">
           <p style="color: #5aa5b9">
               <b>
               {{senderName}}
@@ -23,29 +32,30 @@
             </b>
             </p>
         </div> -->
-          <!-- <div class="left">
+      <!-- <div class="left">
             Hello
           </div>
           <div class="left right" >
             Para
           </div> -->
-          
-        {% for message in messageRequests %}
-          {% if message.senderProfile == recieverProfile %}
-            <div class="right" >
-          {% else %}
-              <div class="left">
+
+      {% for message in messageRequests %}
+      {% if message.senderProfile == recieverProfile %}
+      <div class="right">
+        {% else %}
+        <div class="left">
           {% endif %}
           <div style="display: flex;max-width:60%" class="sendAndRecieve">
-            <div class="messages" style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem;max-width: 100%">
+            <div class="messages"
+              style="display: flex;flex-direction: column;justify-content: space-between;margin-bottom: 2rem;max-width: 100%">
               <div style="display: flex;align-items:center;justify-content: space-between;">
                 <p style="color: #5aa5b9;">
-                    <b>
-                      {% if message.senderProfile == recieverProfile %}
-                        {{recieverName}}
-                      {% else %}
-                        {{senderName}}
-                      {% endif %}
+                  <b>
+                    {% if message.senderProfile == recieverProfile %}
+                    {{recieverName}}
+                    {% else %}
+                    {{senderName}}
+                    {% endif %}
                   </b>
                 </p>
                 <!-- <p style="color: #5aa5b9">
@@ -55,53 +65,57 @@
                   </p> -->
               </div>
               <div style="display: flex;flex-direction: column;">
-                    {% if message.messageImage != "" %}
-                    <img class="" src="{{ message.messageImage.url }}" />
-                    {% endif %}
-                    <span class="message__subject">{{message.messageBody }}  </span>
-                </div>
-                <span class="message__subject" style="justify-content: end;flex-basis: auto;font-size: 10px">{{message.created}}</span>
+                {% if message.messageImage != "" %}
+                <img class="" src="{{ message.messageImage.url }}" />
+                {% endif %}
+                <span class="message__subject">{{message.messageBody }} </span>
+              </div>
+              <span class="message__subject"
+                style="justify-content: end;flex-basis: auto;font-size: 10px">{{message.created}}</span>
             </div>
           </div>
-          </div>
-      <!-- </a> -->
+        </div>
+        <!-- </a> -->
         <!-- </li> -->
         {% endfor %}
-      </ul>
+    </ul>
     <!-- </div> -->
-    
+
 
     <form class="form" method="POST" enctype="multipart/form-data" action="">
       {% csrf_token %}
-    <!-- Input Tag -->
-    <div style="margin-top: 2rem;display: flex;justify-content: space-between;align-items: center;">
-      <textarea type="text" name="textInput" placeholder="Type the message" style="flex: 0.97;padding: 1rem;outline: none;max-height: 10vh"> </textarea>
-      <div style="display: flex;align-items: center;justify-content: space-around;gap: 1.5rem;">
-        <!-- Upload -->
-        <!-- <button name="uploadImage" onclick = "uploadImage()" type="image" style="display: flex;align-items: flex-end;justify-content: stretch;padding: 1rem 2rem;outline: none;cursor: pointer;border: none;color: white;background-color: rgb(70, 152, 184);"><i style="font-size: 30px;" class="im im-photo-camera"></i></button> -->
-        <!-- <div class="image-upload">
+      <!-- Input Tag -->
+      <div style="margin-top: 2rem;display: flex;justify-content: space-between;align-items: center;">
+        <textarea type="text" name="textInput" placeholder="Type the message"
+          style="flex: 0.97;padding: 1rem;outline: none;max-height: 10vh"> </textarea>
+        <div style="display: flex;align-items: center;justify-content: space-around;gap: 1.5rem;">
+          <!-- Upload -->
+          <!-- <button name="uploadImage" onclick = "uploadImage()" type="image" style="display: flex;align-items: flex-end;justify-content: stretch;padding: 1rem 2rem;outline: none;cursor: pointer;border: none;color: white;background-color: rgb(70, 152, 184);"><i style="font-size: 30px;" class="im im-photo-camera"></i></button> -->
+          <!-- <div class="image-upload">
           <label for="a">
             <img src="../../../static/images/codesniper.png" width="50px" height="50px"/>
           </label>
           <input type="file" id="a" value="upload" style="display: flex;align-items: center;justify-content: flex-end;padding: 0.5rem 2rem;background-color: transparent;border: none;outline: none;cursor: pointer" name="uploadImage" id="uploadImage">
         </div> -->
-        <label>
-          <img src="../../../static/images/gallery.png" width="50px" height="50px"
-          style="display: flex;align-items: center;justify-content: flex-end;" />
-          <input type="file" name="uploadImage" value="uploadImage" id="uploadImage" style="display:none">
-        </label>
-        <!-- Send Button -->
-        <button style="display: flex;align-items: center;justify-content: flex-end;padding: 1rem 2rem;color: white;border: none;outline: none;cursor: pointer;border: none;background-color: rgb(59, 146, 59)" type="submit"><i style="font-size: 30px;" class="im im-paperplane"></i></button>
+          <label>
+            <img src="../../../static/images/gallery.png" width="50px" height="50px"
+              style="display: flex;align-items: center;justify-content: flex-end;" />
+            <input type="file" name="uploadImage" value="uploadImage" id="uploadImage" style="display:none">
+          </label>
+          <!-- Send Button -->
+          <button
+            style="display: flex;align-items: center;justify-content: flex-end;padding: 1rem 2rem;color: white;border: none;outline: none;cursor: pointer;border: none;background-color: rgb(59, 146, 59)"
+            type="submit"><i style="font-size: 30px;" class="im im-paperplane"></i></button>
+        </div>
       </div>
-    </div>
     </form>
   </div>
 
   <script>
     function uploadImage() {
-      
+
     }
-    </script>
+  </script>
 </main>
 
 {% endblock content %}

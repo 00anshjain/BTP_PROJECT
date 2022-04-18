@@ -30,3 +30,23 @@ class MessageData(models.Model):
     class Meta:
         ordering = ['isRead', '-created']    
 
+
+class Appointment(models.Model):
+    senderProfile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="SenderInConversation")
+    recieverProfile = models.ForeignKey(ClientProfile, on_delete=models.CASCADE, related_name="RecieverInConversation")
+
+    appointmentID = models.UUIDField(default=uuid.uuid4, unique=True,
+                           primary_key=True, editable=False)
+
+    date = models.DateField()
+    time = models.TimeField()
+    appointmentLink = models.TextField()
+    appointmentPassword = models.TextField()
+
+    created = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.senderProfile.username + ', ' + self.recieverProfile.username
+
+    
+
