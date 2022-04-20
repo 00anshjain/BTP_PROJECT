@@ -3,7 +3,7 @@
 {% block content %}
 
 <form method='POST' action="" class="form auth__form">
-    <h3>Verify OTP this is on root page</h3>
+    <h3>Verify OTP </h3>
     {% csrf_token %}
 
     <input type="hidden" name="user" value="{{user.username}}">

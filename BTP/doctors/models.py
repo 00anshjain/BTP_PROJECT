@@ -32,7 +32,7 @@ class Profile(models.Model):
     email = models.EmailField(max_length=500, blank=True, null=True)
     gender = models.CharField(
         max_length=1, choices=GenderChoices, blank=False, null=False)
-    age = models.IntegerField(null=False)
+    age = models.PositiveIntegerField(null=False)
     # available_time = models.OneToOneField(
     # 'Availability', on_delete=models.CASCADE, null=True, blank=True)
     # qualifications = models.ManyToManyField('Qualification', blank=True)
