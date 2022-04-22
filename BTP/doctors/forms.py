@@ -15,7 +15,7 @@ class DoctorProfileForm(ModelForm):
         model = Profile
         # fields = ['name',]
         fields = '__all__'
-        exclude = ('user','name','username',)
+        exclude = ('user','name','username','gender','stateMedicalCouncil', 'registrationNumber', 'yearOfRegistration')
         # exclude = ('user', 'available_time', 'qualifications')
     def __init__(self, *args, **kwargs):
         super(DoctorProfileForm, self).__init__(*args, **kwargs)

@@ -14,7 +14,7 @@ from django.conf import settings
 import json
 import os
 from django.conf import settings
-
+from django.utils.translation import gettext as _
 
 # from phonenumber_field.modelfields import PhoneNumberField
 
@@ -24,8 +24,17 @@ class Profile(models.Model):
         ("M", "Male"),
         ("F", "Female"),
     )
+    def year_choices():
+        return [(r,r) for r in range(1984, datetime.date.today().year+1)]
+    def current_year():
+        return datetime.date.today().year
+    # year_choices = for i in range(1984, )
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, null = True, blank = True)
+
+    yearOfRegistration = models.IntegerField(('year'), choices=year_choices(), default=current_year())
+    registrationNumber = models.IntegerField(default = 0)
+    stateMedicalCouncil = models.CharField(max_length=300, default = '')
     # user = models.ForeignKey(User, on_delete=models.CASCADE, null = True, blank = True)
     # ANytime user is deleted the profile is deleted
     name = models.CharField(max_length=200, blank=True, null=True)

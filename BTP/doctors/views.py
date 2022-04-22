@@ -28,15 +28,32 @@ def doctorRegister(request, pk):
         if(form.is_valid()):
             # pk = request.POST.get('Did')
             form.save()
+            usr = Profile.objects.get(Did=pk)
+            print('Medical council is')
+            print(request.POST['stateMedicalCouncil'])
+            usr.registrationNumber = request.POST['registrationNumber']
+            usr.stateMedicalCouncil = request.POST['stateMedicalCouncil']
+            usr.yearOfRegistration = request.POST['yearOfRegistration']
+               
+            usr.save()
+
             msg = 'user created'
             # user = user.Did
             return redirect('doctorRegister3', pk)
         else:
             msg = 'form is not valid'
+            print(msg)
     # else:
     #     form = DoctorProfileForm()
     #     msg = 'Not found'
-    return render(request, 'doctors/doctorRegister.html', {'form': form, 'msg': msg})
+    input_file = open(os.path.join(settings.DATA_ROOT, 'StateMedicalCouncil.json'))
+    medicalCouncilList = json.load(input_file)
+    for item in medicalCouncilList:
+        print(item)
+    yearList = [r for r in range(1984, datetime.date.today().year+1)]
+    
+
+    return render(request, 'doctors/doctorRegister.html', {'form': form, 'msg': msg, 'medicalCouncilList': medicalCouncilList, 'yearList': yearList})
 
 
 # def doctorRegister2(request, pk):
@@ -142,11 +159,17 @@ def updateDoctorProfile(request, pk):
     form = DoctorProfileForm(instance=profile)
 
     if request.method == 'POST':
+        # councilName = request.POST.get('selectCouncil')
+        # print(councilName)
         form = DoctorProfileForm(request.POST, request.FILES, instance=profile)
 
-        form.save()
+
+        # form.save()
         return redirect('allDoctors')
-    context = {'form': form, 'pk': pk}
+    input_file = open(os.path.join(settings.DATA_ROOT, 'StateMedicalCouncil.json'))
+    medicalCouncilList = json.load(input_file)
+    
+    context = {'form': form, 'pk': pk, 'medicalCouncilList': medicalCouncilList}
     return render(request, 'doctors/updateDoctorProfile.html', context)
 
 

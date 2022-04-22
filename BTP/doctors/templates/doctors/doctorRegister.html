@@ -10,10 +10,44 @@
     <div class="formWrapper">
       <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
       <br>
-
+      
       <form class="form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
+        
 
+        <div class=" form__field">
+          <label for="formInput#text">State Medical Council</label>
+          <!-- <div class="input">   -->
+          <select name="stateMedicalCouncil" id="stateMedicalCouncil">
+                  <option selected disabled="true">-- Select Council --</option>
+                  {% for council in medicalCouncilList %}
+                  <option value={{council}}>{{council}}</option>
+                  {% endfor %}
+          </select>
+          <!-- </div> -->
+        </div>
+  
+        <div class=" form__field">
+          <label for="formInput#text">Registration Number</label>
+          <!-- <div class="input">   -->
+          <input type="number"name="registrationNumber" value="{{registrationNumber}}"/>
+          <!-- </div> -->
+        </div>
+  
+        <div class=" form__field">
+          <label for="formInput#text">Year of Registration</label>
+          <!-- <div class="input">   -->
+          <select name="yearOfRegistration" id="yearOfRegistration">
+            <option selected disabled="true">--Year of Registration -- </option>
+            {% for item in yearList %}
+            <option>{{item}}</option>
+            {% endfor %}
+          </select>
+          <!-- </div> -->
+        </div>
+      
+    
+        
         {% for field in form %}
         <!-- Input:Text -->
         <div class=" form__field">
@@ -21,7 +55,8 @@
           {{field}}
         </div>
         {% endfor %}
-
+        
+          
 
         <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
       </form>
