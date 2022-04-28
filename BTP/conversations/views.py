@@ -15,6 +15,16 @@ import requests
 import json
 from time import time
 
+import requests
+import json
+from datetime import datetime, timedelta
+import pytz
+
+headers = {
+    'Authorization': 'occvlk7x6r7o0ndol75wlbae8odkdn38yfbu15wkm4z7imowp3'
+}
+
+
 
 
 from django.contrib import messages
@@ -164,82 +174,140 @@ def makeAppointment(request, pk):
         form = AppointmentForm(request.POST, instance = doctor)
         scheduleDate = request.POST['date']
         scheduleTime = request.POST['time']
-        
+        date_time_str = scheduleDate + " " + scheduleTime
+        date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M')
+        date_time_utc = date_time_obj - timedelta(hours=5, minutes=30)
+        # print(type(date_time_utc))
+        # 2022-04-28T05:00:11Z
+
+        time_utc_string = date_time_utc.strftime("%H:%M:%S")
+        # print(time_utc_string)
+        date_utc_string = date_time_utc.strftime("%Y-%m-%d")
+        # print(date_utc_string)
+        end_time_utc = date_time_obj - timedelta(hours=4, minutes=30)
+        end_time_utc_string = end_time_utc.strftime("%H:%M:%S")
+        # print(end_time_utc_string)
+        end_date_utc_string = date_time_utc.strftime("%Y-%m-%d")
+        # print(end_date_utc_string)
+
+        final_start_time = date_utc_string + "T" + time_utc_string + "Z"
+        final_end_time = end_date_utc_string + "T" + end_time_utc_string + "Z"
+
+
+        # print(date_time_utc)
+        # print("k")
+        # print(date_time_obj)
+        # print(type(date_time_obj))
+        # print(type(scheduleTime))
+        # print(scheduleTime)
+        # print(scheduleDate)
 
         
-        def generateToken():
-            token = jwt.encode(
+        # def generateToken():
+        #     token = jwt.encode(
 
-                # Create a payload of the token containing
-                # API Key & expiration time
-                {'iss': API_KEY, 'exp': time() + 5000},
+        #         # Create a payload of the token containing
+        #         # API Key & expiration time
+        #         {'iss': API_KEY, 'exp': time() + 5000},
 
-                # Secret used to generate token signature
-                API_SEC,
+        #         # Secret used to generate token signature
+        #         API_SEC,
 
-                # Specify the hashing alg
-                algorithm='HS256'
-            )
-            return token
-
-
-        # create json data for post requests
-        meetingdetails = {"topic": "The title of your zoom meeting",
-                        "type": 2,
-                        "start_time": f"{scheduleDate}T10: {scheduleTime}",
-                        "duration": "45",
-                        "timezone": "Asia/Kolkata",
-                        "agenda": "test",
-
-                        "recurrence": {"type": 1,
-                                        "repeat_interval": 1
-                                        },
-                        "settings": {"host_video": "true",
-                                    "participant_video": "true",
-                                    "join_before_host": "False",
-                                    "mute_upon_entry": "False",
-                                    "watermark": "true",
-                                    "audio": "voip",
-                                    "auto_recording": "cloud"
-                                    }
-                        }
-
-        # send a request with headers including
-        # a token and meeting details
+        #         # Specify the hashing alg
+        #         algorithm='HS256'
+        #     )
+        #     return token
 
 
-        def createMeeting():
-            headers = {'authorization': 'Bearer ' + generateToken(),
-                    'content-type': 'application/json'}
-            r = requests.post(
-                f'https://api.zoom.us/v2/users/me/meetings',
-                headers=headers, data=json.dumps(meetingdetails))
+        # # create json data for post requests
+        # meetingdetails = {"topic": "The title of your zoom meeting",
+        #                 "type": 2,
+        #                 "start_time": f"{scheduleDate}T10: {scheduleTime}",
+        #                 "duration": "45",
+        #                 "timezone": "Asia/Kolkata",
+        #                 "agenda": "test",
 
-            print("\n creating zoom meeting ... \n")
-            # print(r.text)
-            # converting the output into json and extracting the details
-            y = json.loads(r.text)
-            join_URL = y["join_url"]
-            meetingPassword = y["password"]
+        #                 "recurrence": {"type": 1,
+        #                                 "repeat_interval": 1
+        #                                 },
+        #                 "settings": {"host_video": "true",
+        #                             "participant_video": "true",
+        #                             "join_before_host": "False",
+        #                             "mute_upon_entry": "False",
+        #                             "watermark": "true",
+        #                             "audio": "voip",
+        #                             "auto_recording": "cloud"
+        #                             }
+        #                 }
 
-            # print(
-            #     f'\n here is your zoom meeting link {join_URL} and your \
-            #     password: "{meetingPassword}"\n')
+        # # send a request with headers including
+        # # a token and meeting details
 
-            subject = 'Appointment with DocItMed'
-            message = f"here's your appointment joining link and password.\nJoining Link: {join_URL}\nPassword: {meetingPassword}\nDate: {scheduleDate}\nTime: {scheduleTime}\n\nPlease join on time.\nThank You."
+
+        # def createMeeting():
+        #     headers = {'authorization': 'Bearer ' + generateToken(),
+        #             'content-type': 'application/json'}
+        #     r = requests.post(
+        #         f'https://api.zoom.us/v2/users/me/meetings',
+        #         headers=headers, data=json.dumps(meetingdetails))
+
+        #     print("\n creating zoom meeting ... \n")
+        #     # print(r.text)
+        #     # converting the output into json and extracting the details
+        #     y = json.loads(r.text)
+        #     join_URL = y["join_url"]
+        #     meetingPassword = y["password"]
+
+        #     # print(
+        #     #     f'\n here is your zoom meeting link {join_URL} and your \
+        #     #     password: "{meetingPassword}"\n')
+
+        #     subject = 'Appointment with DocItMed'
+        #     message = f"here's your appointment joining link and password.\nJoining Link: {join_URL}\nPassword: {meetingPassword}\nDate: {scheduleDate}\nTime: {scheduleTime}\n\nPlease join on time.\nThank You."
             
-            send_mail(
-                subject,
-                message,
-                settings.EMAIL_HOST_USER,
-                [doctor.email, client.email],
-                fail_silently=False,
-            )
+        #     send_mail(
+        #         subject,
+        #         message,
+        #         settings.EMAIL_HOST_USER,
+        #         [doctor.email, client.email],
+        #         fail_silently=False,
+        #     )
 
+        
+        def create_meeting(senderName, clientName, startDate, endDate, senderEmail, clientEmail, message, allDay=False):  # 2020-04-22 10:00:00
+            json_data = {
+                'title': f'DocItMed : Meeting Scheduled {senderName} - {clientName}',
+                'created_by': {
+                    'email': 'docitmed@gmail.com',
+                },
+                'dates': [
+                    {
+                        'all_day': allDay,
+                        'date': startDate,
+                        'end_date': endDate,
+                    },
+                ],
+                'places': [{"name": "Google Meet", "source": "Google Meet"}],
+                'invitees': [{"email": senderEmail}, {"email": clientEmail}, {"email": "docitmed@gmail.com"}],
+                'timezone': "Asia/Kolkata",
+                'messages': {
+                    'body': message
+                },
+                'confirmed': {
+                    'flag': True
+                }
+            }
+            response = requests.post(
+                'https://api.vyte.in/v2/events', headers=headers, json=json_data)
+            jsonResponse = json.loads(response.text)
+            # print(jsonResponse)
+            print(
+                f"Meeting ID: {jsonResponse['_id']} \nPlace ID: {jsonResponse['places'][0]['_id']} \nDate ID: {jsonResponse['dates'][0]['_id']}")
+            print(f"Meeting Link: {jsonResponse['places'][0]['address']}")
 
         # run the create meeting function
-        createMeeting()
+        # createMeeting()
+        create_meeting('Dr. ' +doctor.first_name + ' ' + doctor.last_name, client.first_name + ' ' + client.last_name, final_start_time, final_end_time, doctor.email, client.email, "Hello! Please be on time.")
         return redirect('allDoctors')
 
     context = {'form': form}

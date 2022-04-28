@@ -41,7 +41,7 @@ class Appointment(models.Model):
     date = models.DateField()
     time = models.TimeField()
     appointmentLink = models.TextField()
-    appointmentPassword = models.TextField()
+    # appointmentPassword = models.TextField()
 
     created = models.DateTimeField(auto_now_add=True)
     
