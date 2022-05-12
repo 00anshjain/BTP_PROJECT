@@ -164,6 +164,20 @@ def inbox(request):
     return redirect('account')  # for gadbad
 
 
+
+def convert_date(datestring, time): #2022-04-28 23:30:00
+    datelist = datestring.split(" ")
+    if time=="start":
+        returnstring = f'{datelist[0]}T{datelist[1]}+05:30'
+    else:
+        returnstring = f'{datelist[0]}T{datelist[1]}+04:30'
+    datetimeobject = datetime.strptime(datestring, "%Y-%m-%d %H:%M:%S")
+    # print(datetimeobject)
+    
+    return returnstring
+# convert_date("2022-04-28 23:30:00")
+
+
 def makeAppointment(request, pk):
     # pk is client username
     doctor = request.user
@@ -174,24 +188,29 @@ def makeAppointment(request, pk):
         form = AppointmentForm(request.POST, instance = doctor)
         scheduleDate = request.POST['date']
         scheduleTime = request.POST['time']
-        date_time_str = scheduleDate + " " + scheduleTime
-        date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M')
-        date_time_utc = date_time_obj - timedelta(hours=5, minutes=30)
+        date_time_str = scheduleDate + " " + scheduleTime + ":00"
+        # print(date_time_str)
+        # date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
+
+        # start_time = convert_date(date_time_str, "start")
+        # end_time = convert_date(date_time_str, "end")
+
+        # date_time_utc = date_time_obj
         # print(type(date_time_utc))
         # 2022-04-28T05:00:11Z
 
-        time_utc_string = date_time_utc.strftime("%H:%M:%S")
-        # print(time_utc_string)
-        date_utc_string = date_time_utc.strftime("%Y-%m-%d")
-        # print(date_utc_string)
-        end_time_utc = date_time_obj - timedelta(hours=4, minutes=30)
-        end_time_utc_string = end_time_utc.strftime("%H:%M:%S")
-        # print(end_time_utc_string)
-        end_date_utc_string = date_time_utc.strftime("%Y-%m-%d")
-        # print(end_date_utc_string)
+        # time_utc_string = date_time_utc.strftime("%H:%M:%S")
+        # # print(time_utc_string)
+        # date_utc_string = date_time_utc.strftime("%Y-%m-%d")
+        # # print(date_utc_string)
+        # end_time_utc = date_time_obj - timedelta(hours=4, minutes=30)
+        # end_time_utc_string = end_time_utc.strftime("%H:%M:%S")
+        # # print(end_time_utc_string)
+        # end_date_utc_string = date_time_utc.strftime("%Y-%m-%d")
+        # # print(end_date_utc_string)
 
-        final_start_time = date_utc_string + "T" + time_utc_string + "Z"
-        final_end_time = end_date_utc_string + "T" + end_time_utc_string + "Z"
+        # final_start_time = date_utc_string + "T" + time_utc_string + "Z"
+        # final_end_time = end_date_utc_string + "T" + end_time_utc_string + "Z"
 
 
         # print(date_time_utc)
@@ -283,8 +302,9 @@ def makeAppointment(request, pk):
                 'dates': [
                     {
                         'all_day': allDay,
-                        'date': startDate,
-                        'end_date': endDate,
+                        'date': convert_date(startDate, "start"),
+                        'end_date': convert_date(endDate, "end"),
+                        
                     },
                 ],
                 'places': [{"name": "Google Meet", "source": "Google Meet"}],
@@ -307,7 +327,10 @@ def makeAppointment(request, pk):
 
         # run the create meeting function
         # createMeeting()
-        create_meeting('Dr. ' +doctor.first_name + ' ' + doctor.last_name, client.first_name + ' ' + client.last_name, final_start_time, final_end_time, doctor.email, client.email, "Hello! Please be on time.")
+        create_meeting('Dr. ' +doctor.first_name + ' ' + doctor.last_name, client.first_name + ' ' + client.last_name, date_time_str, date_time_str, doctor.email, client.email, "Hello! Please be on time.")
+
+
+        
         return redirect('allDoctors')
 
     context = {'form': form}
