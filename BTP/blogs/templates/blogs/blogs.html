@@ -37,7 +37,7 @@
                 <div class="column">
                     <div class="card project">
                         <a href="{% url 'blog' blog.id %}" class="project">
-                            <img class="project__thumbnail" src="{{blog.featured_image.url}}" alt="project thumbnail" />
+                            <img style="padding-left: 30px; width: 100%; border-radius: 50%;" class="project__thumbnail" src="{{blog.featured_image.url}}" alt="project thumbnail" />
                             <div class="card__body">
                                 <h3 class="project__title">{{blog.title}}</h3>
                                 <p><a class="project__author" href="{% url 'doctorProfile' blog.owner.Did %}">By
