@@ -1,6 +1,8 @@
 {% load static %}
 
-<header class="header" style="position: sticky;">
+<header class="header" style="position: sticky;
+top: 0;
+width: 100%;z-index: 0.5">
     <div class="container container--narrow">
         <a href="{% url 'index' %}" class="header__logo">
             <img src="{% static 'images/a.png' %}" alt="Medical Logo" />
@@ -17,7 +19,7 @@
                 {% if request.user.is_authenticated %}
                 <li class="header__menuItem"><a href="{% url 'inbox' %}">Inbox</a></li>
                 <li class="header__menuItem"><a href="{% url 'clientAccount'%}">Account</a></li>
-                
+
                 {% endif %}
                 {% if request.user.is_authenticated %}
                 <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Logout</a></li>

@@ -7,16 +7,17 @@
 <main class="singleProject my-md">
     <div class="container">
         <div class="layout">
-            <div class="column column--1of3">
-                <h3 class="singleProject__subtitle">Tools & Stacks</h3>
-                <div class="singleProject__toolStack">
-                    {% for tag in blog.tags.all %}
-                    <span class="tag tag--pill tag--sub tag--lg">
-                        <small>{{tag}}</small>
-                    </span>
-                    {% endfor %}
+            <div style="position: sticky;
+            left: 0;
+            height: 100%;z-index: -1; padding: 100px;" class="column column--1of3">
+                <h3 class="singleProject__subtitle">Owner:</h3>
 
-                </div>
+                <img class="avatar avatar--xl" src="{{ blog.owner.profile_image.url }}" alt="portfolio thumbnail" />
+
+                <p style="text-align: center; padding-top: 10px;
+                font-weight: 500; font-size: xx-large;" class="dev__title">{{blog.owner.username}}
+                    </p>
+
 
 
             </div>
@@ -33,8 +34,8 @@
                 <div class="comments">
                     <h3 class="singleProject__subtitle">Feedback</h3>
                     <h5 class="project--rating">
-                        {{blog.vote_ratio}}% Postitive Feedback ({{blog.vote_total}}
-                        Vote{{blog.vote_total|pluralize:"s"}})
+                        95% Postitive Feedback (5 Votes)
+                        
                     </h5>
 
                     <form class="form" action="#" method="POST">
