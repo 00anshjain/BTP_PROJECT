@@ -888,3 +888,8 @@ textarea::-webkit-scrollbar {
   width:0;
   height:0
 }
+
+.btp_layout{
+  display: flex;
+  justify-content: center;
+}
