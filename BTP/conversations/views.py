@@ -10,7 +10,7 @@ from django.conf import settings
 # from django.db.models import Q
 
 
-import jwt
+# import jwt
 import requests
 import json
 from time import time
@@ -18,7 +18,7 @@ from time import time
 import requests
 import json
 from datetime import datetime, timedelta
-import pytz
+# import pytz
 
 headers = {
     'Authorization': 'occvlk7x6r7o0ndol75wlbae8odkdn38yfbu15wkm4z7imowp3'
