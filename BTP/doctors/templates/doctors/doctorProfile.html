@@ -13,11 +13,11 @@
                         <img class="avatar avatar--xl" src="{{ profile.profile_image.url }}" />
                         <h2 class="dev__name">{{profile.name}}</h2>
                         <p class="dev__title">{{qualification.degree_name}}-{{profile.speciality}}</p>
-                        <p class="dev__title">{{qualification.university}}</p>
-                        <p class="dev__title">Passed out: {{qualification.degree_date}}</p>
-                        <p class="dev__title">{{profile.email}}</p>
+                        <p class="dev__title" style="padding-top:5px" >{{qualification.university}}</p>
+                        <!-- <p class="dev__title">Passed out: qualification.degree_date</p> -->
+                        <!-- <p class="dev__title" style="padding-top:5px">{{profile.email}}</p> -->
                         {% if profile.short_intro %}
-                        <p class="dev__title">{{profile.short_intro}}</p>
+                        <p class="dev__title" style="padding-top:5px">{{profile.short_intro}}</p>
                         {% endif %}
                         <p class="dev__location">Joined DocIt: {{profile.joining_date}}</p>
                         <p class="dev__location">From {{profile.location}}</p>

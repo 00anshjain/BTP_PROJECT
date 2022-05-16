@@ -209,6 +209,7 @@ def userAccount(request):
     # if ClientProfile.objects.filter(username=username).count() != 0:
     if profile is not None:
         blogs = profile.blog_set.all()
-        context = {"profile": profile, "blogs": blogs}
+        qualification = Qualification.objects.get(profile=profile)
+        context = {"profile": profile, "blogs": blogs, "qualification": qualification}
         return render(request, 'doctors/account.html', context)
     return redirect('allDoctors')
