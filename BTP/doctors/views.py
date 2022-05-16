@@ -205,10 +205,10 @@ def userAccount(request):
         # print(profile)
     except:
         profile = None
-    print(profile)
+    # print(profile)
     # if ClientProfile.objects.filter(username=username).count() != 0:
     if profile is not None:
-
-        context = {"profile": profile}
+        blogs = profile.blog_set.all()
+        context = {"profile": profile, "blogs": blogs}
         return render(request, 'doctors/account.html', context)
     return redirect('allDoctors')

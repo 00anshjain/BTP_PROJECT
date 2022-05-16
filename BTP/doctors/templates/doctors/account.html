@@ -58,7 +58,7 @@
                 </div>
                 <div class="devInfo">
                     <h3 class="devInfo__title">Blogs</h3>
-                    <div class="devInfo__skills">
+                    <!-- <div class="devInfo__skills">
                         <div class="devSkill">
                             <h4 class="devSkill__title">JavaScript</h4>
                             <p class="devSkill__info">
@@ -121,34 +121,35 @@
                                 <small>MongoDB</small>
                             </span>
                         </div>
-                    </div>
+                    </div> -->
+                    <table class="settings__table">
+
+                        {% for blog in blogs %}
+                        <tr>
+                            <td class="settings__thumbnail">
+                                <a href="{% url 'blog' blog.id %}"><img src="{{blog.featured_image.url}}"
+                                        alt="Project Thumbnail" /></a>
+                            </td>
+                            <td class="settings__tableInfo">
+                                <a href="{% url 'blog' blog.id %}">{{blog.title}}</a>
+                                <p>
+                                    {{blog.description|slice:"150"}}
+                                </p>
+                            </td>
+                            <td class="settings__tableActions">
+                                <a class="tag tag--pill tag--main settings__btn"
+                                    href="{% url 'update-blog' blog.id %}"><i class="im im-edit"></i> Edit</a>
+                                <a class="tag tag--pill tag--main settings__btn"
+                                    href="{% url 'delete-blog' blog.id %}?next=/account"><i
+                                        class="im im-x-mark-circle-o"></i>
+                                    Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
                 </div>
-                <table class="settings__table">
-
-                    {% for blog in blogs %}
-                    <tr>
-                        <td class="settings__thumbnail">
-                            <a href="{% url 'blog' blog.id %}"><img src="{{blog.featured_image.url}}"
-                                    alt="Project Thumbnail" /></a>
-                        </td>
-                        <td class="settings__tableInfo">
-                            <a href="{% url 'blog' blog.id %}">{{blog.title}}</a>
-                            <p>
-                                {{blog.description|slice:"150"}}
-                            </p>
-                        </td>
-                        <td class="settings__tableActions">
-                            <a class="tag tag--pill tag--main settings__btn" href="{% url 'update-blog' blog.id %}"><i
-                                    class="im im-edit"></i> Edit</a>
-                            <a class="tag tag--pill tag--main settings__btn"
-                                href="{% url 'delete-blog' blog.id %}?next=/account"><i
-                                    class="im im-x-mark-circle-o"></i>
-                                Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-
-                </table>
+                
             </div>
         </div>
     </div>

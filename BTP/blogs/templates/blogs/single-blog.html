@@ -9,14 +9,14 @@
         <div class="layout">
             <div style="position: sticky;
             left: 0;
-            height: 100%;z-index: -1; padding: 100px;" class="column column--1of3">
-                <h3 class="singleProject__subtitle">Owner:</h3>
+            height: 100%;z-index: -1;" class="column column--1of3">
+                <h3 class="singleProject__subtitle">Author:</h3>
 
                 <img class="avatar avatar--xl" src="{{ blog.owner.profile_image.url }}" alt="portfolio thumbnail" />
 
                 <p style="text-align: center; padding-top: 10px;
-                font-weight: 500; font-size: xx-large;" class="dev__title">{{blog.owner.username}}
-                    </p>
+                font-weight: 500; font-size: xx-large; color: black;" class="dev__title"> <a href="{% url 'doctorProfile' blog.owner.Did %}">Dr. {{blog.owner.name}}</a> 
+                </p>
 
 
 
@@ -24,7 +24,7 @@
             <div class="column column--2of3">
                 <img class="singleProject__preview" src="{{ blog.featured_image.url }}" alt="portfolio thumbnail" />
                 <a href="{% url 'doctorProfile' blog.owner.Did %}"
-                    class="singleProject__developer">{{blog.owner.name}}</a>
+                    class="singleProject__developer">Dr. {{blog.owner.name}}</a>
                 <h2 class="singleProject__title">{{blog.title}}</h2>
                 <h3 class="singleProject__subtitle">About the Blog</h3>
                 <div class="singleProject__info">
@@ -35,7 +35,7 @@
                     <h3 class="singleProject__subtitle">Feedback</h3>
                     <h5 class="project--rating">
                         95% Postitive Feedback (5 Votes)
-                        
+
                     </h5>
 
                     <form class="form" action="#" method="POST">

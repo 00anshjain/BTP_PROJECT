@@ -38,7 +38,7 @@
                             <img style="padding-left: 25px; width: 100%; border-radius: 5%;" class="project__thumbnail"
                                 src="{{ profile.profile_image.url }}" alt="profile thumbnail" />
                             <div class="card__body">
-                                <h3 class="project__title">{{profile.name}}</h3>
+                                <h3 class="project__title">Dr. {{profile.name}}</h3>
                                 <p><a class="project__author"
                                         href="{% url 'doctorProfile' profile.Did %}">{{profile.email}}</a>
                                 </p>
@@ -53,15 +53,16 @@
                                     <span style="font-weight: bold;">{{profile.location}}</span>
                                 </p>
                                 <div class="project__tags">
-                                    <span class="tag tag--pill tag--main">
-                                        <small>NextJS</small>
+                                    <span class="tag tag--pill tag--main" style="font-size: 15px;">
+                                        <small>{{profile.speciality}}</small>
                                     </span>
-                                    <span class="tag tag--pill tag--main">
+                                    <!-- <span class="tag tag--pill tag--main">
                                         <small>GraphQL</small>
                                     </span>
                                     <span class="tag tag--pill tag--main">
                                         <small>TypeScript</small>
-                                    </span>
+                                    </span> -->
+                                    <!-- <span style="font-weight: bold;">{{profile.speciality}}</span> -->
                                 </div>
                             </div>
                         </a>
