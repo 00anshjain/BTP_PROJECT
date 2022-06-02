@@ -120,12 +120,12 @@ def heartDisease(request):
         input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
 
         prediction = model.predict(input_data_reshaped)
-        print(prediction)
+        # print(prediction)
 
-        if (prediction[0]== 0):
-            print('The Person does not have a Heart Disease')
-        else:
-            print('The Person has Heart Disease')
+        # if (prediction[0]== 0):
+        #     print('The Person does not have a Heart Disease')
+        # else:
+        #     print('The Person has Heart Disease')
 
         # HeartDisease.objects.create(
         #     profile = client, 
@@ -143,10 +143,15 @@ def heartDisease(request):
         #     ca = ca,
         #     thal = thal,
         # )
-        # context = {'result': prediction[0], }
+        context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
 
-        return redirect('allDoctors')
+        return render(request, 'diseasePrediction/diseasePredictionResult.html', context)
 
 
     context = {'form': form}
     return render(request, 'diseasePrediction/heartDiseaseForm.html', context)
+
+
+
+def diseasePredictionResult(request):
+    return render(request, 'diseasePrediction/diseasePredictionResult.html')
