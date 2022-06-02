@@ -6,14 +6,16 @@ from django.contrib.auth.models import User
 
 import uuid
 
+
+
 class HeartDisease(models.Model):
     GenderChoices = (
         ("M", "Male"),
         ("F", "Female"),
     )
-    profile = models.ForeignKey(User, on_delete=models.CASCADE, related_name="clientProfile")
+    profile = models.ForeignKey(User, on_delete=models.CASCADE, related_name="heartDiseasePatient")
 
-    diseaseID = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    heartDiseaseID = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
     
     # age = models.PositiveIntegerField(null=False)
     # gender = models.CharField(
@@ -29,9 +31,10 @@ class HeartDisease(models.Model):
     slope = models.PositiveIntegerField(null=False)
     ca = models.PositiveIntegerField(null=False)
     thal = models.PositiveIntegerField(null=False)
-    
-
-
+    diseaseDetected = models.IntegerField(default=-1)   # -1 result not predicted till now by the model
+    accuracy = models.FloatField(null=False)
     created = models.DateTimeField(auto_now_add=True)
+
+
     def __str__(self):
-        return self.profile
+        return self.profile.username

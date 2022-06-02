@@ -75,25 +75,26 @@ def calculate_age(born):
 
 def heartDisease(request):
 
-    username = request.user.username
+    # username = request.user.username
+    profile = request.user
     try:
-        profile = ClientProfile.objects.get(username=username)
+        prf = ClientProfile.objects.get(username=profile.username)
         isClient = True
-        age = calculate_age(profile.dob)
+        age = calculate_age(prf.dob)
         
     except:
-        profile = Profile.objects.get(username = username)
+        prf = Profile.objects.get(username = profile.username)
         isClient = False
-        age = profile.age
-    form = HeartDiseaseForm()
-    if(profile.gender == 'Male'):
+        age = prf.age
+    # form = HeartDiseaseForm()
+    if(prf.gender == 'Male'):
         gender = 1 
     else:
         gender = 0
     
 
     if request.method == "POST":
-        form = HeartDiseaseForm(request.POST, instance = profile)
+        # form = HeartDiseaseForm(request.POST, instance = profile)
         # age = request.POST['age']
         # gender = request.POST['gender']
         # gender = 1
@@ -127,28 +128,33 @@ def heartDisease(request):
         # else:
         #     print('The Person has Heart Disease')
 
-        # HeartDisease.objects.create(
-        #     profile = client, 
-        #     age = age,
-        #     gender = gender,
-        #     cp = cp,
-        #     trestbps = trestbps,
-        #     chol = chol,
-        #     fbs = fbs,
-        #     restecg = restecg,
-        #     thalach = thalach,
-        #     exang = exang,
-        #     oldpeak = oldpeak,
-        #     slope = slope,
-        #     ca = ca,
-        #     thal = thal,
-        # )
-        context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
+        diseaseInstance = HeartDisease.objects.create(
+            profile = profile, 
+            # age = age,
+            # gender = gender,
+            cp = cp,
+            trestbps = trestbps,
+            chol = chol,
+            fbs = fbs,
+            restecg = restecg,
+            thalach = thalach,
+            exang = exang,
+            oldpeak = oldpeak,
+            slope = slope,
+            ca = ca,
+            thal = thal,
+            diseaseDetected = prediction[0],
+            accuracy = test_data_accuracy*100,
+        )
+        pk = diseaseInstance.heartDiseaseID
+        print(pk)
+        print(type(pk))
+        # context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
 
-        return render(request, 'diseasePrediction/diseasePredictionResult.html', context)
+        return redirect('diseasePredictionResult', pk)
 
 
-    context = {'form': form}
+    context = {}
     return render(request, 'diseasePrediction/heartDiseaseForm.html', context)
 
 
