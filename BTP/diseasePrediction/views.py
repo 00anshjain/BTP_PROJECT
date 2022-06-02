@@ -110,6 +110,7 @@ def heartDisease(request):
         ca = int(request.POST['ca'])
         thal = int(request.POST['thal'])
 
+
         input_data = (age,gender,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal)
         # input_data_as_numpy_array = np.array(input_data, dtype=float)
         # change the input data to a numpy array
