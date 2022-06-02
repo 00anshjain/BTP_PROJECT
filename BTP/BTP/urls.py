@@ -15,7 +15,8 @@ urlpatterns = [
     path('clients/', include('clients.urls')),
     path('blogs/', include('blogs.urls')),
     path('messages/', include('conversations.urls')),
-#     path('users/', include('users.urls')),
+    path('diseasePrediction/', include('diseasePrediction.urls')),
+
 
      path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"),
          name="reset_password"),
