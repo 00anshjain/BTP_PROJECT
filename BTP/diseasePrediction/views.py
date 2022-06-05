@@ -1,4 +1,8 @@
-import re
+
+from doctors.views import Profile
+from doctors.models import *
+from django.db.models import Q
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 # from .forms import SignUpForm, LoginForm
@@ -10,7 +14,6 @@ from doctors.models import Profile
 from django.core.mail import send_mail
 from django.conf import settings
 # from django.db.models import Q
-
 
 # import jwt
 import requests
@@ -145,6 +148,8 @@ def heartDisease(request):
             thal = thal,
             diseaseDetected = prediction[0],
             accuracy = test_data_accuracy*100,
+
+            
         )
         disease = DiseasePrediction.objects.create(
             profile = profile,
@@ -157,7 +162,7 @@ def heartDisease(request):
         # print(pk)
         # print(type(pk))
         # # context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
-
+        
         return redirect('diseasePredictionResult', pk)
         
 
@@ -174,8 +179,11 @@ def diseasePredictionResult(request, pk):
         disease = HeartDisease.objects.get(heartDiseaseID = diseasePrediction.diseaseID)
         speciality = 'Cardio'
         diseaseName = 'Heart Disease'
-        
+    
     result = disease.diseaseDetected
     accuracy = disease.accuracy    
-    context = {'result' : result, 'accuracy' : accuracy, 'speciality' : speciality, 'diseaseName' : diseaseName}
+    doctorList = Profile.objects.filter(
+        Q(speciality__icontains=speciality))
+    print(doctorList)
+    context = {'result' : result, 'accuracy' : accuracy, 'speciality' : speciality, 'diseaseName' : diseaseName, 'doctorList' :doctorList}
     return render(request, 'diseasePrediction/diseasePredictionResult.html', context)

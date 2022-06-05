@@ -8,9 +8,51 @@
 
     <div>
         <p>Our Accuracy(%) is: {{accuracy}}</p>
-        {% if prediction == 1 %}
+        {% if result == 1 %}
         <h1>You are detected Unhealthy by our AI, We recommend for checkup.</h1>
-        <h2 style="font-style: italic;  font-weight: normal;">You may contact this doctor</h2>
+        <h2 style="font-style: italic;  font-weight: normal;">You may contact the doctors below</h2>
+        {% for profile in doctorList %}
+
+        <div class="column">
+            <div class="card project">
+                <a href="{% url 'doctorProfile' profile.Did %}" class="project">
+                    <img style="padding-left: 25px; width: 100%; border-radius: 5%;" class="project__thumbnail"
+                        src="{{ profile.profile_image.url }}" alt="profile thumbnail" />
+                    <div class="card__body">
+                        <h3 class="project__title">Dr. {{profile.name}}</h3>
+                        <p><a class="project__author"
+                                href="{% url 'doctorProfile' profile.Did %}">{{profile.email}}</a>
+                        </p>
+                        <p>
+                            {% for qualify in profile.qualifications.all %}
+
+                            <span class="project__author">{{qualify}}</span>
+
+                            {% endfor %}
+                        </p>
+                        <p class="project--rating">
+                            <span style="font-weight: bold;">{{profile.location}}</span>
+                        </p>
+                        <div class="project__tags">
+                            <span class="tag tag--pill tag--main" style="font-size: 15px;">
+                                <small>{{profile.speciality}}</small>
+                            </span>
+                            <!-- <span class="tag tag--pill tag--main">
+                                <small>GraphQL</small>
+                            </span>
+                            <span class="tag tag--pill tag--main">
+                                <small>TypeScript</small>
+                            </span> -->
+                            <!-- <span style="font-weight: bold;">{{profile.speciality}}</span> -->
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        {% endfor %}
+        
+        
         {% else %}
         <h1>You are detected Healthy by our AI</h1>
         {% endif %}

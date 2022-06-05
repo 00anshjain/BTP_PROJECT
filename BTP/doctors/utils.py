@@ -11,5 +11,5 @@ def searchDoctors(request):
         search_query = request.GET.get('search_query')
 
     profiles = Profile.objects.filter(
-        Q(name__icontains=search_query) | Q(location__icontains=search_query))
+        Q(name__icontains=search_query) | Q(location__icontains=search_query) | Q(speciality__icontains=search_query))
     return profiles, search_query
