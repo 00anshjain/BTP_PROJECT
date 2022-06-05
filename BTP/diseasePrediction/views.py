@@ -181,7 +181,7 @@ def diseasePredictionResult(request, pk):
         diseaseName = 'Heart Disease'
     
     result = disease.diseaseDetected
-    accuracy = disease.accuracy    
+    accuracy = int(disease.accuracy)    
     doctorList = Profile.objects.filter(
         Q(speciality__icontains=speciality))
     print(doctorList)
