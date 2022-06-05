@@ -3,16 +3,16 @@
 {% block content %}
 
 <div style="text-align: center; padding-top: 10%;">
-    <h3>{{disease}} Prediction Output </h3>
+    <h3>{{diseaseName}} Prediction Output </h3>
 
 
     <div>
-        <p>Our Accuracy(%) is: {{test_data_accuracy}}</p>
+        <p>Our Accuracy(%) is: {{accuracy}}</p>
         {% if prediction == 1 %}
-        <h1>You are Unhealthy, Need to Checkup.</h1>
+        <h1>You are detected Unhealthy by our AI, We recommend for checkup.</h1>
         <h2 style="font-style: italic;  font-weight: normal;">You may contact this doctor</h2>
         {% else %}
-        <h1>You are Healthy</h1>
+        <h1>You are detected Healthy by our AI</h1>
         {% endif %}
     </div>
 </div>

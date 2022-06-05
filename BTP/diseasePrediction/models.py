@@ -3,9 +3,21 @@ from django.db import models
 from clients.models import ClientProfile
 # Create your models here.
 from django.contrib.auth.models import User
-
+import datetime
 import uuid
 
+
+class DiseasePrediction(models.Model):
+    profile = models.ForeignKey(User, on_delete=models.CASCADE, related_name="DiseasePredictionProfile")
+    diseasePredictionID = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    testNumber = models.IntegerField(null=False, blank=False)
+    diseaseID = models.UUIDField(default=uuid.uuid4, null=True, blank=True)
+    created = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now)
+    # diseaseID = 1 for HeartDiseasePrediction
+    
+    def __str__(self):
+        return 'TestID: ' + str(self.testNumber) +',  ' + self.profile.username
+        # return self.profile.username + " " + self.testNumber
 
 
 class HeartDisease(models.Model):

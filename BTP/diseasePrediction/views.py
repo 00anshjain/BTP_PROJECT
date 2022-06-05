@@ -146,12 +146,20 @@ def heartDisease(request):
             diseaseDetected = prediction[0],
             accuracy = test_data_accuracy*100,
         )
-        pk = diseaseInstance.heartDiseaseID
-        print(pk)
-        print(type(pk))
-        # context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
+        disease = DiseasePrediction.objects.create(
+            profile = profile,
+            testNumber = 1,
+            diseaseID = diseaseInstance.heartDiseaseID,
+            created = diseaseInstance.created,
+        )
+
+        pk = disease.diseasePredictionID
+        # print(pk)
+        # print(type(pk))
+        # # context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
 
         return redirect('diseasePredictionResult', pk)
+        
 
 
     context = {}
@@ -159,5 +167,15 @@ def heartDisease(request):
 
 
 
-def diseasePredictionResult(request):
-    return render(request, 'diseasePrediction/diseasePredictionResult.html')
+def diseasePredictionResult(request, pk):
+    diseasePrediction = DiseasePrediction.objects.get(diseasePredictionID=pk)
+    testNumber = diseasePrediction.testNumber
+    if testNumber == 1:
+        disease = HeartDisease.objects.get(heartDiseaseID = diseasePrediction.diseaseID)
+        speciality = 'Cardio'
+        diseaseName = 'Heart Disease'
+        
+    result = disease.diseaseDetected
+    accuracy = disease.accuracy    
+    context = {'result' : result, 'accuracy' : accuracy, 'speciality' : speciality, 'diseaseName' : diseaseName}
+    return render(request, 'diseasePrediction/diseasePredictionResult.html', context)
