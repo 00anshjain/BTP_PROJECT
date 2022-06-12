@@ -26,6 +26,7 @@ from datetime import datetime, timedelta
 # import pytz
 
 from .heartDisease import heartDiseaseUtil
+from .diabetesDisease import diabetesDiseaseUtil
 
 
 
@@ -34,6 +35,12 @@ def heartDisease(request):
         return heartDiseaseUtil(request)
     context = {}
     return render(request, 'diseasePrediction/heartDiseaseForm.html', context)
+
+def diabetesDisease(request):
+    if request.method == 'POST':
+        return diabetesDiseaseUtil(request)
+    context = {}
+    return render(request, 'diseasePrediction/diabetesDiseaseForm.html', context)
 
 
 
@@ -44,6 +51,10 @@ def diseasePredictionResult(request, pk):
         disease = HeartDisease.objects.get(heartDiseaseID = diseasePrediction.diseaseID)
         speciality = 'Cardio'
         diseaseName = 'Heart Disease'
+    if testNumber == 2:
+        disease = DiabetesDisease.objects.get(diabetesDiseaseID = diseasePrediction.diseaseID)
+        speciality = 'Diabetes'
+        diseaseName = 'Diabetes Disease'
     
     result = disease.diseaseDetected
     accuracy = int(disease.accuracy)    

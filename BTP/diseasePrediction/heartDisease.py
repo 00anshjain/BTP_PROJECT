@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 # from doctors.views import Profile
 from doctors.models import Profile
 from clients.models import ClientProfile
-from users.models import *
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split

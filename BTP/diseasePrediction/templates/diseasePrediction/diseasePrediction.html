@@ -3,44 +3,29 @@
 {% block content %}
 
 <div style="text-align: center; padding-top: 10%;">
-    <h3>{{diseaseName}} Prediction Output </h3>
+    <h3>Disease Prediction</h3>
 
 
     <div>
-        <p>Our Accuracy(%) is: {{accuracy}}</p>
-        {% if result == 1 %}
-        <h1>You are detected Unhealthy by our AI, We recommend for checkup.</h1>
-        <h2 style="font-style: italic;  font-weight: normal;">You may contact the doctors below</h2>
-
         <section class="projectsList">
             <div class="container">
                 <div class="grid grid--three">
-                    {% for profile in doctorList %}
 
                     <div class="column">
                         <div class="card project">
-                            <a href="{% url 'doctorProfile' profile.Did %}" class="project">
+                            <a href="" class="project">
                                 <img style="padding-left: 25px; width: 100%; border-radius: 5%;"
-                                    class="project__thumbnail" src="{{ profile.profile_image.url }}"
-                                    alt="profile thumbnail" />
+                                    class="project__thumbnail" src="" alt="profile thumbnail" />
                                 <div class="card__body">
-                                    <h3 class="project__title">Dr. {{profile.name}}</h3>
-                                    <p><a class="project__author"
-                                            href="{% url 'doctorProfile' profile.Did %}">{{profile.email}}</a>
-                                    </p>
-                                    <p>
-                                        {% for qualify in profile.qualifications.all %}
-
-                                        <span class="project__author">{{qualify}}</span>
-
-                                        {% endfor %}
+                                    <h3 class="project__title"></h3>
+                                    <p><a class="project__author" href="{% url 'doctorProfile' profile.Did %}"></a>
                                     </p>
                                     <p class="project--rating">
-                                        <span style="font-weight: bold;">{{profile.location}}</span>
+                                        <span style="font-weight: bold;"></span>
                                     </p>
                                     <div class="project__tags">
                                         <span class="tag tag--pill tag--main" style="font-size: 15px;">
-                                            <small>{{profile.speciality}}</small>
+                                            <small></small>
                                         </span>
                                         <!-- <span class="tag tag--pill tag--main">
                                 <small>GraphQL</small>
@@ -55,15 +40,13 @@
                         </div>
                     </div>
 
-                    {% endfor %}
+
 
                 </div>
             </div>
         </section>
 
-        {% else %}
-        <h1>You are detected Healthy by our AI</h1>
-        {% endif %}
+
     </div>
 </div>
 

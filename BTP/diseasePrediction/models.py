@@ -14,10 +14,38 @@ class DiseasePrediction(models.Model):
     diseaseID = models.UUIDField(default=uuid.uuid4, null=True, blank=True)
     created = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now)
     # diseaseID = 1 for HeartDiseasePrediction
+    # diseaseID = 2 for DiabetesDiseasePrediction
     
     def __str__(self):
         return 'TestID: ' + str(self.testNumber) +',  ' + self.profile.username
         # return self.profile.username + " " + self.testNumber
+        
+
+class DiabetesDisease(models.Model):
+    GenderChoices = (
+        ("M", "Male"),
+        ("F", "Female"),
+    )
+    profile = models.ForeignKey(User, on_delete=models.CASCADE, related_name="diabetesDiseasePatient")
+
+    diabetesDiseaseID = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    
+    pregnancies = models.PositiveIntegerField(null=False)
+    glucose = models.PositiveIntegerField(null=False)
+    bloodPressure = models.PositiveIntegerField(null=False)
+    skinThickness = models.PositiveIntegerField(null=False)
+    insulin = models.PositiveIntegerField(null=False)
+    BMI = models.FloatField(null=False)
+    diabetesPedigreeFunction = models.FloatField(null=False)
+
+
+    diseaseDetected = models.IntegerField(default=-1)   # -1 result not predicted till now by the model
+    accuracy = models.FloatField(null=False)
+    created = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.profile.username
 
 
 class HeartDisease(models.Model):

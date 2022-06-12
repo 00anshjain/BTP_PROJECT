@@ -1,0 +1,59 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Main Section -->
+<main class="formPage my-xl">
+    <div class="content-box">
+        <div class="formWrapper">
+            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
+            <br>
+
+            <form class="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form__field">
+                    <label for="formInput#text">Pregnancies: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="pregnancies"
+                        placeholder="pregnancies" />
+                </div>
+
+                <div class="form__field">
+                    <label for="formInput#text">Glucose: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="glucose"
+                        placeholder="glucose" />
+                </div>
+                <div class="form__field">
+                    <label for="formInput#text">bloodPressure: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="bloodPressure"
+                        placeholder="bloodPressure" />
+                </div>
+                <div class="form__field">
+                    <label for="formInput#text">skinThickness: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="skinThickness"
+                        placeholder="skinThickness" />
+                </div>
+                <div class="form__field">
+                    <label for="formInput#text">insulin: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="insulin"
+                        placeholder="insulin" />
+                </div>
+                <div class="form__field">
+                    <label for="formInput#text">BMI: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="BMI"
+                        placeholder="BMI" />
+                </div>
+                <div class="form__field">
+                    <label for="formInput#text">diabetesPedigreeFunction: </label>
+                    <input class="input input--text" id="formInput#text" type="text" name="diabetesPedigreeFunction"
+                        placeholder="diabetesPedigreeFunction" />
+               
+                
+
+
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
