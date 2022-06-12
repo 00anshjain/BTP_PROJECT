@@ -13,12 +13,38 @@
 
                     <div class="column">
                         <div class="card project">
-                            <a href="" class="project">
+                            <a href="{% url 'diabetesDisease'  %}" class="project">
                                 <img style="padding-left: 25px; width: 100%; border-radius: 5%;"
                                     class="project__thumbnail" src="" alt="profile thumbnail" />
                                 <div class="card__body">
-                                    <h3 class="project__title"></h3>
-                                    <p><a class="project__author" href="{% url 'doctorProfile' profile.Did %}"></a>
+                                    <h3 class="project__title">Diabetes</h3>
+                                    <p><a class="project__author" href=""></a>
+                                    </p>
+                                    <p class="project--rating">
+                                        <span style="font-weight: bold;"></span>
+                                    </p>
+                                    <div class="project__tags">
+                                        <span class="tag tag--pill tag--main" style="font-size: 15px;">
+                                            <small></small>
+                                        </span>
+                                        <!-- <span class="tag tag--pill tag--main">
+                                <small>GraphQL</small>
+                            </span>
+                            <span class="tag tag--pill tag--main">
+                                <small>TypeScript</small>
+                            </span> -->
+                                        <!-- <span style="font-weight: bold;">{{profile.speciality}}</span> -->
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="card project">
+                            <a href="{% url 'heartDisease'  %}" class="project">
+                                <img style="padding-left: 25px; width: 100%; border-radius: 5%;"
+                                    class="project__thumbnail" src="" alt="profile thumbnail" />
+                                <div class="card__body">
+                                    <h3 class="project__title">Heart</h3>
+                                    <p><a class="project__author" href=""></a>
                                     </p>
                                     <p class="project--rating">
                                         <span style="font-weight: bold;"></span>

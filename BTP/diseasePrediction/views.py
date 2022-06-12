@@ -28,7 +28,8 @@ from datetime import datetime, timedelta
 from .heartDisease import heartDiseaseUtil
 from .diabetesDisease import diabetesDiseaseUtil
 
-
+def diseasePrediction(request):
+    return render(request, 'diseasePrediction/diseasePrediction.html')
 
 def heartDisease(request):
     if request.method == 'POST':
