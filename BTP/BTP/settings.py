@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pgvtozmpf!9sl%wb9-d6-&u*m*!#7-c17pf)9%yn0ik%4%m2va
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['docitmed.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
