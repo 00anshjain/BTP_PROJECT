@@ -905,6 +905,8 @@ textarea::-webkit-scrollbar {
   background-color: #ededfd;
   border-radius: 5px;
   margin: 40px;
+  width: 20%;
+  height: 20%;
   
 }
 
@@ -949,5 +951,20 @@ button:hover{
 .main-doc{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 
+.doc-pro-img{
+  object-fit: contain ;
+}
+
+.devInfo-card{
+  border: 2px solid var(--color-light);
+  padding: 1em;
+  background-color: white;
+  margin-top: 0.5em;
+  margin-left: -5%;
+  border-radius: 8px;
 }
