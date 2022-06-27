@@ -894,60 +894,27 @@ textarea::-webkit-scrollbar {
   justify-content: center;
 }
 
-.all-doc-section{
-  margin: 0px;
-  padding: 0px;
+.doc-pro-img{
+  object-fit: contain ;
 }
 
-.cards-doc{
-  width: 30%;
-  /* display: inline-block; */
-  background-color: #ededfd;
-  border-radius: 5px;
-  margin: 40px;
-  
-}
-
-.cards-doc:hover{
-  box-shadow: 2px 2px 10px grey;
-  transition: 0.3s;
-}
-
-.image-doc img{
-  width: 100%;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.title-doc{
-  text-align: center;
-  padding: 5px;
-}
-
-.des-doc{
-  text-align: center;
-  padding: 4px;
-}
-
-button{
-  margin-top: 30px;
-  margin-bottom: 30px;
+.devInfo-card{
+  border: 2px solid var(--color-light);
+  padding: 1em;
   background-color: white;
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
+  margin-top: 0.5em;
+  margin-left: -5%;
+  border-radius: 8px;
 }
 
-button:hover{
-  background-color: #2d2d39;
-  color: white;
-  transition: 0.5s;
-  
+@media(max-width:1080px){
+  .devInfo-card{
+    margin-left: 0%;
+  }
 }
 
-.main-doc{
+.all-doc-card{
   display: flex;
-  flex-direction: row;
-
+  flex-direction: column;
 }
+
