@@ -1,29 +1,31 @@
-{% extends 'main.html' %} 
+{% extends 'main.html' %}
 {% load static %}
 {% block content %}
 
-<div style="text-align: center;">
-    <h3 style="font-size: 3em;">Disease Prediction</h3>
-    <section style="background-color: #eee; display:flex; justify-content: center; align-items: center; min-height:80vh">
-        <div style="display: grid;width: 114em;grid-gap:6rem;grid-template-columns: repeat(auto-fit,minmax(30rem,1fr));align-items: start;" class="grid">
-            <div class="grid-item" style="background-color: #fff;border-radius:0.4rem;overflow:hidden;box-shadow:0 3rem 6rem rgba(0,0,0,0.1);cursor:pointer;transition:0.2s;">
-                <img style="display: block; width: 100%;height: 30rem;object-fit:fill;" class="card-img" src="{% static 'images/heart.jpg' %}" alt="Medical Logo" />
-                <div style="padding: 3rem;" class="card-content">
-                    <h1 style="font-size: 3rem;font-weight:500;color: #0d0d0d;margin-bottom: 1.5rem;" class="card-header">Heart</h1>
-                    <p style="font-size: 1.6rem; letter-spacing: 0.1rem; line-height: 1.7;color: #3d3d3d;margin-bottom: 2.5rem;" class="card-text">Tap here to take Heart test.</p>
-                    <a href="{% url 'heartDisease'  %}"><button style="display: block;width:100% ;padding:1.5rem ;font-size:2rem ;text-align:center ;color:#2d2d39 ;background-color:#d8e0fd ;border:none ;border-radius:0.4rem ;transition:0.2s ;cursor: pointer;letter-spacing: 0.1rem;" class="card-btn">Take a Test</button></a>
-                </div>
+<section class="sec-dp">
+    <div class="h1-dp">
+        <h1>Disease Prediction</h1>
+    </div>
+    <div class="work-dp">
+        <div class="card-dp">
+            <div class="image-dp">
+                <img style="height: 25em; border-radius: 8px;" src="{% static 'images/heart.jpg' %}" alt="">
             </div>
-            <div class="grid-item" style="background-color: #fff;border-radius:0.4rem;overflow:hidden;box-shadow:0 3rem 6rem rgba(0,0,0,0.1);cursor:pointer;transition:0.2s;">
-                <img style="display: block; width: 100%;height: 30rem;object-fit:fill;" class="card-img" src="{% static 'images/diabetes.jpg' %}" alt="Medical Logo" />
-                <div style="padding: 3rem;" class="card-content">
-                    <h1 style="font-size: 3rem;font-weight:500;color: #0d0d0d;margin-bottom: 1.5rem;" class="card-header">Diabetes</h1>
-                    <p style="font-size: 1.6rem; letter-spacing: 0.1rem; line-height: 1.7;color: #3d3d3d;margin-bottom: 2.5rem;" class="card-text">Tap here to take Diabetes test.</p>
-                    <a href="{% url 'diabetesDisease'  %}"><button style="display: block;width:100% ;padding:1.5rem ;font-size:2rem ;text-align:center ;color:#2d2d39 ;background-color:#d8e0fd ;border:none ;border-radius:0.4rem ;transition:0.2s ;cursor: pointer;letter-spacing: 0.1rem;" class="card-btn">Take a Test</button></a>
-                </div>
+            <div class="card-content-dp">
+                <h4>Heart Disease Prediction</h4>
+                <a href="{% url 'heartDisease'  %}"><button class="btn btn--sub btn--lg  my-md">Take a Test</button></a>
             </div>
         </div>
-    </section>
-</div>
+        <div class="card-dp">
+            <div class="image-dp">
+                <img style="height: 25em; border-radius: 8px;" src="{% static 'images/diabetes.jpg' %}" alt="">
+            </div>
+            <div class="card-content-dp">
+                <h4>Diabetes Prediction</h4>
+                <a href="{% url 'diabetesDisease'  %}"><button class="btn btn--sub btn--lg  my-md">Take a Test</button></a>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock content %}

@@ -3,77 +3,91 @@
 {% load static %}
 
 <!-- Main Section -->
-<main class="formPage my-xl" >
-    <div class="content-box">
-        <div class="formWrapper">
-            <h1>Heart</h1>
-            <a class="backButton" href="#"><i class="im im-angle-left"></i></a>
-            <br>
+<section class="sec-diab">
+    <div class="layout-diab">
+        <div class="image-diab">
+            <img style="height: 70em;" src="{% static 'images/doctorForm.png' %}" alt="Medical Logo" />
+        </div>
+        <div class="form-diab">
+            <main class="formPage my-xl">
+                <div class="content-box">
+                    <div class="formWrapper">
+                        <div>
+                            <h1>Heart Disease Prediction</h1>
+                        </div>
+                        
 
-            <form class="form" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
+                        <form class="form" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
 
-                <div class="form__field">
-                    <label for="formInput#text">CP: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="cp"
-                        placeholder="cp" />
-                </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">CP: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="cp"
+                                    placeholder="cp" />
+                            </div>
 
-                <div class="form__field">
-                    <label for="formInput#text">trestbps: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="trestbps"
-                        placeholder="trestbps" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">chol: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="chol"
-                        placeholder="chol" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">fbs: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="fbs"
-                        placeholder="fbs" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">restecg: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="restecg"
-                        placeholder="restecg" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">thalach: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="thalach"
-                        placeholder="thalach" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">exang: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="exang"
-                        placeholder="exang" />
-                </div><div class="form__field">
-                    <label for="formInput#text">oldpeak: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="oldpeak"
-                        placeholder="oldpeak" />
-                </div><div class="form__field">
-                    <label for="formInput#text">slope: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="slope"
-                        placeholder="slope" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">ca: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="ca"
-                        placeholder="ca" />
-                </div>
-                <div class="form__field">
-                    <label for="formInput#text">thal: </label>
-                    <input class="input input--text" id="formInput#text" type="text" name="thal"
-                        placeholder="thal" />
-                </div>
-                
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">trestbps: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="trestbps"
+                                    placeholder="trestbps" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">chol: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="chol"
+                                    placeholder="chol" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">fbs: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="fbs"
+                                    placeholder="fbs" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">restecg: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="restecg"
+                                    placeholder="restecg" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">thalach: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="thalach"
+                                    placeholder="thalach" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">exang: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="exang"
+                                    placeholder="exang" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">oldpeak: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="oldpeak"
+                                    placeholder="oldpeak" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">slope: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="slope"
+                                    placeholder="slope" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">ca: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="ca"
+                                    placeholder="ca" />
+                            </div>
+                            <div class="form__field">
+                                <label style="font-weight:bold ;" for="formInput#text">thal: </label>
+                                <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="thal"
+                                    placeholder="thal" />
+                            </div>
 
 
-                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
-            </form>
+
+                            <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                        </form>
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
-</main>
+
+
+</section>
 
 {% endblock %}

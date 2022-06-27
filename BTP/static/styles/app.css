@@ -918,3 +918,81 @@ textarea::-webkit-scrollbar {
   flex-direction: column;
 }
 
+.h1-heart{
+  text-align: center;
+}
+
+.h1-diab{
+  text-align: center;
+}
+
+.sec-diab{
+  margin: 0px;
+  padding: 0px;
+}
+
+.layout-diab{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+@media(max-width:1080px){
+  .layout-diab{
+    flex-direction: column;
+  }
+  .image-diab{
+    display: none;
+  }
+}
+
+.sec-dp{
+  margin: 0px;
+  padding: 0px;
+}
+
+.h1-dp{
+  text-align: center;
+  background-color: #ededfd ;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+.work-dp{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 5em;
+}
+
+.card-dp{
+  width: 25%;
+  height: 50%;
+  border: 2px solid var(--color-light);
+  padding: 1em;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.card-content-dp{
+  text-align: center;
+
+}
+
+@media(max-width:1080px){
+  .work-dp{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-dp:first-of-type{
+    margin-top: -3em;
+  }
+
+  .card-dp{
+    width: 50%;
+    margin-bottom: 2em;
+  }
+}
