@@ -1,5 +1,7 @@
 {% extends 'main.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <hr>
@@ -29,40 +31,33 @@
         </div>
     </section>
     <!-- Search Result: DevList -->
-    <section class="projectsList">
-        <div class="container">
-            <div class="grid grid--three">
-
-                {% for blog in blogs %}
-                <div class="column">
-                    <div class="card project">
-                        <a href="{% url 'blog' blog.id %}" class="project">
-                            <img style="padding-left: 30px; width: 100%; border-radius: 50%;" class="project__thumbnail" src="{{blog.featured_image.url}}" alt="project thumbnail" />
-                            <div class="card__body">
-                                <h3 class="project__title">{{blog.title}}</h3>
-                                <p><a class="project__author" href="{% url 'doctorProfile' blog.owner.Did %}">By
-                                        {{blog.owner.name}}</a>
-                                </p>
-                                <p class="project--rating">
-                                    <span style="font-weight: bold;">{{blog.vote_ratio}}%</span> Positive
-                                    Feedback ({{blog.vote_total}}) Vote{{blog.vote_total|pluralize:"s"}}
-                                </p>
-                                <div class="project__tags">
-                                    {% for tag in blog.tags.all %}
-                                    <span class="tag tag--pill tag--main">
-                                        <small>{{tag}}</small>
-                                    </span>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </a>
+    <section class="container">
+        <div class="work-blogs">
+            {% for blog in blogs %}
+            <div class="card-blogs">
+                <div class="card-img-blogs">
+                    <img class="img-blogs" src="{{blog.featured_image.url}}" alt="project thumbnail">
+                </div>
+              
+                <div class="card-text-blogs">
+                    <h6 style="font-weight: 700; color: black;">{{blog.title}}</h6>
+                    <p>
+                        <a href="{% url 'doctorProfile' blog.owner.Did %}">By {{blog.owner.name}}</a>
+                    </p>
+                    <p>
+                        <span style="font-weight: bold;">{{blog.vote_ratio}}%</span> Positive
+                        Feedback ({{blog.vote_total}}) Vote{{blog.vote_total|pluralize:"s"}}
+                    </p>
+                    <div>
+                        {% for tag in blog.tags.all %}
+                        <span class="tag tag--pill tag--main">
+                            <small>{{tag}}</small>
+                        </span>
+                        {% endfor %}
                     </div>
                 </div>
-                {% endfor %}
-
-
-
             </div>
+            {% endfor %}
         </div>
     </section>
 
