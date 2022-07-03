@@ -1049,3 +1049,46 @@ textarea::-webkit-scrollbar {
     width: 90%;
   }
 }
+
+.work-blogs{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+
+.card-blogs{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--color-light);
+  margin-bottom:2em;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.card-img-blogs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  padding-top: 2em;
+}
+
+.card-text-blogs{
+  padding: 3em 1em 1em 1em;
+  text-align: center;
+}
+
+.img-blogs{
+  height: 100%;
+  border-radius: 50%;
+  width: 70%;
+}
+
+@media(max-width:1080px){
+  .card-blogs{
+    width: 48%;
+  }
+}
