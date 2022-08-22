@@ -34,29 +34,32 @@
     <section class="container">
         <div class="work-blogs">
             {% for blog in blogs %}
+
             <div class="card-blogs">
                 <div class="card-img-blogs">
                     <img class="img-blogs" src="{{blog.featured_image.url}}" alt="project thumbnail">
                 </div>
-              
-                <div class="card-text-blogs">
-                    <h6 style="font-weight: 700; color: black;">{{blog.title}}</h6>
-                    <p>
-                        <a href="{% url 'doctorProfile' blog.owner.Did %}">By {{blog.owner.name}}</a>
-                    </p>
-                    <p>
-                        <span style="font-weight: bold;">{{blog.vote_ratio}}%</span> Positive
-                        Feedback ({{blog.vote_total}}) Vote{{blog.vote_total|pluralize:"s"}}
-                    </p>
-                    <div>
-                        {% for tag in blog.tags.all %}
-                        <span class="tag tag--pill tag--main">
-                            <small>{{tag}}</small>
-                        </span>
-                        {% endfor %}
+                <a href="{% url 'blog' blog.id %}">
+                    <div class="card-text-blogs">
+                        <h6 style="font-weight: 700; color: black;">{{blog.title}}</h6>
+                        <p>
+                            <a href="{% url 'doctorProfile' blog.owner.Did %}">By {{blog.owner.name}}</a>
+                        </p>
+                        <p>
+                            <span style="font-weight: bold;">{{blog.vote_ratio}}%</span> Positive
+                            Feedback ({{blog.vote_total}}) Vote{{blog.vote_total|pluralize:"s"}}
+                        </p>
+                        <div>
+                            {% for tag in blog.tags.all %}
+                            <span class="tag tag--pill tag--main">
+                                <small>{{tag}}</small>
+                            </span>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
+
             {% endfor %}
         </div>
     </section>

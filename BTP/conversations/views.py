@@ -21,7 +21,7 @@ from datetime import datetime, timedelta
 # import pytz
 
 headers = {
-    'Authorization': 'occvlk7x6r7o0ndol75wlbae8odkdn38yfbu15wkm4z7imowp3'
+    'Authorization': 'fzma62xwlizrmb49tnbgaayyvnthdcip3eqih30tmq0f9478x5'
 }
 
 
@@ -34,8 +34,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 
 # Enter your API key and your API secret
-API_KEY = 'QyIB14uZQ4WYX7b7MZS4rA'
-API_SEC = 'b5M7SO7Fz3NTWEkqZWTzyPxpURNqOAo6CYFI'
+# API_KEY = 'QyIB14uZQ4WYX7b7MZS4rA'
+# API_SEC = 'b5M7SO7Fz3NTWEkqZWTzyPxpURNqOAo6CYFI'
 
 
 
@@ -297,7 +297,7 @@ def makeAppointment(request, pk):
             json_data = {
                 'title': f'DocItMed : Meeting Scheduled {senderName} - {clientName}',
                 'created_by': {
-                    'email': 'docitmed@gmail.com',
+                    'email': 'docitmed7@gmail.com',
                 },
                 'dates': [
                     {
@@ -308,7 +308,7 @@ def makeAppointment(request, pk):
                     },
                 ],
                 'places': [{"name": "Google Meet", "source": "Google Meet"}],
-                'invitees': [{"email": senderEmail}, {"email": clientEmail}, {"email": "docitmed@gmail.com"}],
+                'invitees': [{"email": senderEmail}, {"email": clientEmail}, {"email": "docitmed7@gmail.com"}],
                 'timezone': "Asia/Kolkata",
                 'messages': {
                     'body': message
@@ -319,14 +319,15 @@ def makeAppointment(request, pk):
             }
             response = requests.post(
                 'https://api.vyte.in/v2/events', headers=headers, json=json_data)
+            # print(json_data)
             jsonResponse = json.loads(response.text)
             # print(jsonResponse)
-            print(
-                f"Meeting ID: {jsonResponse['_id']} \nPlace ID: {jsonResponse['places'][0]['_id']} \nDate ID: {jsonResponse['dates'][0]['_id']}")
-            print(f"Meeting Link: {jsonResponse['places'][0]['address']}")
+        #     print(
+        #         f"Meeting ID: {jsonResponse['_id']} \nPlace ID: {jsonResponse['places'][0]['_id']} \nDate ID: {jsonResponse['dates'][0]['_id']}")
+        #     print(f"Meeting Link: {jsonResponse['places'][0]['address']}")
 
-        # run the create meeting function
-        # createMeeting()
+        # # run the create meeting function
+        # # createMeeting()
         create_meeting('Dr. ' +doctor.first_name + ' ' + doctor.last_name, client.first_name + ' ' + client.last_name, date_time_str, date_time_str, doctor.email, client.email, "Hello! Please be on time.")
 
 
