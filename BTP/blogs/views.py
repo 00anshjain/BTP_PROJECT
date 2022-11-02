@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 
 from django.contrib.auth.decorators import login_required
-from .forms import BlogForm
+from .forms import BlogForm, ReviewForm
 from .models import Blog
 from doctors.models import Profile
-
+from django.contrib import messages
 # Create your views here.
 
 
@@ -13,10 +13,24 @@ def blogs(request):
     context = {"blogs": blogs}
     return render(request, "blogs/blogs.html", context)
 
-
+@login_required(login_url="doctorLogin")
 def blog(request, pk):
     blogObj = Blog.objects.get(id=pk)
-    return render(request, "blogs/single-blog.html", {"blog": blogObj})
+    usr = request.user.username
+    profile = Profile.objects.get(username=usr)
+    form  = ReviewForm()
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.blog = blogObj 
+        review.owner = profile
+        review.save()
+
+        #Update blog count
+        messages.success(request, 'Your review was successfully submitted!')
+
+    return render(request, "blogs/single-blog.html", {"blog": blogObj, "form": form})
 
 
 @login_required(login_url="doctorLogin")

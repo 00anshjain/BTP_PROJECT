@@ -1,0 +1,71 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .test-confirm-btn {
+        display: flex;
+        /* justify-content: center; */
+        margin: 25px auto 0;
+        border-radius: 5px;
+    }
+    .test-confirm-btn:hover{
+        /* background-color: rgb(143, 143, 218);
+        transition-duration: 1s; */
+        cursor: pointer;
+    }
+</style>
+
+<section class="sec-dp">
+    <div class="h1-dp">
+        <h1>Diabetes Disease Prediction Instructions</h1>
+    </div>
+    <div class="work-dp">
+        <div class="card-dp" style="width: auto ;">
+            <ul class="card-dp-ul" style="padding-left: 50px;">
+                <li>
+                    <h4> A1C Test </h4>
+                </li>
+                <li>
+                    <h4> Fasting Blood Sugar Test </h4>
+                </li>
+                <li>
+                    <h4> Glucose Tolerance Test </h4>
+                </li>
+                <li>
+                    <h4> Echocardiogram (ultrasound) </h4>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 25px;">
+        <input type="checkbox" name="test-confirm-check" id="check" onclick="enable()">
+        <label for="box-check">I have gone through any one or more of the tests mentioned above.</label>
+    </div>
+    <a class="test-confirm-btn" href="{% url 'diabetesDisease'  %}"><button type="submit" id="confirm-btn" class="btn btn--sub btn--lg  my-md " disabled>Move
+        Forward</button></a>
+</section>
+
+<script>
+    function enable() {
+
+        var check = document.getElementById("check");
+        var btn = document.querySelector('#confirm-btn')
+        if (check.checked) {
+            btn.removeAttribute("disabled");
+        }
+        else{
+            btn.disabled = "true";
+        }
+    }
+</script>
+
+{% endblock content %}
+
+<!-- 
+    CP: Constrictive pericarditis => 0mm to 6mm
+    trestbps: The person's resting blood pressure => 
+    chol: cholesterol => 0 to 240 mg/dL
+
+ -->

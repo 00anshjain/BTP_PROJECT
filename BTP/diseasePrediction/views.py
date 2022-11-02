@@ -31,6 +31,12 @@ from .diabetesDisease import diabetesDiseaseUtil
 def diseasePrediction(request):
     return render(request, 'diseasePrediction/diseasePrediction.html')
 
+def heartDiseaseInstruction(request):
+    return render(request, 'diseasePrediction/heartDiseaseInstruction.html')
+
+def diabetesDiseaseInstruction(request):
+    return render(request, 'diseasePrediction/diabetesDiseaseInstruction.html')
+
 def heartDisease(request):
     if request.method == 'POST':
         return heartDiseaseUtil(request)

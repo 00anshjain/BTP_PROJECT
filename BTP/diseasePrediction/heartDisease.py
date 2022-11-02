@@ -136,13 +136,13 @@ def heartDiseaseUtil(request):
             diseaseID = diseaseInstance.heartDiseaseID,
             created = diseaseInstance.created,
         )
-        print(disease)
+        # print(disease)
         pk = disease.diseasePredictionID
         # print(pk)
         # print(type(pk))
         # # context = {'disease': 'Heart', 'prediction': prediction[0], 'test_data_accuracy': test_data_accuracy*100,}
-        print('HI')
-        print(pk)
+        # print('HI')
+        # print(pk)
         return redirect('diseasePredictionResult', pk)
         
 
