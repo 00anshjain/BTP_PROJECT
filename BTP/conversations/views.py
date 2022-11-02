@@ -336,3 +336,13 @@ def makeAppointment(request, pk):
 
     context = {'form': form}
     return render(request, 'conversations/appointmentForm.html', context)
+
+
+def appointmentRequest(request, pk):
+    client = request.user
+    doctor = User.objects.get(username=pk)
+    doctorProfile = Profile.objects.get(username=doctor.username)
+    clientProfile = ClientProfile.objects.get(username=client.username)
+    # print(doctor)
+    context = {"doctor": doctor, "client": client, "doctorProfile": doctorProfile, "clientProfile": clientProfile}
+    return render(request, 'conversations/appointmentRequest.html', context)

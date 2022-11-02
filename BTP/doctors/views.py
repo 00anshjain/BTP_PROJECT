@@ -199,7 +199,7 @@ def userAccount(request):
     # projects = profile.project_set.all()
     # context = {"profile": profile, "skills": skills, "projects": projects}
     username = request.user.username
-    print(username)
+    # print(username)
     try:
         profile = Profile.objects.get(username=username)
         # print(profile)

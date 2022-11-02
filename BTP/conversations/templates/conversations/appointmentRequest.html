@@ -1,0 +1,73 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .test-confirm-btn {
+        display: flex;
+        /* justify-content: center; */
+        margin: 25px auto 0;
+        border-radius: 5px;
+    }
+
+    .test-confirm-btn:hover {
+        /* background-color: rgb(143, 143, 218);
+        transition-duration: 1s; */
+        cursor: pointer;
+    }
+</style>
+
+<!-- Main Section -->
+
+
+<body onload="enable()">
+    
+    <section class="sec-dp">
+        <div class="h1-dp">
+            <h1>Payment for Appointment</h1>
+        </div>
+    </section>
+
+
+    <main class="formPage my-xl" onload="console.log('huu')">
+        <div class="content-box" onload="console.log('huu')">
+
+            <!-- Requesting {{clientProfile.name}} for an appointment to Dr. {{doctorProfile.name}} -->
+
+            <!-- onload = "enable()" -->
+
+            <div class="layout">
+                <div class="column column--1of2" style="padding-top: 20px;">
+                    <img class="avatar avatar--lg" style="margin-left: 100px;"
+                        src="{{ doctorProfile.profile_image.url }}" />
+                        <p style="margin-left: 100px;">Appointment With</p>
+                    <h3 >Dr. {{doctorProfile.name}}</h3>
+                    <h4>Rs. 500/-</h4>
+                </div>
+                <div class="column column--1of2">
+                    <img class="" style="margin-left: 100px;" src="{% static 'images/QR-code.png' %}" />
+
+                </div>
+            </div>
+
+            <a class="test-confirm-btn" href="{% url 'allDoctors'  %}"><button type="submit" id="confirm-btn"
+                    class="btn btn--sub btn--lg  my-md ">All Done :)</button></a>
+
+
+
+        </div>
+    </main>
+
+    <script>
+        function enable() {
+
+            document.querySelector("#confirm-btn").disabled = true;
+            var btn = document.querySelector('#confirm-btn')
+            setTimeout(function () {
+                document.querySelector("#confirm-btn").disabled = false;
+            }, 3000);
+        }
+    </script>
+</body>
+
+{% endblock %}

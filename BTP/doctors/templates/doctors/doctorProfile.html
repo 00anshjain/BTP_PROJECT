@@ -139,6 +139,7 @@
                                     {{blog.description|slice:"150"}}
                                 </p>
                             </td>
+                            {% if request.user.username == profile.username %}
                             <td class="settings__tableActions">
                                 <a class="tag tag--pill tag--main settings__btn"
                                     href="{% url 'update-blog' blog.id %}"><i class="im im-edit"></i> Edit</a>
@@ -147,6 +148,7 @@
                                         class="im im-x-mark-circle-o"></i>
                                     Delete</a>
                             </td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
 
