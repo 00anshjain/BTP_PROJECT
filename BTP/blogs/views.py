@@ -17,7 +17,7 @@ def blogs(request):
 def blog(request, pk):
     blogObj = Blog.objects.get(id=pk)
     usr = request.user.username
-    profile = Profile.objects.get(username=usr)
+    profile = Profile.objects.get(username=blogObj.owner.username)
     form  = ReviewForm()
 
     if request.method == 'POST':

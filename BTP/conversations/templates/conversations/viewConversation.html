@@ -14,7 +14,15 @@
     <span style="float: right;" class="auth__actions">
       
       <a id="resendOTPmess" href="{% url 'makeAppointment' senderProfile.username  %}">Schedule Appointment</a>
-  </span>
+    </span>
+
+    {% else %}
+
+    <span style="float: right;" class="auth__actions">
+      
+      <a id="resendOTPmess" href="{% url 'appointmentRequest' senderProfile.username  %}">Request for Appointment</a>
+    </span>
+
     {% endif %}
 
     <!-- <div class="contentBox"> -->
