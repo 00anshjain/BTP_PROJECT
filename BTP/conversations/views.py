@@ -9,17 +9,20 @@ from django.core.mail import send_mail
 from django.conf import settings
 # from django.db.models import Q
 
+from django.views.decorators.csrf import csrf_exempt
+
+from .PayTm import Checksum
 
 # import jwt
 import requests
 import json
 from time import time
 
-import requests
-import json
+
 from datetime import datetime, timedelta
 # import pytz
 
+MERCHANT_KEY = 'bKMfNxPPf_QdZppa'
 headers = {
     'Authorization': 'fzma62xwlizrmb49tnbgaayyvnthdcip3eqih30tmq0f9478x5'
 }
@@ -343,6 +346,52 @@ def appointmentRequest(request, pk):
     doctor = User.objects.get(username=pk)
     doctorProfile = Profile.objects.get(username=doctor.username)
     clientProfile = ClientProfile.objects.get(username=client.username)
+    # if request.method == 'POST':
+    #     return redirect('')
     # print(doctor)
-    context = {"doctor": doctor, "client": client, "doctorProfile": doctorProfile, "clientProfile": clientProfile}
+    param_dict = {
+        # "MID": 'marXll12473345703685',
+        "MID": 'DIY12386817555501617',
+        "ORDER_ID": '123',
+        "CUST_ID": clientProfile.email,
+        "TXN_AMOUNT": '500',
+        "CHANNEL_ID": 'WEB',
+        "INDUSTRY_TYPE_ID": 'Retail',
+        'CALLBACK_URL' : 'http://127.0.0.1:8000/messages/paymentConfirmation/',
+        "WEBSITE" : 'WEBSTAGING',
+    }
+    param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, MERCHANT_KEY)
+    context = {"doctor": doctor, "client": client, "doctorProfile": doctorProfile, "clientProfile": 
+    clientProfile, "param_dict" : param_dict}
+    if request.method == 'POST':
+        return render(request, 'conversations/paytm.html', context)
+    
     return render(request, 'conversations/appointmentRequest.html', context)
+
+@csrf_exempt
+def handleRequest(request):
+    #paytm will handle post request here
+    #request paytm to transfer the amount to your account after payment
+    pass
+
+@csrf_exempt
+def paymentConfirmation(request):
+    # paytm will send you post request here
+    form = request.POST
+    response_dict = {}
+    for i in form.keys():
+        response_dict[i] = form[i]
+        if i == 'CHECKSUMHASH':
+            checksum = form[i]
+
+    verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
+    if verify:
+        if response_dict['RESPCODE'] == '01':
+            print('order successful')
+        else:
+            print('order was not successful because' + response_dict['RESPMSG'])
+    context = {'response': response_dict}
+    return render(request, 'conversations/paymentConfirmation.html', context)
+
+def paytm(request):
+    return render(request, 'conversations/paytm.html')

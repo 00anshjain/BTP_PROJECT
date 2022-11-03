@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Main Section -->
+
+
+<body>
+    <h2>Payment status regarding your order Id {{response.ORDERID}}</h2>
+    {% if response.RESPCODE == '01' %}
+    ORDER SUCCESS
+    {% else %}
+    ORDER FAILURE
+    {% endif%}
+</body>
+
+{% endblock %}

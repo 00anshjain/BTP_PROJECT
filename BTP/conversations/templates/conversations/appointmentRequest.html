@@ -29,36 +29,56 @@
     </section>
 
 
-    <main class="formPage my-xl" onload="console.log('huu')">
-        <div class="content-box" onload="console.log('huu')">
+    <main class="formPage my-xl" >
+        <div class="content-box" >
+            <div class="work-dp">
+                <div class="card-dp" style="width: 650px ;">
+                    <img class="avatar avatar--lg" style="margin-left: 250px"
+                        src="{{ doctorProfile.profile_image.url }}" />
+                        <p style="margin-left: 45px;">Appointment With</p>
+                    <h4  >Dr. {{doctorProfile.name}}</h4>
+                </div>
+            </div>
 
             <!-- Requesting {{clientProfile.name}} for an appointment to Dr. {{doctorProfile.name}} -->
 
             <!-- onload = "enable()" -->
+
+            
 
             <div class="layout">
                 <div class="column column--1of2" style="padding-top: 20px;">
                     <img class="avatar avatar--lg" style="margin-left: 100px;"
                         src="{{ doctorProfile.profile_image.url }}" />
                         <p style="margin-left: 100px;">Appointment With</p>
-                    <h3 >Dr. {{doctorProfile.name}}</h3>
-                    <h4>Rs. 500/-</h4>
+                    <h4  >Dr. {{doctorProfile.name}}</h4>
+                    
                 </div>
-                <div class="column column--1of2">
-                    <img class="" style="margin-left: 100px;" src="{% static 'images/QR-code.png' %}" />
+                 <div class="column column--1of2 payment">
+                    <h4>Rs. 500/-</h4>
+                     <form class="form" method="POST" action="">
+                        {% csrf_token %}
+                        <input class="btn btn--sub btn--lg  my-md" type="submit" value="Make Payment" />
+                    </form> 
+                     <!-- <a class="test-confirm-btn" href="{% url 'paytm'  %}"><button type="submit" 
+                    class="btn btn--sub btn--lg  my-md ">Kro Paytm</button></a>  -->
 
                 </div>
             </div>
 
-            <a class="test-confirm-btn" href="{% url 'allDoctors'  %}"><button type="submit" id="confirm-btn"
-                    class="btn btn--sub btn--lg  my-md ">All Done :)</button></a>
 
 
 
         </div>
     </main>
 
-    <script>
+    <style>
+        .payment{
+            margin-top:100px;
+        }
+    </style>
+
+    <!-- <script>
         function enable() {
 
             document.querySelector("#confirm-btn").disabled = true;
@@ -67,7 +87,7 @@
                 document.querySelector("#confirm-btn").disabled = false;
             }, 3000);
         }
-    </script>
+    </script> -->
 </body>
 
 {% endblock %}
