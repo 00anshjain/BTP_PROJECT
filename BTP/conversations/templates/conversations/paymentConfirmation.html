@@ -3,14 +3,57 @@
 {% block content %}
 
 <!-- Main Section -->
+<style>
+    .payment_img {
+        height: 30vh;
+        width: 25vw;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .mid {
+        text-align: center;
+    }
+
+    .payment_success {
+        border: 0px solid black;
+        height: 300px;
+        width: 250px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .fail_reason {
+        width: 50vw;
+        position: absolute;
+        left: 25%;
+    }
+</style>
 
 <body>
-    <h2>Payment status regarding your order Id {{response.ORDERID}}</h2>
+
+    <section class="sec-dp">
+        <div class="h1-dp">
+            <h1>Payment Status</h1>
+        </div>
+    </section>
+
+
     {% if response.RESPCODE == '01' %}
-    ORDER SUCCESS
+    <img class=" payment_success" src="{% static 'images/success.gif' %}" alt="">
+    <h2 class="mid">Payment Successfull</h2>
+    <h4 class="mid">Transcation ID: {{response.BANKTXNID}}</h4>
+    <h3 class="mid">Meeting Deatils will be given to you once Doc approve your Request.</h3>
+    <h5 class="mid">*Refund will we intiated if Doc decline your Appointment Request.</h5>
     {% else %}
-    ORDER FAILURE
+    <img class="payment_img" src="{% static 'images/oops.PNG' %}" alt="">
+    <h2 class="mid">Your payment Failed</h2>
+    <h4 class="mid">Transcation ID: {{response.BANKTXNID}}</h4>
+    <div class="fail_reason">
+        <h6><span style="font-weight: bold;"> Possible Reason:</span> {{response.RESPMSG}}</h6>
+    </div>
     {% endif%}
 </body>
 
