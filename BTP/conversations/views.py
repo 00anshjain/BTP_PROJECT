@@ -22,7 +22,9 @@ from time import time
 from datetime import datetime, timedelta
 # import pytz
 
-MERCHANT_KEY = 'bKMfNxPPf_QdZppa'
+MERCHANT_KEY = settings.MERCHANT_KEY
+MERCHANT_ID = settings.MERCHANT_ID
+
 headers = {
     'Authorization': 'fzma62xwlizrmb49tnbgaayyvnthdcip3eqih30tmq0f9478x5'
 }
@@ -351,7 +353,8 @@ def appointmentRequest(request, pk):
     # print(doctor)
     param_dict = {
         # "MID": 'marXll12473345703685',
-        "MID": 'DIY12386817555501617',
+        # "MID": 'DIY12386817555501617',
+        "MID" : str(MERCHANT_ID),
         "ORDER_ID": '123',
         "CUST_ID": clientProfile.email,
         "TXN_AMOUNT": '500',

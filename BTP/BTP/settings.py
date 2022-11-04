@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,8 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-pgvtozmpf!9sl%wb9-d6-&u*m*!#7-c17pf)9%yn0ik%4%m2va'
 
+
+MERCHANT_ID = config('MERCHANT_ID')
+MERCHANT_KEY = config('MERCHANT_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['docitmed.herokuapp.com', '127.0.0.1']
 
