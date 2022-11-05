@@ -21,22 +21,31 @@
 
 
 <body onload="enable()">
-    
+
     <section class="sec-dp">
         <div class="h1-dp">
-            <h1>Payment for Appointment</h1>
+            <h1>Appointment Request </h1>
         </div>
     </section>
 
 
-    <main class="formPage my-xl" >
-        <div class="content-box" >
+    <main class="formPage my-xl">
+        <div class="content-box">
             <div class="work-dp">
-                <div class="card-dp" style="width: 650px ;">
-                    <img class="avatar avatar--lg" style="margin-left: 250px"
-                        src="{{ doctorProfile.profile_image.url }}" />
-                        <p style="margin-left: 45px;">Appointment With</p>
-                    <h4  >Dr. {{doctorProfile.name}}</h4>
+                <div class="" style="width: 1050px ;">
+                    <div style="align-items: center; justify-content: center;">
+                        <img class="avatar avatar--xl" style="display: block;
+                        margin-left: auto;
+                        margin-right: auto;"
+                            src="{{ doctorProfile.profile_image.url }}" />
+                        <p style="text-align: center; margin-top: 10px;">Appointment With</p>
+                        <h4 style="text-align: center;">Dr. {{doctorProfile.name}}</h4>
+                        <h6 style="text-align: center;">Payment for Rs. 500/-</h6>
+                        <form class="form" method="POST" action="" style="text-align: center;">
+                            {% csrf_token %}
+                            <input class="btn btn--sub btn--lg  my-md" type="submit" value="Make Payment" />
+                        </form>
+                    </div>
                 </div>
             </div>
 
@@ -44,28 +53,27 @@
 
             <!-- onload = "enable()" -->
 
-            
 
-            <div class="layout">
+
+            <!-- <div class="layout">
                 <div class="column column--1of2" style="padding-top: 20px;">
-                    <img class="avatar avatar--lg" style="margin-left: 100px;"
+                    <img class="avatar avatar--xl" style="margin-left: 100px;"
                         src="{{ doctorProfile.profile_image.url }}" />
-                        <p style="margin-left: 100px;">Appointment With</p>
-                    <h4  >Dr. {{doctorProfile.name}}</h4>
-                    
+                    <p style="margin-left: 100px;">Appointment With</p>
+                    <h4>Dr. {{doctorProfile.name}}</h4>
+
                 </div>
-                 <div class="column column--1of2 payment">
+                <div class="column column--1of2 payment">
                     <h4>Rs. 500/-</h4>
-                     <form class="form" method="POST" action="">
+                    <form class="form" method="POST" action="">
                         {% csrf_token %}
                         <input class="btn btn--sub btn--lg  my-md" type="submit" value="Make Payment" />
-                    </form> 
-                     <!-- <a class="test-confirm-btn" href="{% url 'paytm'  %}"><button type="submit" 
-                    class="btn btn--sub btn--lg  my-md ">Kro Paytm</button></a>  -->
+                    </form>
+                     <a class="test-confirm-btn" href="{% url 'paytm'  %}"><button type="submit" 
+                    class="btn btn--sub btn--lg  my-md ">Kro Paytm</button></a> 
 
                 </div>
-            </div>
-
+            </div>   -->
 
 
 
@@ -73,8 +81,8 @@
     </main>
 
     <style>
-        .payment{
-            margin-top:100px;
+        .payment {
+            margin-top: 100px;
         }
     </style>
 
@@ -89,5 +97,8 @@
         }
     </script> -->
 </body>
+
+
+
 
 {% endblock %}
