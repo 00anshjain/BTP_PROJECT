@@ -348,6 +348,16 @@ def appointmentRequest(request, pk):
     doctor = User.objects.get(username=pk)
     doctorProfile = Profile.objects.get(username=doctor.username)
     clientProfile = ClientProfile.objects.get(username=client.username)
+
+    tempMeet = TempMeeting.objects.create(
+        clientProfile = clientProfile,
+        doctorProfile = doctorProfile,
+    )
+    # print(tempMeet)
+    # print(tempMeet.tempAppointmentID)
+    # print(tempMeet.clientProfile)
+    # print(tempMeet.doctorProfile)
+    
     # if request.method == 'POST':
     #     return redirect('')
     # print(doctor)
@@ -355,7 +365,7 @@ def appointmentRequest(request, pk):
         # "MID": 'marXll12473345703685',
         # "MID": 'DIY12386817555501617',
         "MID" : str(MERCHANT_ID),
-        "ORDER_ID": '123',
+        "ORDER_ID": str(tempMeet.tempAppointmentID),
         "CUST_ID": clientProfile.email,
         "TXN_AMOUNT": '500',
         "CHANNEL_ID": 'WEB',
@@ -386,13 +396,27 @@ def paymentConfirmation(request):
         response_dict[i] = form[i]
         if i == 'CHECKSUMHASH':
             checksum = form[i]
-
+    
     verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
+    tempMeet = TempMeeting.objects.get(tempAppointmentID=response_dict['ORDERID'])
     if verify:
         if response_dict['RESPCODE'] == '01':
             print('order successful')
+            Meeting.objects.create(
+                doctorProfile=tempMeet.doctorProfile, 
+                clientProfile=tempMeet.clientProfile,
+                appointmentID=tempMeet.tempAppointmentID,
+                )
         else:
             print('order was not successful because' + response_dict['RESPMSG'])
+        # print("successful delete")
+        print(tempMeet)
+        print(tempMeet.tempAppointmentID)
+        tempMeet.delete()
+        # TempMeeting.delete(tempAppointmentID=response_dict['ORDERID'])
+        # tempMeet.objects.filter(tempAppointmentID=tempMeet.tempAppointmentID).delete()
+        print("Deleted")
+
     context = {'response': response_dict}
     return render(request, 'conversations/paymentConfirmation.html', context)
 
