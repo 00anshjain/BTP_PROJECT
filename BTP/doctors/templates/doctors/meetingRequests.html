@@ -4,17 +4,59 @@
 
 {% block content %}
 
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 25px;
+    }
+    th, tr{
+        text-align: center;
+    }
+</style>
+
+<div class="h1-dp" style="margin-bottom: 40px;">
+    <h1>Requested Appointment List</h1>
+</div>
+
+<table style="width:75%; margin: 0 auto;">
+<tr>
+    <th>S. No.</th>
+    <th>Patient Name</th>
+    <th>Sex</th>
+    <th>Time</th>
+    <th>Mobile</th>
+    <th>Schedule</th>
+</tr>
+
 {% for item in meetingRequests %}
+
 
 <form class="form" method="POST" action="" style="text-align: center;">
     {% csrf_token %}
-    <h1>{{item.clientProfile.name}} {{item.created}}</h1>
-    <button  type="submit" class="btn btn--sub btn--lg  my-md" name="appointmentID" value={{item.appointmentID}} >Schedule Appointment</button>
+    <!-- <h1>{{item.clientProfile.name}} {{item.created}}</h1> -->
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{item.clientProfile.name}}</td>
+        <td>{{item.clientProfile.gender}}</td>
+        <td>{{item.created}}</td>
+        <td>{{item.clientProfile.contact_number}}</td>
+        <td><button type="submit" class="btn btn--sub  my-md" name="appointmentID" value={{item.appointmentID}}>Schedule
+            Appointment</button></td>
+    </tr>
+
+    <!-- <button type="submit" class="btn btn--sub btn--lg  my-md" name="appointmentID" value={{item.appointmentID}}>Schedule
+        Appointment</button> -->
     <!-- <input class="btn btn--sub btn--lg  my-md" type="submit" value="Schedule Appointment" name="item.appointmentID" /> -->
 </form>
 
 <!-- <a style="margin-top: 20px;" class="btn btn--sub btn--lg">Submit</a> -->
 
 {% endfor %}
+
+</table>
 
 {% endblock content %}
