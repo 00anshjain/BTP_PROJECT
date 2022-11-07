@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from conversations.models import Meeting
 from django.db.models import Q
 from django.contrib.auth.models import User
 
@@ -213,3 +214,20 @@ def userAccount(request):
         context = {"profile": profile, "blogs": blogs, "qualification": qualification}
         return render(request, 'doctors/account.html', context)
     return redirect('allDoctors')
+
+
+def meetingRequests(request):
+    username = request.user.username
+    profile = Profile.objects.get(username=username)
+    if request.method == 'POST':
+        appointmentID = request.POST['appointmentID']
+        # meetingReq = Meeting.objects.get(appointmentID=appointmentID)
+        # print(appointmentID)
+        # context = {"doctorProfile": profile, "meetingReq": meetingReq}
+        # return redirect('allDoctors')
+        return redirect('makeAppointment', appointmentID)
+        # return render(request, 'messages/appointmentForm.html/', context)
+    meetingRequests = Meeting.objects.filter(doctorProfile = profile, status= False)
+    meetingRequests.order_by('created')
+    context = {"meetingRequests": meetingRequests, "profile" : profile}
+    return render(request, 'doctors/meetingRequests.html', context)

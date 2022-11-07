@@ -45,6 +45,7 @@
                         {% if request.user.username == profile.username %}
                         <a style="margin-top: 20px;" href="{% url 'create-blog' %}" class="btn btn--sub btn--lg">Add
                             Blog</a>
+                            <a style="margin-top: 20px;" href="{% url 'meetingRequests' %}" class="btn btn--sub btn--lg">Appointment Requests</a>
                         {% endif %}
                     </div>
                 </div>

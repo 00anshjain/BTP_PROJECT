@@ -26,6 +26,7 @@ urlpatterns = [
     # path('login/', views.login, name='login'),
 
     path("account/", views.userAccount, name="account"),
+    path("meetingRequests/", views.meetingRequests, name="meetingRequests"),
 
 
 ]

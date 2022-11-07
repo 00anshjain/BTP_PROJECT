@@ -184,15 +184,20 @@ def convert_date(datestring, time): #2022-04-28 23:30:00
 
 
 def makeAppointment(request, pk):
+    # return redirect('allDoctors')
     # pk is client username
+    meetingReq = Meeting.objects.get(appointmentID=pk)
     doctor = request.user
-    client = User.objects.get(username = pk)
+    # client = meetingReq.clientProfile 
+    client = User.objects.get(username = meetingReq.clientProfile.username)
     form = AppointmentForm()
-
+    
+    
     if request.method == "POST":
         form = AppointmentForm(request.POST, instance = doctor)
         scheduleDate = request.POST['date']
         scheduleTime = request.POST['time']
+
         date_time_str = scheduleDate + " " + scheduleTime + ":00"
         # print(date_time_str)
         # date_time_obj = datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
@@ -334,10 +339,13 @@ def makeAppointment(request, pk):
         # # run the create meeting function
         # # createMeeting()
         create_meeting('Dr. ' +doctor.first_name + ' ' + doctor.last_name, client.first_name + ' ' + client.last_name, date_time_str, date_time_str, doctor.email, client.email, "Hello! Please be on time.")
-
+        meetingReq.status = True
+        meetingReq.date = scheduleDate
+        meetingReq.time = scheduleTime
+        meetingReq.save()
 
         
-        return redirect('allDoctors')
+        return redirect('meetingRequests')
 
     context = {'form': form}
     return render(request, 'conversations/appointmentForm.html', context)

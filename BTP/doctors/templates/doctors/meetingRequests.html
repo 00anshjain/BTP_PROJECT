@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% for item in meetingRequests %}
+
+<form class="form" method="POST" action="" style="text-align: center;">
+    {% csrf_token %}
+    <h1>{{item.clientProfile.name}} {{item.created}}</h1>
+    <button  type="submit" class="btn btn--sub btn--lg  my-md" name="appointmentID" value={{item.appointmentID}} >Schedule Appointment</button>
+    <!-- <input class="btn btn--sub btn--lg  my-md" type="submit" value="Schedule Appointment" name="item.appointmentID" /> -->
+</form>
+
+<!-- <a style="margin-top: 20px;" class="btn btn--sub btn--lg">Submit</a> -->
+
+{% endfor %}
+
+{% endblock content %}
