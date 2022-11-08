@@ -10,13 +10,7 @@
       src="{{ senderForImage.profile_image.url }}" />
     <span class="inbox__title">{{senderProfile.username}}</span>
 
-    {% if isClient != True %}
-    <span style="float: right;" class="auth__actions">
-      
-      <a id="resendOTPmess" href="{% url 'makeAppointment' senderProfile.username  %}">Schedule Appointment</a>
-    </span>
-
-    {% else %}
+    {% if isClient == True %}
 
     <span style="float: right;" class="auth__actions">
       

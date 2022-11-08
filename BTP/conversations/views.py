@@ -44,7 +44,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 
 
-
+@login_required(login_url='doctorLogin')
 def createMessage(request):
     username = request.user.username
     try:
@@ -61,7 +61,7 @@ def createMessage(request):
     #         profile = None
     # if request.method == 'POST':
 
-
+@login_required(login_url='doctorLogin')
 def viewConversation(request, pk):
     # pk is senderUsername
     reciever = request.user
@@ -130,7 +130,7 @@ def viewConversation(request, pk):
                'senderName': senderName, 'recieverName': recieverName, 'senderForImage': senderForImage, 'isClient': isClient}
     return render(request, 'conversations/viewConversation.html', context)
 
-
+@login_required(login_url='doctorLogin')
 def inbox(request):
     username = request.user.username
     recieverProfile = User.objects.get(username=username)
@@ -182,7 +182,7 @@ def convert_date(datestring, time): #2022-04-28 23:30:00
     return returnstring
 # convert_date("2022-04-28 23:30:00")
 
-
+@login_required(login_url='doctorLogin')
 def makeAppointment(request, pk):
     # return redirect('allDoctors')
     # pk is client username
@@ -350,7 +350,7 @@ def makeAppointment(request, pk):
     context = {'form': form}
     return render(request, 'conversations/appointmentForm.html', context)
 
-
+@login_required(login_url='doctorLogin')
 def appointmentRequest(request, pk):
     client = request.user
     doctor = User.objects.get(username=pk)

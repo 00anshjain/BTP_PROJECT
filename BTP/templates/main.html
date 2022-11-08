@@ -30,6 +30,15 @@
     <title>DocIt - We care for you!</title>
 </head>
 
+<style>
+    .footer{
+        /* width: 500px; */
+      margin: 0 auto; /* or `10px auto` to add margin top and bottom */
+
+      text-align: center; /* align text center aligned*/
+    }
+</style>
+
 <body>
 
     {% include 'navbar.html' %}
@@ -38,6 +47,12 @@
 
 
     {% endblock content %}
+    <hr style="width: 50%; margin: 0 auto;">
+    <footer class="footer">
+        <p>
+            Copyright © 2022, DocItMed. All rights reserved.
+        </p>
+    </footer>
 
 </body>
 

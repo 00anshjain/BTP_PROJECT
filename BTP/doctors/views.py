@@ -147,14 +147,14 @@ def doctorRegister3(request, pk):
     context = {'degreeList': degreeList, 'collegeList': collegeList}
     return render(request, 'doctors/doctorRegister3.html', context)
 
-
+@login_required(login_url='doctorLogin')
 def doctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
     blogs = profile.blog_set.all()
     qualification = Qualification.objects.get(profile=pk)
     return render(request, 'doctors/doctorProfile.html', {'profile': profile, 'blogs': blogs, 'qualification': qualification})
 
-
+@login_required(login_url='doctorLogin')
 def updateDoctorProfile(request, pk):
     profile = Profile.objects.get(Did=pk)
     form = DoctorProfileForm(instance=profile)
@@ -215,7 +215,7 @@ def userAccount(request):
         return render(request, 'doctors/account.html', context)
     return redirect('allDoctors')
 
-
+@login_required(login_url='doctorLogin')
 def meetingRequests(request):
     username = request.user.username
     profile = Profile.objects.get(username=username)
@@ -229,5 +229,8 @@ def meetingRequests(request):
         # return render(request, 'messages/appointmentForm.html/', context)
     meetingRequests = Meeting.objects.filter(doctorProfile = profile, status= False)
     meetingRequests.order_by('created')
-    context = {"meetingRequests": meetingRequests, "profile" : profile}
+    noMeetingRequest = False
+    if not meetingRequests:
+        noMeetingRequest = True
+    context = {"meetingRequests": meetingRequests, "profile" : profile, "noMeetingRequest": noMeetingRequest}
     return render(request, 'doctors/meetingRequests.html', context)

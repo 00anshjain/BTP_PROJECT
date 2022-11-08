@@ -6,11 +6,14 @@ from .models import Blog
 from doctors.models import Profile
 from django.contrib import messages
 # Create your views here.
+from .utils import searchBlogs
 
 
 def blogs(request):
-    blogs = Blog.objects.all()
-    context = {"blogs": blogs}
+    blogs, search_query = searchBlogs(request)
+    context = {'blogs': blogs, 'search_query': search_query}
+    # blogs = Blog.objects.all()
+    # context = {"blogs": blogs}
     return render(request, "blogs/blogs.html", context)
 
 @login_required(login_url="doctorLogin")

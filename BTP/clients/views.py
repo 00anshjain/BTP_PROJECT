@@ -60,7 +60,7 @@ def clientAccount(request):
         # return render(request, 'clients/clientAccount.html')
     return redirect('account')
 
-
+@login_required(login_url='doctorLogin')
 def updateClientProfile(request, pk):
     profile = ClientProfile.objects.get(Cid=pk)
     form = ClientProfileForm(instance=profile)

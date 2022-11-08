@@ -22,60 +22,60 @@
                             {% csrf_token %}
 
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">CP: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Chest Pain Type (CP): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="cp"
-                                    placeholder="cp" />
+                                    placeholder="1 = typical angina, 2=atypical angina, 3=non-anginal pain, 4=asymptomatic" />
                             </div>
 
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">trestbps: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Resting Blood Pressure (trestbps): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="trestbps"
-                                    placeholder="trestbps" />
+                                    placeholder="in mm Hg" />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">chol: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Cholestoral (chol): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="chol"
-                                    placeholder="chol" />
+                                    placeholder="in mg/dl" />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">fbs: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">fasting blood sugar (fbs): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="fbs"
-                                    placeholder="fbs" />
+                                    placeholder="1 for sugar > 120mg/dl, otherwise 0)" />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">restecg: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Resting Electrocardiographic Results (restecg): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="restecg"
-                                    placeholder="restecg" />
+                                    placeholder="0 = normal, 1 = having ST-T, 2 = hypertrophy" />
                             </div>
                             <div class="form__field">
                                 <label style="font-weight:bold ;" for="formInput#text">thalach: </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="thalach"
-                                    placeholder="thalach" />
+                                    placeholder="Maximum Heart Rate Achieved" />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">exang: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Exercise Induced Angina (exang): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="exang"
-                                    placeholder="exang" />
+                                    placeholder="1 = yes, 0 = no" />
                             </div>
                             <div class="form__field">
                                 <label style="font-weight:bold ;" for="formInput#text">oldpeak: </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="oldpeak"
-                                    placeholder="oldpeak" />
+                                    placeholder="ST depression induced by exercise " />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">slope: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Slope of the peak exercise (ST segment): </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="slope"
-                                    placeholder="slope" />
+                                    placeholder="1 = upsloping, 2 = flat, 3 = downsloping" />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">ca: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">CA: number of major vessels</label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="ca"
-                                    placeholder="ca" />
+                                    placeholder="Range: 0-3" />
                             </div>
                             <div class="form__field">
-                                <label style="font-weight:bold ;" for="formInput#text">thal: </label>
+                                <label style="font-weight:bold ;" for="formInput#text">Thal: </label>
                                 <input style="font-weight:5 ;" class="input input--text" id="formInput#text" type="text" name="thal"
-                                    placeholder="thal" />
+                                    placeholder="3 = normal, 6 = fixed defect, 7 = reversable defect" />
                             </div>
 
 

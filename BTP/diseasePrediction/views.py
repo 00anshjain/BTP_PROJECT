@@ -28,21 +28,26 @@ from datetime import datetime, timedelta
 from .heartDisease import heartDiseaseUtil
 from .diabetesDisease import diabetesDiseaseUtil
 
+@login_required(login_url='doctorLogin')
 def diseasePrediction(request):
     return render(request, 'diseasePrediction/diseasePrediction.html')
 
+@login_required(login_url='doctorLogin')
 def heartDiseaseInstruction(request):
     return render(request, 'diseasePrediction/heartDiseaseInstruction.html')
 
+@login_required(login_url='doctorLogin')
 def diabetesDiseaseInstruction(request):
     return render(request, 'diseasePrediction/diabetesDiseaseInstruction.html')
 
+@login_required(login_url='doctorLogin')
 def heartDisease(request):
     if request.method == 'POST':
         return heartDiseaseUtil(request)
     context = {}
     return render(request, 'diseasePrediction/heartDiseaseForm.html', context)
 
+@login_required(login_url='doctorLogin')
 def diabetesDisease(request):
     if request.method == 'POST':
         return diabetesDiseaseUtil(request)
@@ -50,7 +55,7 @@ def diabetesDisease(request):
     return render(request, 'diseasePrediction/diabetesDiseaseForm.html', context)
 
 
-
+@login_required(login_url='doctorLogin')
 def diseasePredictionResult(request, pk):
     diseasePrediction = DiseasePrediction.objects.get(diseasePredictionID=pk)
     testNumber = diseasePrediction.testNumber
