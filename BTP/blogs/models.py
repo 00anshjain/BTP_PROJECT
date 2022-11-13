@@ -1,6 +1,7 @@
 from statistics import mode
 from django.db import models
 from doctors.models import Profile
+from clients.models import ClientProfile
 import uuid
 # Create your models here.
 
@@ -23,6 +24,21 @@ class Blog(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+
+    @property
+    def getVoteCount(self):
+        reviews = self.review_set.all()
+        upVotes = reviews.filter(value='up').count()
+        totalVotes = reviews.count()
+
+        ratio = (upVotes / totalVotes) * 100
+        self.vote_total = totalVotes
+        self.vote_ratio = ratio
+
+        self.save()
+
 class Review(models.Model):
     VOTE_TYPE = (
         ('up', 'Up Vote'),
@@ -37,8 +53,8 @@ class Review(models.Model):
         default=uuid.uuid4, unique=True, primary_key=True, editable=False
     )
 
-    class Meta:
-        unique_together = [['owner', 'blog']];
+    # class Meta:
+    #     unique_together = [['owner', 'blog']];
 
     def __str__(self):
         return self.value

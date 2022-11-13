@@ -35,10 +35,11 @@
                 <div class="comments">
                     <h3 class="singleProject__subtitle">Feedback</h3>
                     <h5 class="project--rating">
-                        95% Postitive Feedback (5 Votes)
+                        {{blog.vote_ratio}}% Postitive Feedback ({{blog.vote_total}} Votes)
 
                     </h5>
 
+                    {% if profile.username %}
                     <form class="form" action="{% url 'blog' blog.id %}" method="POST">
                         {% csrf_token %}
                         {% for field in form %}
@@ -47,19 +48,20 @@
                             {{field}}
                         </div>
                         {% endfor %}
-                        <input class="btn btn--sub btn--lg" type="submit" value="Comments" />
+                        <input class="btn btn--sub btn--lg" type="submit" value="Comment" />
                     </form>
+                    {% endif %}
                     <div class="commentList">
                         {% for review in blog.review_set.all %}
                         {% if review.body %}
                         <div class="comment">
-                            <a href="profile.html">
+                            <a href="{% url 'doctorProfile' review.owner.Did %}">
                                 <img class="avatar avatar--md"
-                                    src="https://pbs.twimg.com/profile_images/1335382240931368961/b3wSZKj4_400x400.jpg"
+                                    src="{{review.owner.profile_image.url}}"
                                     alt="user" />
                             </a>
                             <div class="comment__details">
-                                <a href="profile.html" class="comment__author">{{review.owner.name}}</a>
+                                <a href="{% url 'doctorProfile' review.owner.Did %}" class="comment__author">Dr. {{review.owner.name}}</a>
                                 <p class="comment__info">
                                     {{review.body|linebreaksbr}}
                                 </p>

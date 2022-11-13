@@ -20,7 +20,12 @@ def blogs(request):
 def blog(request, pk):
     blogObj = Blog.objects.get(id=pk)
     usr = request.user.username
-    profile = Profile.objects.get(username=blogObj.owner.username)
+    # profile = Profile.objects.get(username=blogObj.owner.username)
+    try:
+        profile = Profile.objects.get(username=usr)
+    except:
+        profile = None
+    # print(usr)
     form  = ReviewForm()
 
     if request.method == 'POST':
@@ -30,10 +35,13 @@ def blog(request, pk):
         review.owner = profile
         review.save()
 
+        blogObj.getVoteCount
+
         #Update blog count
         messages.success(request, 'Your review was successfully submitted!')
+        return redirect('blog', pk=blogObj.id)
 
-    return render(request, "blogs/single-blog.html", {"blog": blogObj, "form": form})
+    return render(request, "blogs/single-blog.html", {"blog": blogObj, "form": form, "profile": profile})
 
 
 @login_required(login_url="doctorLogin")
