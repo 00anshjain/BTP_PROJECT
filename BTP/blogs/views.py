@@ -12,6 +12,8 @@ from .utils import searchBlogs
 def blogs(request):
     blogs, search_query = searchBlogs(request)
     context = {'blogs': blogs, 'search_query': search_query}
+    for blog in blogs:
+        blog.getVoteCount
     # blogs = Blog.objects.all()
     # context = {"blogs": blogs}
     return render(request, "blogs/blogs.html", context)
@@ -20,6 +22,7 @@ def blogs(request):
 def blog(request, pk):
     blogObj = Blog.objects.get(id=pk)
     usr = request.user.username
+    blogObj.getVoteCount
     # profile = Profile.objects.get(username=blogObj.owner.username)
     try:
         profile = Profile.objects.get(username=usr)

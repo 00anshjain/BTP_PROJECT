@@ -33,7 +33,9 @@ class Blog(models.Model):
         upVotes = reviews.filter(value='up').count()
         totalVotes = reviews.count()
 
-        ratio = (upVotes / totalVotes) * 100
+        ratio = 0
+        if totalVotes>0:
+            ratio = (upVotes / totalVotes) * 100
         self.vote_total = totalVotes
         self.vote_ratio = ratio
 
